@@ -1,5 +1,6 @@
 import express from 'express';
-import dotenv from 'dotenv';
+import dotenv from  'dotenv';
+import Router from './routes/UserRoutes';
 
 // Carregue as variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -16,7 +17,23 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //routes
+app.use('/users', Router)
 
 app.listen(port, () => {
   console.log(`Servidor está ouvindo na porta ${port}`);
 });
+
+/*
+ATENÇÃO
+
+Quando clonar o repositório ainda será necessário executar os comandos:
+-npm i express
+-npm i -D @types/express
+-npm i ts-node ts-node-dev typescript
+-npm i dotenv
+-npm i jsonwebtoken
+-npm i -D @types/jsonwebtoken
+-npm i typeorm
+-npm i pg
+-npm i -D @types/pg
+*/
