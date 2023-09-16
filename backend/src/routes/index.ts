@@ -9,11 +9,11 @@ import photo from "./photo";
 const routes = Router();
 
 routes.use("/bike", bike);
-routes.use("/categoria", category);
-routes.use("/foto", photo);
-routes.use("/locacao", rent);
-routes.use("/marca", brand);
-routes.use("/usuario", user);
+routes.use("/category", category);
+routes.use("/photo", photo);
+routes.use("/rent", rent);
+routes.use("/brand", brand);
+routes.use("/user", user);
 
 //aceita qualquer método HTTP ou URL
 routes.use((_: Request, res: Response) =>

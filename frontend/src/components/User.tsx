@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 
-function Rent() {
+function User() {
   const [alias, setAlias] = useState("");
   const [mail, setMail] = useState("");
   const [phone, setPhone] = useState("");
 
   function salvar() {
     axios
-      .post("http://localhost:3001/rent", { alias, mail, phone })
+      .post("http://localhost:3001/user", { alias, mail, phone })
       .then(({ data }) => console.log(data));
   }
 
@@ -42,4 +42,4 @@ function Rent() {
   );
 }
 
-export default Rent;
+export default User;

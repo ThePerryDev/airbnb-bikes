@@ -5,7 +5,7 @@ function Category() {
   const [name, setName] = useState("");
   function salvar() {
     axios
-      .post("http://localhost:3001/categoria", { name })
+      .post("http://localhost:3001/category", { name })
       .then(({ data }) => console.log(data));
   }
 

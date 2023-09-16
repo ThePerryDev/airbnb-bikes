@@ -3,12 +3,12 @@ import api from "./api";
 
 class BrandService {
   async get(): Promise<BrandProps[]> {
-    const { data } = await api.get("/marca");
+    const { data } = await api.get("/brand");
     return data;
   }
 
   async post(name: string): Promise<any> {
-    const { data } = await api.post("/marca", { name });
+    const { data } = await api.post("/brand", { name });
     return data;
   }
 }

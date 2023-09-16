@@ -5,7 +5,7 @@ function Brand() {
   const [name, setName] = useState("");
   function salvar() {
     axios
-      .post("http://localhost:3001/marca", { name })
+      .post("http://localhost:3001/brand", { name })
       .then(({ data }) => console.log(data));
   }
 

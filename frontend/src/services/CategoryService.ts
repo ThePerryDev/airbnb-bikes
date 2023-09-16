@@ -3,12 +3,12 @@ import api from "./api";
 
 class CategoryService {
   async get(): Promise<CategoryProps[]> {
-    const { data } = await api.get("/categoria");
+    const { data } = await api.get("/category");
     return data;
   }
 
   async post(name: string): Promise<any> {
-    const { data } = await api.post("/categoria", { name });
+    const { data } = await api.post("/category", { name });
     return data;
   }
 }

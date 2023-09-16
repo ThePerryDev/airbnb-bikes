@@ -3,7 +3,7 @@ import api from "./api";
 
 class UserService {
   async get(): Promise<UserProps[]> {
-    const { data } = await api.get("/usuario");
+    const { data } = await api.get("/user");
     return data;
   }
 
@@ -12,7 +12,7 @@ class UserService {
     mail: string;
     phone: string;
   }): Promise<any> {
-    const { data } = await api.post("/usuario", props);
+    const { data } = await api.post("/user", props);
     return data;
   }
 }
