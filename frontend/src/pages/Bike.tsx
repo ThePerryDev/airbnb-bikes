@@ -212,7 +212,7 @@ function Bike() {
           </tr>
         </thead>
         <tbody>
-          {bikes.map((item) => (
+          {Array.isArray(bikes) && bikes.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.idUser}</td>
