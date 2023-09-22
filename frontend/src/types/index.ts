@@ -16,3 +16,8 @@ export interface BikeProps {
   latitude: string;
   longitude: string;
 }
+
+export interface CategoriesProps{
+  id:number;
+  name:string;
+}
