@@ -21,3 +21,10 @@ export interface CategoriesProps{
   id:number;
   name:string;
 }
+
+export interface UsersProps {
+  id: number;
+  alias: string;
+  mail: string;
+  phone: string;
+}
