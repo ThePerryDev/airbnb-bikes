@@ -3,7 +3,7 @@ import api from "./api";
 
 class BikeService {
   async get(): Promise<BikeProps[]> {
-    const { data } = await api.get("/bikes");
+    const { data } = await api.get("/bike");
     return data;
   }
 
@@ -15,9 +15,9 @@ class BikeService {
     size: number;
     material: string;
     gender: string;
-    speedkit: string;
-    rim: string;
-    suspension: string;
+    speedkit: number;
+    rim: number;
+    suspension: boolean;
     description: string;
     hourlyvalue: number;
     dailyvalue: number;

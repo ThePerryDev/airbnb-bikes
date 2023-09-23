@@ -1,18 +1,18 @@
 export interface BikeProps {
   id: number;
-  idUser: string;
-  idCategory: string;
-  idBrand: string;
+  idUser: number;
+  idCategory: number;
+  idBrand: number;
   color: string;
-  size: string;
+  size: number;
   material: string;
   gender: string;
-  speedkit: string;
-  rim: string;
-  suspension: string;
+  speedkit: number;
+  rim: number;
+  suspension: boolean;
   description: string;
-  hourlyvalue: string;
-  dailyvalue: string;
-  latitude: string;
-  longitude: string;
+  hourlyvalue: number;
+  dailyvalue: number;
+  latitude: number;
+  longitude: number;
 }

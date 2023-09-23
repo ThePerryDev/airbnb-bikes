@@ -12,7 +12,7 @@ function Bike() {
   const [gender, setGender] = useState("");
   const [speedkit, setSpeedkit] = useState("");
   const [rim, setRim] = useState("");
-  const [suspension, setSuspension] = useState("");
+  const [suspension, setSuspension] = useState(false);
   const [description, setDescription] = useState("");
   const [hourlyvalue, setHourlyvalue] = useState("");
   const [dailyvalue, setDailyvalue] = useState("");
@@ -46,6 +46,8 @@ function Bike() {
     const idUserInt = parseInt(idUser);
     const idCategoryInt = parseInt(idCategory);
     const idBrandInt = parseInt(idBrand);
+    const speedkitInt = parseInt(speedkit);
+    const rimInt = parseInt(rim);
     const sizeInt = parseInt(size);
     const hourlyvalueFloat = parseFloat(hourlyvalue);
     const dailyvalueFloat = parseFloat(dailyvalue);
@@ -58,18 +60,16 @@ function Bike() {
       !isNaN(idCategoryInt) &&
       !isNaN(idBrandInt) &&
       !isNaN(sizeInt) &&
+      !isNaN(speedkitInt) &&
+      !isNaN(rimInt) &&
       !isNaN(hourlyvalueFloat) &&
       !isNaN(dailyvalueFloat) &&
       !isNaN(latitudeFloat) &&
       !isNaN(longitudeFloat) &&
-      idCategory.trim() !== "" &&
-      idBrand.trim() !== "" &&
       color.trim() !== "" &&
       material.trim() !== "" &&
       gender.trim() !== "" &&
-      speedkit.trim() !== "" &&
-      rim.trim() !== "" &&
-      suspension.trim() !== "" &&
+      typeof suspension === "boolean" &&
       description.trim() !== ""
     ) {
       const res = await BikeService.post({
@@ -80,9 +80,9 @@ function Bike() {
         size: sizeInt,
         material: material.trim(),
         gender: gender.trim(),
-        speedkit: speedkit.trim(),
-        rim: rim.trim(),
-        suspension: suspension.trim(),
+        speedkit: speedkitInt,
+        rim: rimInt,
+        suspension: suspension,
         description: description.trim(),
         hourlyvalue: hourlyvalueFloat,
         dailyvalue: dailyvalueFloat,
@@ -108,7 +108,7 @@ function Bike() {
     setGender("");
     setSpeedkit("");
     setRim("");
-    setSuspension("");
+    setSuspension(false);
     setDescription("");
     setHourlyvalue("");
     setDailyvalue("");
@@ -145,7 +145,10 @@ function Bike() {
         </div>
         <div>
           <label>Material</label>
-          <input value={material} onChange={(e) => setMaterial(e.target.value)} />
+          <input
+            value={material}
+            onChange={(e) => setMaterial(e.target.value)}
+          />
         </div>
         <div>
           <label>Gênero</label>
@@ -153,7 +156,10 @@ function Bike() {
         </div>
         <div>
           <label>Marchas</label>
-          <input value={speedkit} onChange={(e) => setSpeedkit(e.target.value)} />
+          <input
+            value={speedkit}
+            onChange={(e) => setSpeedkit(e.target.value)}
+          />
         </div>
         <div>
           <label>Aro</label>
@@ -161,27 +167,46 @@ function Bike() {
         </div>
         <div>
           <label>Suspensão</label>
-          <input value={suspension} onChange={(e) => setSuspension(e.target.value)} />
+          <input
+            type="checkbox"
+            checked={suspension}
+            onChange={(e) => setSuspension(e.target.checked)}
+          />
         </div>
         <div>
           <label>Descrição</label>
-          <input value={description} onChange={(e) => setDescription(e.target.value)} />
+          <input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
         <div>
           <label>Valor da Hora</label>
-          <input value={hourlyvalue} onChange={(e) => setHourlyvalue(e.target.value)} />
+          <input
+            value={hourlyvalue}
+            onChange={(e) => setHourlyvalue(e.target.value)}
+          />
         </div>
         <div>
           <label>Valor do Dia</label>
-          <input value={dailyvalue} onChange={(e) => setDailyvalue(e.target.value)} />
+          <input
+            value={dailyvalue}
+            onChange={(e) => setDailyvalue(e.target.value)}
+          />
         </div>
         <div>
           <label>Latitude</label>
-          <input value={latitude} onChange={(e) => setLatitude(e.target.value)} />
+          <input
+            value={latitude}
+            onChange={(e) => setLatitude(e.target.value)}
+          />
         </div>
         <div>
           <label>Longitude</label>
-          <input value={longitude} onChange={(e) => setLongitude(e.target.value)} />
+          <input
+            value={longitude}
+            onChange={(e) => setLongitude(e.target.value)}
+          />
         </div>
         <div>
           <button type="submit">Salvar</button>
@@ -212,26 +237,27 @@ function Bike() {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(bikes) && bikes.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.idUser}</td>
-              <td>{item.idCategory}</td>
-              <td>{item.idBrand}</td>
-              <td>{item.color}</td>
-              <td>{item.size}</td>
-              <td>{item.material}</td>
-              <td>{item.gender}</td>
-              <td>{item.speedkit}</td>
-              <td>{item.rim}</td>
-              <td>{item.suspension}</td>
-              <td>{item.description}</td>
-              <td>{item.hourlyvalue}</td>
-              <td>{item.dailyvalue}</td>
-              <td>{item.latitude}</td>
-              <td>{item.longitude}</td>
-            </tr>
-          ))}
+          {Array.isArray(bikes) &&
+            bikes.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.idUser}</td>
+                <td>{item.idCategory}</td>
+                <td>{item.idBrand}</td>
+                <td>{item.color}</td>
+                <td>{item.size}</td>
+                <td>{item.material}</td>
+                <td>{item.gender}</td>
+                <td>{item.speedkit}</td>
+                <td>{item.rim}</td>
+                <td>{item.suspension}</td>
+                <td>{item.description}</td>
+                <td>{item.hourlyvalue}</td>
+                <td>{item.dailyvalue}</td>
+                <td>{item.latitude}</td>
+                <td>{item.longitude}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>

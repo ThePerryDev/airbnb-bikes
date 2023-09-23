@@ -14,6 +14,8 @@ import {
   
   export type Gender = "masculino" | "feminino" | "unissex";
   export type Material = "aluminio" | "carbono" | "ferro";
+  export type Speedkit = 1 | 2 | 3 | 4 | 5 | 6;
+
   
   @Entity({ name: "bikes" })
   export class Bike {
@@ -23,8 +25,8 @@ import {
     @Column({ nullable: false, length: 30 })
     color: string;
   
-    @Column({ nullable: false, length: 10 })
-    size: string;
+    @Column({ nullable: false })
+    size: number;
   
     @Column({
       nullable: false,
@@ -40,8 +42,10 @@ import {
     })
     gender: Gender;
   
-    @Column({ nullable: false, length: 10 })
-    speedkit: string;
+    @Column({ nullable: false,
+    type: "enum",
+    enum: [1, 2, 3, 4, 5, 6] })
+    speedkit: Speedkit;
   
     @Column({ nullable: false, type: "float" })
     rim: number;
