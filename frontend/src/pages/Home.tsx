@@ -12,7 +12,7 @@ function Home() {
           <h1>searchbar</h1>
         </div>
         <nav>
-          <a href="#">aaaa</a>
+          <div>aaaa</div>
         </nav>
       </header>
       <main>

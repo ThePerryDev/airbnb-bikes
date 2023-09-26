@@ -1,42 +1,55 @@
-import { useEffect, useState } from "react";
-import { CategoryProps } from "../types";
-import service from "../services/CategoryService";
+import React, { useEffect, useState } from "react";
+import { CategoriesProps } from "../types";
+import CategoriesService from "../services/CategoriesService";
 import { Link } from "react-router-dom";
 import "./modelo.css";
 
 function Category() {
   const [name, setName] = useState("");
-  const [categories, setCategories] = useState([] as CategoryProps[]);
+  const [categories, setCategories] = useState([] as CategoriesProps[]);
 
-  //disparado ao carregar o componente
+  // Disparado ao carregar o componente
   useEffect(() => {
     (async () => {
-      load();
+      try {
+        const categoryData = await CategoriesService.get();
+        if (categoryData) {
+          setCategories(categoryData);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados das categorias:", error);
+      }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const load = async () => {
-    const res: CategoryProps[] = await service.get();
+    const res: CategoriesProps[] = await CategoriesService.get();
     setCategories(res);
   };
 
-  const save = async (e: any) => {
-    //evita o evento natural que é o submit do formulário
+  const save = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (name && name.trim() !== "") {
-      const res: any = await service.post(name.trim());
-      console.log(res);
+
+    // Converter os campos numéricos para inteiros ou floats
+    
+
+    // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
+    if (
+      name.trim() !== ""
+    ) {
+      const res = await CategoriesService.post({
+        name: name.trim()
+      });
       if (res.error) {
         alert(res.error);
       } else {
         load();
+        reset();
       }
     }
   };
 
-  const reset = (e: any) => {
-    e.preventDefault();
+  const reset = () => {
     setName("");
   };
 

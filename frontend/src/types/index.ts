@@ -1,33 +1,28 @@
 export interface BikeProps {
   id: number;
   idUser: number;
-  idBrand: string;
-  idCategory: string
+  idCategory: number;
+  idBrand: number;
   color: string;
-  size: string;
+  size: number;
   material: string;
   gender: string;
-  speedkit: string;
-  rim: string;
-  suspension: string;
+  speedkit: number;
+  rim: number;
+  suspension: boolean;
   description: string;
-  hourlyvalue: string;
-  dailyvalue: string;
-  latitude: string;
-  longitude: string;
+  hourlyvalue: number;
+  dailyvalue: number;
+  latitude: number;
+  longitude: number;
 }
 
-export interface BrandProps {
-  id: number;
-  name: string;
+export interface CategoriesProps{
+  id:number;
+  name:string;
 }
 
-export interface CategoryProps {
-  id: number;
-  name: string;
-}
-
-export interface UserProps {
+export interface UsersProps {
   id: number;
   alias: string;
   mail: string;
@@ -37,4 +32,8 @@ export interface UserProps {
 export interface Error {
   error: string;
   props: string;
+}
+export interface BrandProps {
+  id: number;
+  name: string;
 }

@@ -1,54 +1,61 @@
 import { useEffect, useState } from "react";
-import { UserProps } from "../types";
-import service from "../services/UserService";
+import { UsersProps } from "../types";
+import UsersService from "../services/UsersService";
 import { Link } from "react-router-dom";
 import "./modelo.css";
 
 function User() {
   const [alias, setAlias] = useState("");
-  const [users, setUsers] = useState([] as UserProps[]);
   const [mail, setMail] = useState("");
   const [phone, setPhone] = useState("");
+  const [users, setUsers] = useState([] as UsersProps[]);
 
-  //disparado ao carregar o componente
+  // Disparado ao carregar o componente
   useEffect(() => {
     (async () => {
-      load();
+      try {
+        const userData = await UsersService.get();
+        if (userData) {
+          setUsers(userData);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados dos usuários:", error);
+      }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const load = async () => {
-    const res: UserProps[] = await service.get();
+    const res: UsersProps[] = await UsersService.get();
     setUsers(res);
   };
 
-  const save = async (e: any) => {
-    //evita o evento natural que é o submit do formulário
+  const save = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Converter os campos numéricos para inteiros ou floats
+    
+
+    // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
     if (
-      alias &&
       alias.trim() !== "" &&
-      mail &&
       mail.trim() !== "" &&
-      phone &&
       phone.trim() !== ""
     ) {
-      const res: any = await service.post({
+      const res = await UsersService.post({
         alias: alias.trim(),
         mail: mail.trim(),
-        phone: phone.trim(),
+        phone: phone.trim()
       });
       if (res.error) {
         alert(res.error);
       } else {
         load();
+        reset();
       }
     }
   };
 
-  const reset = (e: any) => {
-    e.preventDefault();
+  const reset = () => {
     setAlias("");
     setMail("");
     setPhone("");

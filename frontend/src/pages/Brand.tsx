@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrandProps } from "../types";
-import service from "../services/BrandService";
+import BrandsService from "../services/BrandService";
 import { Link } from "react-router-dom";
 import "./modelo.css";
 
@@ -8,34 +8,48 @@ function Brand() {
   const [name, setName] = useState("");
   const [brands, setBrands] = useState([] as BrandProps[]);
 
-  //disparado ao carregar o componente
+  // Disparado ao carregar o componente
   useEffect(() => {
     (async () => {
-      load();
+      try {
+        const brandData = await BrandsService.get();
+        if (brandData) {
+          setBrands(brandData);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar dados das categorias:", error);
+      }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const load = async () => {
-    const res: BrandProps[] = await service.get();
+    const res: BrandProps[] = await BrandsService.get();
     setBrands(res);
   };
 
-  const save = async (e: any) => {
-    //evita o evento natural que é o submit do formulário
+  const save = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (name && name.trim() !== "") {
-      const res: any = await service.post(name.trim());
+
+    // Converter os campos numéricos para inteiros ou floats
+    
+
+    // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
+    if (
+      name.trim() !== ""
+    ) {
+      const res = await BrandsService.post({
+        name: name.trim()
+      });
       if (res.error) {
         alert(res.error);
       } else {
         load();
+        reset();
       }
     }
   };
 
-  const reset = (e: any) => {
-    e.preventDefault();
+  const reset = () => {
     setName("");
   };
 

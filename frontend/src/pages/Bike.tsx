@@ -14,7 +14,7 @@ function Bike() {
   const [gender, setGender] = useState("");
   const [speedkit, setSpeedkit] = useState("");
   const [rim, setRim] = useState("");
-  const [suspension, setSuspension] = useState("");
+  const [suspension, setSuspension] = useState(false);
   const [description, setDescription] = useState("");
   const [hourlyvalue, setHourlyvalue] = useState("");
   const [dailyvalue, setDailyvalue] = useState("");
@@ -43,39 +43,53 @@ function Bike() {
 
   const save = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Converter os campos numéricos para inteiros ou floats
+    const idUserInt = parseInt(idUser);
+    const idCategoryInt = parseInt(idCategory);
+    const idBrandInt = parseInt(idBrand);
+    const speedkitInt = parseInt(speedkit);
+    const rimInt = parseInt(rim);
+    const sizeInt = parseInt(size);
+    const hourlyvalueFloat = parseFloat(hourlyvalue);
+    const dailyvalueFloat = parseFloat(dailyvalue);
+    const latitudeFloat = parseFloat(latitude);
+    const longitudeFloat = parseFloat(longitude);
+
+    // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
     if (
-      idUser.trim() !== "" &&
-      idCategory.trim() !== "" &&
-      idBrand.trim() !== "" &&
+      !isNaN(idUserInt) &&
+      !isNaN(idCategoryInt) &&
+      !isNaN(idBrandInt) &&
+      !isNaN(sizeInt) &&
+      !isNaN(speedkitInt) &&
+      !isNaN(rimInt) &&
+      !isNaN(hourlyvalueFloat) &&
+      !isNaN(dailyvalueFloat) &&
+      !isNaN(latitudeFloat) &&
+      !isNaN(longitudeFloat) &&
       color.trim() !== "" &&
-      size.trim() !== "" &&
       material.trim() !== "" &&
       gender.trim() !== "" &&
-      speedkit.trim() !== "" &&
-      rim.trim() !== "" &&
-      suspension.trim() !== "" &&
-      description.trim() !== "" &&
-      hourlyvalue.trim() !== "" &&
-      dailyvalue.trim() !== "" &&
-      latitude.trim() !== "" &&
-      longitude.trim() !== ""
+      typeof suspension === "boolean" &&
+      description.trim() !== ""
     ) {
       const res = await BikeService.post({
-        idUser: idUser.trim(),
-        idCategory: idCategory.trim(),
-        idBrand: idBrand.trim(),
+        idUser: idUserInt,
+        idCategory: idCategoryInt,
+        idBrand: idBrandInt,
         color: color.trim(),
-        size: size.trim(),
+        size: sizeInt,
         material: material.trim(),
         gender: gender.trim(),
-        speedkit: speedkit.trim(),
-        rim: rim.trim(),
-        suspension: suspension.trim(),
+        speedkit: speedkitInt,
+        rim: rimInt,
+        suspension: suspension,
         description: description.trim(),
-        hourlyvalue: hourlyvalue.trim(),
-        dailyvalue: dailyvalue.trim(),
-        latitude: latitude.trim(),
-        longitude: longitude.trim(),
+        hourlyvalue: hourlyvalueFloat,
+        dailyvalue: dailyvalueFloat,
+        latitude: latitudeFloat,
+        longitude: longitudeFloat,
       });
       if (res.error) {
         alert(res.error);
@@ -96,7 +110,7 @@ function Bike() {
     setGender("");
     setSpeedkit("");
     setRim("");
-    setSuspension("");
+    setSuspension(false);
     setDescription("");
     setHourlyvalue("");
     setDailyvalue("");
@@ -165,9 +179,10 @@ function Bike() {
         <div>
           <label>Suspensão</label>
           <br />
-          <input
-            value={suspension}
-            onChange={(e) => setSuspension(e.target.value)}
+            <input
+            type="checkbox"
+            checked={suspension}
+            onChange={(e) => setSuspension(e.target.checked)}
           />
         </div>
         <div>
