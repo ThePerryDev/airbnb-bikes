@@ -28,3 +28,8 @@ export interface UsersProps {
   mail: string;
   phone: string;
 }
+
+export interface BrandProps {
+  id: number;
+  name: string;
+}
