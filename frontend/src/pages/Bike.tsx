@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BikeProps } from "../types";
 import BikeService from "../services/BikeService";
+import { Link } from "react-router-dom";
+import "./modelo.css";
 
 function Bike() {
   const [idUser, setIdUser] = useState("");
@@ -117,15 +119,17 @@ function Bike() {
   };
 
   return (
-    <>
+    <div className="conteudo">
       <h3>Bicicleta</h3>
       <form onSubmit={save}>
         <div>
           <label>ID do Usuário</label>
+          <br />
           <input value={idUser} onChange={(e) => setIdUser(e.target.value)} />
         </div>
         <div>
           <label>ID da Categoria</label>
+          <br />
           <input
             value={idCategory}
             onChange={(e) => setIdCategory(e.target.value)}
@@ -133,18 +137,22 @@ function Bike() {
         </div>
         <div>
           <label>ID da Marca</label>
+          <br />
           <input value={idBrand} onChange={(e) => setIdBrand(e.target.value)} />
         </div>
         <div>
           <label>Cor</label>
+          <br />
           <input value={color} onChange={(e) => setColor(e.target.value)} />
         </div>
         <div>
           <label>Tamanho</label>
+          <br />
           <input value={size} onChange={(e) => setSize(e.target.value)} />
         </div>
         <div>
           <label>Material</label>
+          <br />
           <input
             value={material}
             onChange={(e) => setMaterial(e.target.value)}
@@ -152,10 +160,12 @@ function Bike() {
         </div>
         <div>
           <label>Gênero</label>
+          <br />
           <input value={gender} onChange={(e) => setGender(e.target.value)} />
         </div>
         <div>
           <label>Marchas</label>
+          <br />
           <input
             value={speedkit}
             onChange={(e) => setSpeedkit(e.target.value)}
@@ -163,11 +173,13 @@ function Bike() {
         </div>
         <div>
           <label>Aro</label>
+          <br />
           <input value={rim} onChange={(e) => setRim(e.target.value)} />
         </div>
         <div>
           <label>Suspensão</label>
-          <input
+          <br />
+            <input
             type="checkbox"
             checked={suspension}
             onChange={(e) => setSuspension(e.target.checked)}
@@ -175,6 +187,7 @@ function Bike() {
         </div>
         <div>
           <label>Descrição</label>
+          <br />
           <input
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -182,6 +195,7 @@ function Bike() {
         </div>
         <div>
           <label>Valor da Hora</label>
+          <br />
           <input
             value={hourlyvalue}
             onChange={(e) => setHourlyvalue(e.target.value)}
@@ -189,6 +203,7 @@ function Bike() {
         </div>
         <div>
           <label>Valor do Dia</label>
+          <br />
           <input
             value={dailyvalue}
             onChange={(e) => setDailyvalue(e.target.value)}
@@ -196,6 +211,7 @@ function Bike() {
         </div>
         <div>
           <label>Latitude</label>
+          <br />
           <input
             value={latitude}
             onChange={(e) => setLatitude(e.target.value)}
@@ -203,6 +219,7 @@ function Bike() {
         </div>
         <div>
           <label>Longitude</label>
+          <br />
           <input
             value={longitude}
             onChange={(e) => setLongitude(e.target.value)}
@@ -213,54 +230,57 @@ function Bike() {
           <button type="button" onClick={reset}>
             Limpar
           </button>
+          <Link to="/">Voltar</Link>
         </div>
       </form>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>ID do Usuário</th>
-            <th>ID da Categoria</th>
-            <th>ID da Marca</th>
-            <th>Cor</th>
-            <th>Tamanho</th>
-            <th>Material</th>
-            <th>Gênero</th>
-            <th>Marchas</th>
-            <th>Aro</th>
-            <th>Suspensão</th>
-            <th>Descrição</th>
-            <th>Valor da Hora</th>
-            <th>Valor do Dia</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.isArray(bikes) &&
-            bikes.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.idUser}</td>
-                <td>{item.idCategory}</td>
-                <td>{item.idBrand}</td>
-                <td>{item.color}</td>
-                <td>{item.size}</td>
-                <td>{item.material}</td>
-                <td>{item.gender}</td>
-                <td>{item.speedkit}</td>
-                <td>{item.rim}</td>
-                <td>{item.suspension}</td>
-                <td>{item.description}</td>
-                <td>{item.hourlyvalue}</td>
-                <td>{item.dailyvalue}</td>
-                <td>{item.latitude}</td>
-                <td>{item.longitude}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </>
+      <div id="tabela">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>ID do Usuário</th>
+              <th>ID da Categoria</th>
+              <th>ID da Marca</th>
+              <th>Cor</th>
+              <th>Tamanho</th>
+              <th>Material</th>
+              <th>Gênero</th>
+              <th>Marchas</th>
+              <th>Aro</th>
+              <th>Suspensão</th>
+              <th>Descrição</th>
+              <th>Valor da Hora</th>
+              <th>Valor do Dia</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(bikes) &&
+              bikes.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.idUser}</td>
+                  <td>{item.idCategory}</td>
+                  <td>{item.idBrand}</td>
+                  <td>{item.color}</td>
+                  <td>{item.size}</td>
+                  <td>{item.material}</td>
+                  <td>{item.gender}</td>
+                  <td>{item.speedkit}</td>
+                  <td>{item.rim}</td>
+                  <td>{item.suspension}</td>
+                  <td>{item.description}</td>
+                  <td>{item.hourlyvalue}</td>
+                  <td>{item.dailyvalue}</td>
+                  <td>{item.latitude}</td>
+                  <td>{item.longitude}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
 

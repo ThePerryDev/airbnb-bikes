@@ -3,7 +3,7 @@ import api from "./api";
 
 class CategoryService {
     async get(): Promise<CategoriesProps[]> {
-      const { data } = await api.get("/categories");
+      const { data } = await api.get("/category");
       return data;
     }
   

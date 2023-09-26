@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CategoriesProps } from "../types";
 import CategoriesService from "../services/CategoriesService";
+import { Link } from "react-router-dom";
+import "./modelo.css";
 
 function Category() {
   const [name, setName] = useState("");
@@ -50,6 +52,42 @@ function Category() {
   const reset = () => {
     setName("");
   };
+
+  return (
+    <div className="conteudo">
+      <h3>Categoria</h3>
+      <form onSubmit={save}>
+        <div>
+          <label>Categoria</label>
+          <br />
+          <input value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+        <div>
+          <button type="submit">Salvar</button>
+          <button type="button" onClick={reset}>
+            Limpar
+          </button>
+          <Link to="/">Voltar</Link>
+        </div>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Categoria</th>
+          </tr>
+        </thead>
+        <tbody>
+          {categories.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
-export default Category
+export default Category;

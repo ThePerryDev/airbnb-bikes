@@ -1,0 +1,16 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+nav {
+    display: flex;
+}
+
+p{
+    margin: 0;
+}
+
+select {
+    margin-left: 1vw;
+    margin-right: 1vw;
+}

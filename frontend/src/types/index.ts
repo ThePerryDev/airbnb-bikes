@@ -29,6 +29,10 @@ export interface UsersProps {
   phone: string;
 }
 
+export interface Error {
+  error: string;
+  props: string;
+}
 export interface BrandProps {
   id: number;
   name: string;

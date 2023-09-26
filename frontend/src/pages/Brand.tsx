@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrandProps } from "../types";
-import BrandsService from "../services/CategoriesService";
+import BrandsService from "../services/BrandService";
+import { Link } from "react-router-dom";
+import "./modelo.css";
 
 function Brand() {
   const [name, setName] = useState("");
@@ -50,6 +52,41 @@ function Brand() {
   const reset = () => {
     setName("");
   };
-}
 
-export default Brand
+  return (
+    <div className="conteudo">
+      <h3>Marca</h3>
+      <form onSubmit={save}>
+        <div>
+          <label>Marca</label>
+          <br />
+          <input value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+        <div>
+          <button type="submit">Salvar</button>
+          <button type="button" onClick={reset}>
+            Limpar
+          </button>
+          <Link to="/">Voltar</Link>
+        </div>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Marca</th>
+          </tr>
+        </thead>
+        <tbody>
+          {brands.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+export default Brand;
