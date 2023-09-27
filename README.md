@@ -25,11 +25,14 @@ A partir da apresentação do desafio dado pela empresa Gen App, a solução apr
 ### Entregas de Sprints
 
 Cada entrega será realizada a partir da criação de uma **tag** no repositório (Bikepass), assim como a criação de branchs específicas para cada Sprint a fim de controlar cada etapa do projeto. Observe a relação a seguir:
-| Sprint | Previsão | Status | Histórico |
-|:------:|:----------:|:-------------|:-------------------------------------------------:|
-| 01 | De 04/09/23 a 27/09/23 | :heavy_check_mark: Em andamento| [Ver relatório](#sprint01)            |
-| 02 | De 02/10/23 a 25/10/23 | :heavy_check_mark: Não iniciado|            |
-| 03 | De 30/10/23 a 22/11/23 | :heavy_check_mark: Não iniciado|            |
+| Sprint | Previsão | Status | Histórico | Link da Apresentação
+|:------:|:----------:|:-------------|:-------------------------------------------------:|:-------------------------------------------------:|
+| 01 | De 04/09/23 a 27/09/23 | :heavy_check_mark: Em andamento| [Ver relatório](#sprint01)| [SPRINT 01](https://youtu.be/0pfRr5eqHq4) |
+| 02 | De 02/10/23 a 25/10/23 | :heavy_check_mark: Não iniciado|            |            |
+| 03 | De 30/10/23 a 22/11/23 | :heavy_check_mark: Não iniciado|            |            |
+
+
+
 
 → [Voltar ao topo](#topo)
 
@@ -122,6 +125,8 @@ Para a construção do nosso projeto, utilizamos uma variedade de linguagens, fe
 
 
 O projeto é constituído  na construção de um site que ofereça serviços de aluguel de bicicletas, que permita que os usuários aluguem ou coloquem bicicletas para locação de acordo com a sua localização. Com base nessa estruturação a sprint 01 consistiu em horas voltadas para o levantamento de dados com o cliente, pesquisas bibliográficas, modelagem do banco de dados, desenvolvimento do wireframe, desenvolvimento da base do Front-End e do protótipo navegável do FIgma.
+
+[LINK DE APRESENTAÇÃO DA SPRINT 01](https://youtu.be/0pfRr5eqHq4)
 
 <span id="objetivos">
     
