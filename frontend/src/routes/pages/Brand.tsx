@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { CategoriesProps } from "../types";
-import CategoriesService from "../services/CategoriesService";
+import { BrandProps } from "../../types";
+import BrandsService from "../../services/BrandService";
 import { Link } from "react-router-dom";
 import "./modelo.css";
 
-function Category() {
+function Brand() {
   const [name, setName] = useState("");
-  const [categories, setCategories] = useState([] as CategoriesProps[]);
+  const [brands, setBrands] = useState([] as BrandProps[]);
 
   // Disparado ao carregar o componente
   useEffect(() => {
     (async () => {
       try {
-        const categoryData = await CategoriesService.get();
-        if (categoryData) {
-          setCategories(categoryData);
+        const brandData = await BrandsService.get();
+        if (brandData) {
+          setBrands(brandData);
         }
       } catch (error) {
         console.error("Erro ao buscar dados das categorias:", error);
@@ -23,8 +23,8 @@ function Category() {
   }, []);
 
   const load = async () => {
-    const res: CategoriesProps[] = await CategoriesService.get();
-    setCategories(res);
+    const res: BrandProps[] = await BrandsService.get();
+    setBrands(res);
   };
 
   const save = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,7 +37,7 @@ function Category() {
     if (
       name.trim() !== ""
     ) {
-      const res = await CategoriesService.post({
+      const res = await BrandsService.post({
         name: name.trim()
       });
       if (res.error) {
@@ -55,10 +55,10 @@ function Category() {
 
   return (
     <div className="conteudo">
-      <h3>Categoria</h3>
+      <h3>Marca</h3>
       <form onSubmit={save}>
         <div>
-          <label>Categoria</label>
+          <label>Marca</label>
           <br />
           <input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
@@ -74,11 +74,11 @@ function Category() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Categoria</th>
+            <th>Marca</th>
           </tr>
         </thead>
         <tbody>
-          {categories.map((item) => (
+          {brands.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
@@ -89,5 +89,4 @@ function Category() {
     </div>
   );
 }
-
-export default Category;
+export default Brand;

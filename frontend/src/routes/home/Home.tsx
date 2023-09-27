@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
+import lupa from "./img/lupa.png"
+import logo from "./img/logo.png"
 import "./home.css";
 
 function Home() {
   return (
     <div>
       <header>
-        <div id="logo">
-          <h1>logo</h1>
-        </div>
-        <div id="searchbar">
-          <h1>searchbar</h1>
-        </div>
+        <button className="logo"><img src={logo} alt="logo" /></button>
+        <form action="" className="searchbar">
+          <input type="text" placeholder="Search..." />
+          <button type="submit"><img src={lupa} alt="search icon" /></button>
+        </form>
         <nav>
           <div>aaaa</div>
         </nav>

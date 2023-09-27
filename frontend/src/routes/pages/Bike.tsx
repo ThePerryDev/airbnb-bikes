@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BikeProps } from "../types";
-import BikeService from "../services/BikeService";
+import { BikeProps } from "../../types";
+import BikeService from "../../services/BikeService";
 import { Link } from "react-router-dom";
 import "./modelo.css";
 
