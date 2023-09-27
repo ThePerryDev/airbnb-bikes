@@ -22,6 +22,7 @@ function Demo() {
         </select>
         <Link to={navegar}>Confirma</Link>
       </nav>
+      <img src="./search" alt="aaaa" />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { UsersProps } from "../types";
-import UsersService from "../services/UsersService";
+import { UsersProps } from "../../types";
+import UsersService from "../../services/UsersService";
 import { Link } from "react-router-dom";
 import "./modelo.css";
 

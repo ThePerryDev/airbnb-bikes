@@ -1,10 +1,10 @@
-import Brand from "./pages/Brand";
-import Category from "./pages/Category";
-import User from "./pages/User";
-import Bike from "./pages/Bike";
+import Brand from "../routes/pages/Brand";
+import Category from "../routes/pages/Category";
+import User from "../routes/pages/User";
+import Bike from "../routes/pages/Bike";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Demo from "./pages/Demo";
-import Home from "./pages/Home";
+import Demo from "../routes/demo/Demo";
+import Home from "../routes/home/Home";
 
 function App() {
   return (
