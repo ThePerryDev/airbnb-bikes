@@ -159,7 +159,7 @@ Através do levantamento dos requisitos e a combinação dos elementos necessár
 
 Como proposta para solucionar o desafio apresentado e elaborar uma plataforma de aluguel de bicicletas, onde o usuário pode alugar ou colocar uma bike para locação, foi desenvolvido o Wireframe a seguir, com a ligação das telas propostas no projeto.
 
-<p align="center"><img src="./Imagens_md/wireframe.png" /><p>
+<p align="center"><img src="./Imagens_md/wireframe1.png" /><p>
 
 → [Voltar ao topo](#topo)
 
