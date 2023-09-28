@@ -1,0 +1,26 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.conteudo {
+  text-align: center;
+}
+
+input {
+  margin-bottom: 2vh;
+}
+
+#tabela {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: space-around;
+  overflow-x: auto;
+  max-width: 80vw;
+}
+
+th,
+td {
+  padding-right: 5vw;
+}
