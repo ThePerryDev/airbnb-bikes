@@ -37,3 +37,21 @@ export interface BrandProps {
   id: number;
   name: string;
 }
+
+export enum Valuation {
+    pessimo = 1,
+    ruim = 2,
+    normal = 3,
+    bom = 4,
+    otimo = 5,
+  }
+  
+  export interface RentsProps {
+    id:number;
+    idBike:number;
+    idClient:number;
+    idOwner:number;
+    date:Date;
+    ownerValuation: Valuation;
+    clientValuation: Valuation;
+}
