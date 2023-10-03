@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { RentsProps } from "../types";
-import RentService from "../services/rentService";
+import { RentsProps } from "../../types";
+import RentService from "../../services/RentService";
 import { parseISO } from "date-fns";
 
 function rent(){
     const [idBike, setIdBike] = useState("");
     const [idClient,setIdClient] = useState("");
     const [idOwner, setIdOwner] = useState("");
-    const [date, setDate] = useState("");
+    const [rentalDate, setrentalDate] = useState("");
+    const [returnDate, setreturnDate] = useState("");
     const [ownerValuation, setOwnerValuation] = useState("");
     const [clientValuation, setClientValuation] = useState("");
     const [rents, setRents] = useState([] as RentsProps[]);
@@ -39,7 +40,8 @@ function rent(){
     const idBikeInt = parseInt(idBike);
     const idClientInt = parseInt(idClient);
     const idOwnerInt = parseInt(idOwner);
-    const dateDate = parseISO (date);
+    const rentalDateDate = parseISO (rentalDate);
+    const returnDateDate = parseISO (returnDate);
     const ownerValuationInt = parseInt (ownerValuation);
     const clientValuationInt = parseInt (clientValuation);
 
@@ -50,13 +52,15 @@ function rent(){
         !isNaN(idOwnerInt) &&
         !isNaN(ownerValuationInt) &&
         !isNaN(clientValuationInt) &&
-        isNaN(dateDate.getTime())
+        isNaN(rentalDateDate.getTime()) &&
+        isNaN(returnDateDate.getTime())
       ){
         const res = await RentService.post({
           idBike: idBikeInt,
           idClient: idClientInt,
           idOwner: idOwnerInt,
-          date: dateDate,
+          rentalDate: rentalDateDate,
+          returnDate: returnDateDate,
           ownerValuation: ownerValuationInt,
           clientValuation: clientValuationInt
         });
@@ -73,7 +77,8 @@ function rent(){
         setIdBike("");
         setIdClient("");
         setIdOwner("");
-        setDate("");
+        setrentalDate("");
+        setreturnDate("");
         setOwnerValuation("");
         setClientValuation("");
     };  
