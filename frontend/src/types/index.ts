@@ -17,9 +17,9 @@ export interface BikeProps {
   longitude: number;
 }
 
-export interface CategoriesProps{
-  id:number;
-  name:string;
+export interface CategoriesProps {
+  id: number;
+  name: string;
 }
 
 export interface UsersProps {
@@ -38,20 +38,13 @@ export interface BrandProps {
   name: string;
 }
 
-export enum Valuation {
-    pessimo = 1,
-    ruim = 2,
-    normal = 3,
-    bom = 4,
-    otimo = 5,
-  }
-  
-  export interface RentsProps {
-    id:number;
-    idBike:number;
-    idClient:number;
-    idOwner:number;
-    date:Date;
-    ownerValuation: Valuation;
-    clientValuation: Valuation;
+export interface RentsProps {
+  id: number;
+  idBike: number;
+  idClient: number;
+  idOwner: number;
+  rentalDate: Date;
+  returnDate: Date;
+  ownerValuation: number;
+  clientValuation: number;
 }
