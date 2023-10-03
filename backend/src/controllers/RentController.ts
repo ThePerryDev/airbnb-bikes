@@ -72,7 +72,7 @@ class RentController {
         owner: true,
       },
       order: {
-        date: "DESC",
+        rentalDate: "DESC",
       },
     });
     return res.json(rents);
