@@ -11,14 +11,14 @@ h1, h2, h3 {
 header {
     display: flex;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.1);
+    background: #79AC78;
 }
 
 .logo {
     border: 0;
     border-radius: 50%;
     cursor: pointer;
-    background: transparent; 
+    background: white; 
 }
 
 .logo img{
@@ -59,8 +59,30 @@ header {
     background: transparent;
 }
 
+.botao-user {
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    background: white; 
+}
+
+.botao-user img{
+    max-width: 80px;
+}
+
+.botao-config {
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    background: white; 
+}
+
+.botao-config img{
+    max-width: 80px;
+}
+
 main{
-    background-color: cornsilk;
+    background-color: #EFFBEE;
 }
 
 .container{
