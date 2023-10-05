@@ -1,0 +1,44 @@
+#fundo {
+  background-color: #effbee;
+}
+
+.rowcard {
+  padding-bottom: 30px;
+}
+
+.card {
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 15px;
+  height: 70px;
+  width: 270px;
+}
+
+#cardCont {
+  background-color: #ffffff;
+  border-radius: 15px;
+  height: 977px;
+  width: 372px;
+  right: 97px;
+}
+
+#rowDesc {
+  padding-top: 56px;
+}
+
+#cardDesc {
+  width: 759px;
+  height: 200px;
+  border-radius: 15px;
+  padding: 56px;
+}
+
+#mapCardRow {
+  padding-top: 91px;
+}
+
+#mapCard {
+  width: 750px;
+  height: 450px;
+  border-radius: 15px;
+}
