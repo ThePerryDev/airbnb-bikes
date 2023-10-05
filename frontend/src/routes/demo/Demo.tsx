@@ -9,7 +9,7 @@ function Demo() {
     <div id="body">
       <div className="conteudo">
         <h1>Welcome to the Bikepass demo!</h1>
-        <nav>
+        <nav id="nav">
           <p>Please, select the page you want to see:</p>
           <select id="paginas" onChange={(e) => setNavegar(e.target.value)}>
             <option value="/" selected>

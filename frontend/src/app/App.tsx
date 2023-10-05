@@ -1,6 +1,6 @@
 import Brand from "../routes/pages/Brand";
 import Category from "../routes/pages/Category";
-import User from "../routes/pages/User";
+import User from "../routes/pages/User/User";
 import Bike from "../routes/pages/Bike";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Demo from "../routes/demo/Demo";
