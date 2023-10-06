@@ -65,96 +65,111 @@ function User() {
 
   return (
     <div id="body">
-        <Container>
-          <Row>
-            <Col onSubmit={save}>
-              <Card.Text>Informações e contato</Card.Text>
-                <Row id="meusAlugueis">
-                  <Col md={6}>
-                    <label>Nome</label>
-                    {users.map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.alias}</td>
-                      </tr>
-                    ))}
-                    <label>Email</label>
-                    {users.map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.mail}</td>
-                      </tr>
-                    ))}
+      <Container>
+        <Row>
+          <Card.Text>Informações e contato</Card.Text>
+          <Card>
+            <Row>
+              <Col md={4}>
+                <Card.Img src={bicicletaTeste}></Card.Img>
+              </Col>
+              <Col md={8} id="aaaa" className="cardContainer">
+                <Row>
+                  <Col>
+                    <Card id="CardInfos">
+                      <Card.Text id="texto">INFORMAÇÕES</Card.Text>
+                    </Card>
                   </Col>
-                  <Col md={6}>
-                    <label>Contato</label>
-                    {users.map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.phone}</td>
-                      </tr>
-                    ))}
+                  <Col className="cardContainer">
+                    <Card id="CardStatus">
+                      <Card.Text>STATUS</Card.Text>
+                    </Card>
                   </Col>
                 </Row>
-            </Col>
-          </Row>
 
-          <div>
-            <Link to="/">Voltar</Link>
-          </div>
+                <Row>
+                  <Col className="cardContainer">
+                    <Card id="CardDatas">
+                      <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                    </Card>
+                  </Col>
 
-          <Row id="meusAlugueis">
-          <Card.Text>Meus alugueis</Card.Text>
-            <Col>
-              <Card.Img src={bicicletaTeste}></Card.Img>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-          </Row>
+                  <Col>
+                    <Card id="CardAvaliacao">
+                      <Card.Text>AVALIAÇÃO</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Card>
+        </Row>
 
-          <Row id="meusAlugueis">
-          <Card.Text>Meus Produtos</Card.Text>
-            <Col>
-              <Card.Img src={bicicletaTeste}></Card.Img>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-          </Row>
+        <div>
+          <Link to="/">Voltar</Link>
+        </div>
 
+        <Card.Text>Meus Produtos</Card.Text>
+
+        <Card id="meusAlugueis">
           <Row>
             <Col>
-            <Card.Text>aaaa</Card.Text>
+              <Card.Img src={bicicletaTeste}></Card.Img>
             </Col>
             <Col>
-            <Card.Text>aaaa</Card.Text>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+            </Col>
+            <Col>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
             </Col>
           </Row>
-        </Container>
+        </Card>
+
+        <Card.Text>Meus Produtos</Card.Text>
+
+        <Card id="meusAlugueis">
+          <Row>
+            <Col>
+              <Card.Img src={bicicletaTeste}></Card.Img>
+            </Col>
+            <Col>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+            </Col>
+            <Col>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+              <Row>
+                <Card.Text>aaaa</Card.Text>
+              </Row>
+            </Col>
+          </Row>
+        </Card>
+
+        <Row>
+          <Col>
+            <Card.Text>aaaa</Card.Text>
+          </Col>
+          <Col>
+            <Card.Text>aaaa</Card.Text>
+          </Col>
+        </Row>
+      </Container>
     </div >
   );
 }

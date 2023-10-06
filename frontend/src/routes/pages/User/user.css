@@ -5,3 +5,55 @@ body{
 #meusAlugueis{
     background-color: #ffffff;
 }
+
+#CardInfos{
+    background-color: #79AC78;
+    text-align: center;
+    align-items: center;
+    color: #ffffff;
+    width: 470px;
+    height: 152px;
+}
+
+#texto{
+    align-items: center;
+}
+
+#CardAvaliacao{
+    background-color: #79AC78;
+    text-align: center;
+    color: #ffffff;
+    width: 275px;
+    height: 270px;
+}
+
+#CardDatas{
+    background-color: #79AC78;
+    text-align: center;
+    color: #ffffff;
+    width: 470px;
+    height: 193px;
+}
+
+#CardStatus{
+    background-color: #79AC78;
+    text-align: center;
+    color: #ffffff;
+    width: 275px;
+    height: 79px;
+}
+
+#aaaa{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Ajuste o espaçamento superior conforme necessário */
+  }
