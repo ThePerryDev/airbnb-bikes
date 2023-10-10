@@ -3,8 +3,8 @@ import { BikeProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
 import { Link } from "react-router-dom";
 import "./registerbike.css";
-import * as bootstrap from "react-bootstrap";
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { FileUploader } from "react-drag-drop-files";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -23,6 +23,11 @@ function RegisterBike() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [bikes, setBikes] = useState([] as BikeProps[]);
+  const fileTypes = ["JPEG", "PNG", "GIF"];
+  const [file, setFile] = useState(null);
+  const handleChange = (file: React.SetStateAction<null>) => {setFile(file);
+  }
+  
 
   // Disparado ao carregar o componente
   useEffect(() => {
@@ -124,20 +129,21 @@ function RegisterBike() {
     <div>
       <header></header>
       <main>
-        <Container fluid className="teste">
-          <bootstrap.Form.Select size="lg">
-            <option>Large select</option>
-          </bootstrap.Form.Select>
-          <br />
-          <bootstrap.Form.Select>
-            <option>Default select</option>
-          </bootstrap.Form.Select>
-          <br />
-          <bootstrap.Form.Select size="sm">
-            <option>Small select</option>
-          </bootstrap.Form.Select>
+        <Container fluid id="main">
+          <Container id="second">
+
+            <Row>
+              <h4>Cadastro de Bicicleta</h4>
+            </Row>
+
+            <Row>
+              <FileUploader multiple={true} handleChange={handleChange} name="file" types = {fileTypes}/>
+            </Row>
+            
+          </Container>
         </Container>
       </main>
+      <footer></footer>
     </div>
   );
 }
