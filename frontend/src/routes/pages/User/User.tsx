@@ -70,105 +70,80 @@ function User() {
           <Card.Text>Informações e contato</Card.Text>
           <Card>
             <Row>
-              <Col md={4}>
+              <Col md={6}>
+                <Card.Text id="textoUsuario">Nome do usuário:</Card.Text>
+                <Card.Text id="textoUsuario1">Email:</Card.Text>
+              </Col>
+              <Col md={6}>
+                <Card.Text id="textoUsuario">Contato:</Card.Text>
+              </Col>
+            </Row>
+          </Card>
+        </Row>
+
+        <Row>
+          <Card.Text>Meus Produtos</Card.Text>
+        </Row>
+
+        <Row id="rowInfos">
+          <Col md={4}>
+            <Card>
+              <Card.Img src={bicicletaTeste}/>
+            </Card>
+          </Col>
+
+          <Col md={4}>
+            <Row>
+              <Card.Text id="texto">INFORMAÇÕES</Card.Text>
+            </Row>
+            <Row>
+              <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+            </Row>
+          </Col>
+
+          <Col md={4}>
+            <Row>
+              <Card.Text>STATUS</Card.Text>
+            </Row>
+            <Row>
+              <Card.Text id="texto">AVALIAÇÕES</Card.Text>
+            </Row>
+          </Col>
+        </Row>
+
+        <Row>
+          <Card.Text>Meus Produtos</Card.Text>
+
+          <Card>
+            <Row>
+              <Col>
                 <Card.Img src={bicicletaTeste}></Card.Img>
               </Col>
-              <Col md={8} id="aaaa" className="cardContainer">
+              <Col>
                 <Row>
-                  <Col>
-                    <Card id="CardInfos">
-                      <Card.Text id="texto">INFORMAÇÕES</Card.Text>
-                    </Card>
-                  </Col>
-                  <Col className="cardContainer">
-                    <Card id="CardStatus">
-                      <Card.Text>STATUS</Card.Text>
-                    </Card>
-                  </Col>
+                  <Card.Text>aaaa</Card.Text>
                 </Row>
-
                 <Row>
-                  <Col className="cardContainer">
-                    <Card id="CardDatas">
-                      <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
-                    </Card>
-                  </Col>
-
-                  <Col>
-                    <Card id="CardAvaliacao">
-                      <Card.Text>AVALIAÇÃO</Card.Text>
-                    </Card>
-                  </Col>
+                  <Card.Text>aaaa</Card.Text>
+                </Row>
+              </Col>
+              <Col>
+                <Row>
+                  <Card.Text>aaaa</Card.Text>
+                </Row>
+                <Row>
+                  <Card.Text>aaaa</Card.Text>
                 </Row>
               </Col>
             </Row>
           </Card>
+
         </Row>
 
         <div>
           <Link to="/">Voltar</Link>
         </div>
 
-        <Card.Text>Meus Produtos</Card.Text>
-
-        <Card id="meusAlugueis">
-          <Row>
-            <Col>
-              <Card.Img src={bicicletaTeste}></Card.Img>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-          </Row>
-        </Card>
-
-        <Card.Text>Meus Produtos</Card.Text>
-
-        <Card id="meusAlugueis">
-          <Row>
-            <Col>
-              <Card.Img src={bicicletaTeste}></Card.Img>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-            <Col>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-              <Row>
-                <Card.Text>aaaa</Card.Text>
-              </Row>
-            </Col>
-          </Row>
-        </Card>
-
-        <Row>
-          <Col>
-            <Card.Text>aaaa</Card.Text>
-          </Col>
-          <Col>
-            <Card.Text>aaaa</Card.Text>
-          </Col>
-        </Row>
       </Container>
     </div >
   );

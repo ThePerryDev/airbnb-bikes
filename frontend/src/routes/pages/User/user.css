@@ -2,58 +2,30 @@ body{
     background-color: #EFFBEE;
 }
 
-#meusAlugueis{
+#rowInfos{
     background-color: #ffffff;
-}
-
-#CardInfos{
-    background-color: #79AC78;
-    text-align: center;
-    align-items: center;
-    color: #ffffff;
-    width: 470px;
-    height: 152px;
 }
 
 #texto{
     align-items: center;
 }
 
-#CardAvaliacao{
+#cardAvaliacao{
     background-color: #79AC78;
     text-align: center;
     color: #ffffff;
-    width: 275px;
-    height: 270px;
 }
 
-#CardDatas{
-    background-color: #79AC78;
-    text-align: center;
-    color: #ffffff;
-    width: 470px;
-    height: 193px;
+#cardBike{
+    margin: 10%
 }
 
-#CardStatus{
-    background-color: #79AC78;
-    text-align: center;
-    color: #ffffff;
-    width: 275px;
-    height: 79px;
+#textoUsuario{
+    margin-top: 5%;
+    margin-left: 10%;
 }
 
-#aaaa{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+#textoUsuario1{
+    margin-block-end: 5%;
+    margin-left: 10%;
 }
-
-.cardContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px; /* Ajuste o espaçamento superior conforme necessário */
-  }
