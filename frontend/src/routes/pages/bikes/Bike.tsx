@@ -14,7 +14,7 @@ function Bike() {
   useEffect(() => {
     // Busque as informações da bicicleta de ID 1 da sua API aqui
     // Substitua a chamada abaixo pela lógica de busca real
-    fetch("http://localhost:3001/bike/1")
+    fetch("http://localhost:3001/bike/4")
       .then((r) => r.json())
       .then((r) => setBike(r))
       .catch((error) =>
