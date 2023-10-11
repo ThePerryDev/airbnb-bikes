@@ -1,31 +1,52 @@
-body{
-    background-color: #EFFBEE;
+body {
+  background-color: #effbee;
 }
 
-#rowInfos{
-    background-color: #ffffff;
+#rowInfos {
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 2.5px solid #000;
 }
 
-#texto{
-    align-items: center;
+#texto {
+  align-items: center;
 }
 
-#cardAvaliacao{
-    background-color: #79AC78;
-    text-align: center;
-    color: #ffffff;
+#imgBike{
+    margin: 5%;
 }
 
-#cardBike{
-    margin: 10%
+#cardInfos {
+  background-color: #79ac78;
+  color: #ffffff;
+  width: 350px;
+  height: 200px;
+  margin: 10%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#textoUsuario{
+#colInfos {
+  text-align: center;
+  align-items: center;
+}
+
+#cardBike {
+  margin: 10%;
+}
+
+#textoUsuario {
+  margin-top: 5%;
+  margin-left: 10%;
+}
+
+#textoUsuario1 {
+  margin-block-end: 5%;
+  margin-left: 10%;
+}
+
+#RowProdutos{
     margin-top: 5%;
-    margin-left: 10%;
-}
-
-#textoUsuario1{
-    margin-block-end: 5%;
-    margin-left: 10%;
 }
