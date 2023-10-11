@@ -3,6 +3,7 @@ import homebikes from "./img/homebikes.png";
 import { Row, Col, Container } from "react-bootstrap";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
@@ -54,6 +55,7 @@ function Home() {
           </Row>
         </Container>
       </main>
+      <Footer/>
     </div>
   );
 }

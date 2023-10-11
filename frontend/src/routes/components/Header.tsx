@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import lupa from "./img/lupa.png";
+import menu from "./img/menu.png";
 import logo from "./img/logo.png";
 import user from "./img/user.png";
 import config from "./img/config.png";
@@ -7,7 +8,6 @@ import { Row, Col, Container, AccordionHeader } from "react-bootstrap";
 import "./Components.css";
 
 function Header() {
-  const black = "black";
 
   return (
     <header id="header">
@@ -18,7 +18,7 @@ function Header() {
               <img src={logo} alt="logo" />
             </Link>
           </Col>
-          <Col>
+          <Col xs={6}>
             <form action="" className="searchbar">
               <input type="text" placeholder="Search..." />
               <button type="submit">
@@ -34,6 +34,10 @@ function Header() {
 
               <button className="botao-config">
                 <img src={config} alt="Pagina de configuração" />
+              </button>
+
+              <button className="botao-menu">
+                <img src={menu} alt="Pagina de menu" />
               </button>
             </nav>
           </Col>
