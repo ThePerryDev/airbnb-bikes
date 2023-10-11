@@ -10,7 +10,6 @@ import Login  from "../routes/pages/login/Login";
 
 function App() {
   return (
-    <div>
       <BrowserRouter>
         <Routes>
           <Route path="/user" element={<User />}/>
@@ -22,7 +21,6 @@ function App() {
           <Route path="/login" element={<Login />}/>
         </Routes>
       </BrowserRouter>
-    </div>
   );
 }
 

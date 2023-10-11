@@ -4,48 +4,74 @@ import "./login.css";
 
 function Login() {
   return (
-    <div id="body">
+    <div>
       <header></header>
-      <main>
-        <Container fluid id="fundo">
-          <Col
-            className="d-flex align-items-center justify-content-center"
-
-          >
-            <Tabs
-              defaultActiveKey="profile"
-              id="fill-tab-example"
-              className="d-flex align-items-center justify-content-center"
-            >
-              <Tab eventKey="entrar" title="Entrar" id="aba">
-                <Row id="linha">
+      <main id="principal">
+        <Container id="fundo">
+          <Container className="d-flex align-items-start justify-content-center" id="caixa">
+            <Row>
+              <Col md={12} className="d-flex align-items-center justify-content-center">
+                <div>
+                <Tabs
+                  defaultActiveKey="entrar"
+                  id="fill-tab-example"
+                  className="d-flex align-items-start justify-content-center"
+                  justify
+                >
+                <Tab eventKey="entrar" title="Entrar" id="aba">
+                  <Row>
                   <Col md={12} className="d-flex align-items-center justify-content-center">
-                    <div>
-                      <Button id="botao">Continuar com Facebook</Button>
-                    </div>
-                    <div>
-                      <Button id="botao">Continuar com Facebook</Button>
-                    </div>
+                    <Row>
+                      <Col md={12}>
+                        <div id="titulo">
+                          <h1>Seja Bem Vindo</h1>
+                        </div>
+                        <div id="botoes">
+                          <Button id="botao">Continuar com Facebook</Button>
+                        </div>
+                      </Col>
+                      <Row>
+                        <Col md={12}>
+                          <div id="botoes">
+                            <Button id="botao">Continuar com Google</Button>
+                          </div>
+                        </Col>
+                      </Row>
+                    </Row>
                   </Col>
-                </Row>
-              </Tab>
-              <Tab eventKey="registrar" title="Registrar" id="aba">
-              <Row id="linha">
+                  </Row>
+                </Tab>
+                <Tab eventKey="registrar" title="Registrar" id="aba">
+                  <Row>
                   <Col md={12} className="d-flex align-items-center justify-content-center">
-                    <div>
-                      <Button id="botao">Continuar com Facebook</Button>
-                    </div>
-                    <div>
-                      <Button id="botao">Continuar com Facebook</Button>
-                    </div>
+                    <Row>
+                      <Col md={12}>
+                        <div id="titulo">
+                          <h1>Cadastre-se Aqui</h1>
+                        </div>
+                        <div id="botoes">
+                          <Button id="botao">Continuar com Facebook</Button>
+                        </div>
+                      </Col>
+                      <Row>
+                        <Col md={12}>
+                          <div id="botoes">
+                            <Button id="botao">Continuar com Google</Button>
+                          </div>
+                        </Col>
+                      </Row>
+                    </Row>
                   </Col>
-                </Row>
-              </Tab>
-            </Tabs>
-          </Col>
+                  </Row>
+                </Tab>
+                </Tabs>
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </Container>
+        <Link to="/">Voltar</Link>
       </main>
-      <Link to="/">Voltar</Link>
     </div>
   );
 }

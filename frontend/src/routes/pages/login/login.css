@@ -4,7 +4,7 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
-main{
+#principal{
   width: 100%;
   height: 100vh;
   display: flex;
@@ -14,26 +14,51 @@ main{
   background-color: #EFFBEE;
 }
 
-#aba{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 400;
+#caixa{
+  width: 31.25rem;
+  height:37.5rem;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
-#linha{
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #fff;
+  background-color: #79AC78;
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  outline: none;
+}
+
+.nav-tabs .nav-link{
+  color:black;
+  border: none;
+}
+
+.nav-tabs .nav-link:hover{
+  color: black;
+}
+
+#titulo{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 20%;
+  padding: 80px 0 50px 0;
+}
+
+#botoes{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0 50px 0;
 }
 
 #botao{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height:50px;
+  width: 18.75rem;
+  height:3.125rem;
   font-size: larger;
   background-color: #79AC78 ;
   border: none;
