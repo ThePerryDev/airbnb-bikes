@@ -1,25 +1,64 @@
 import "./bike.css";
-import mapaTeste from "./imagens/mapaTeste.png";
 import perfil from "./imagens/perfil.png";
-import bike from "./imagens/bike.png";
+import bikep from "./imagens/bike.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { useCallback, useEffect, useState } from "react";
+import { BikeProps } from "../../../types";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 function Bike() {
+  const [bike, setBike] = useState<BikeProps>();
+  useEffect(() => {
+    // Busque as informações da bicicleta de ID 1 da sua API aqui
+    // Substitua a chamada abaixo pela lógica de busca real
+    fetch("http://localhost:3001/bike/1")
+      .then((r) => r.json())
+      .then((r) => setBike(r))
+      .catch((error) =>
+        console.error("Erro ao buscar informações da bicicleta:", error)
+      );
+  }, []);
+
+  const initMap = useCallback(() => {
+    if (bike?.latitude !== undefined && bike?.longitude !== undefined) {
+      const map = L.map("map").setView([bike.latitude, bike.longitude], 13);
+
+      L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Adicione um marcador no mapa (opcional)
+      L.marker([bike.latitude, bike.longitude])
+        .addTo(map)
+        .bindPopup("Localização da bicicleta")
+        .openPopup();
+    } else {
+      console.log("Latitude e/ou longitude indefinidas");
+    }
+  }, [bike]);
+
+  useEffect(() => {
+    // Chame a função de inicialização do mapa após a renderização do componente
+    initMap();
+  }, [initMap]);
+
   return (
     <div id="body">
       <Container fluid id="fundo">
         <Container>
           <Carousel showThumbs={false} showIndicators={true}>
             <div>
-              <img src={bike} alt="Bicicleta 1" />
+              <img src={bikep} alt="Bicicleta 1" />
             </div>
             <div>
-              <img src={bike} alt="Bicicleta 2" />
+              <img src={bikep} alt="Bicicleta 2" />
             </div>
             <div>
-              <img src={bike} alt="Bicicleta 3" />
+              <img src={bikep} alt="Bicicleta 3" />
             </div>
           </Carousel>
         </Container>
@@ -32,8 +71,8 @@ function Bike() {
               <Row className="rowcard">
                 <Col md={10}>
                   <Card className="cards">
-                    <Card.Title>Categória</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Title>Categoria</Card.Title>
+                    <Card.Text>{bike?.category.name}</Card.Text>
                   </Card>
                 </Col>
               </Row>
@@ -41,13 +80,13 @@ function Bike() {
                 <Col md={5}>
                   <Card className="cards">
                     <Card.Title>Cor</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.color}</Card.Text>
                   </Card>
                 </Col>
                 <Col md={5}>
                   <Card className="cards rightCards">
                     <Card.Title>Tamanho</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.size}</Card.Text>
                   </Card>
                 </Col>
               </Row>
@@ -55,13 +94,13 @@ function Bike() {
                 <Col md={5}>
                   <Card className="cards">
                     <Card.Title>Material</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.material}</Card.Text>
                   </Card>
                 </Col>
                 <Col md={5}>
                   <Card className="cards rightCards">
                     <Card.Title>Gênero</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.gender}</Card.Text>
                   </Card>
                 </Col>
               </Row>
@@ -69,13 +108,13 @@ function Bike() {
                 <Col md={5}>
                   <Card className="cards">
                     <Card.Title>Marchas</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.speedkit}</Card.Text>
                   </Card>
                 </Col>
                 <Col md={5}>
                   <Card className="cards rightCards">
                     <Card.Title>Aro</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.rim}</Card.Text>
                   </Card>
                 </Col>
               </Row>
@@ -83,13 +122,13 @@ function Bike() {
                 <Col md={5}>
                   <Card className="cards text-right">
                     <Card.Title>Suspensão</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.suspension}</Card.Text>
                   </Card>
                 </Col>
                 <Col md={5}>
                   <Card className="cards rightCards text-right">
                     <Card.Title>Marca</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.brand.name}</Card.Text>
                   </Card>
                 </Col>
               </Row>
@@ -97,14 +136,17 @@ function Bike() {
                 <Col md={10}>
                   <Card className="cards" id="cardDesc">
                     <Card.Title>Descrição</Card.Title>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.description}</Card.Text>
                   </Card>
                 </Col>
               </Row>
               <Row id="mapCardRow">
                 <Col md={10}>
                   <Card id="mapCard">
-                    <Card.Img src={mapaTeste} id="mapCard"></Card.Img>
+                    <div
+                      id="map"
+                      style={{ width: "100%", height: "400px" }}
+                    ></div>
                     <Card.Text></Card.Text>
                   </Card>
                 </Col>
@@ -112,15 +154,15 @@ function Bike() {
             </Col>
             <Col md={2}>
               <Card id="cardCont">
-                <Card.Text>VALORES</Card.Text>
+                <Card.Title>VALORES</Card.Title>
                 <Container className="valContainers">
                   <Card className="valores">
                     <Card.Text>Diária</Card.Text>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.dailyvalue}</Card.Text>
                   </Card>
                   <Card className="valores">
                     <Card.Text>Hora</Card.Text>
-                    <Card.Text></Card.Text>
+                    <Card.Text>{bike?.hourlyvalue}</Card.Text>
                   </Card>
                 </Container>
                 <Card.Text>CONTATOS</Card.Text>
