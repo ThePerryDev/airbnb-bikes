@@ -3,7 +3,7 @@ import { BikeProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
 import { Link } from "react-router-dom";
 import "./registerbike.css";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
 
 function RegisterBike() {
@@ -25,9 +25,9 @@ function RegisterBike() {
   const [bikes, setBikes] = useState([] as BikeProps[]);
   const fileTypes = ["JPEG", "PNG", "GIF"];
   const [file, setFile] = useState(null);
-  const handleChange = (file: React.SetStateAction<null>) => {setFile(file);
-  }
-  
+  const handleChange = (file: React.SetStateAction<null>) => {
+    setFile(file);
+  };
 
   // Disparado ao carregar o componente
   useEffect(() => {
@@ -130,16 +130,29 @@ function RegisterBike() {
       <header></header>
       <main>
         <Container fluid id="main">
-          <Container id="second">
+          <Container
+            id="second"
+          
+          >
+            <Col md={12}>
+              <p>Cadastro de Bicicleta</p>
 
-            <Row>
-              <h4>Cadastro de Bicicleta</h4>
-            </Row>
-
-            <Row>
-              <FileUploader multiple={true} handleChange={handleChange} name="file" types = {fileTypes}/>
-            </Row>
-            
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <FileUploader
+                  multiple={true}
+                  handleChange={handleChange}
+                  name="file"
+                  types={fileTypes}
+                />
+                <Button id= "botao" variant="primary">Primary</Button>{" "}
+              </div>
+            </Col>
           </Container>
         </Container>
       </main>
