@@ -11,6 +11,7 @@ class BikeController {
       iduser,
       idcategory,
       idbrand,
+      name,
       color,
       size,
       material,
@@ -52,6 +53,7 @@ class BikeController {
     }
 
     const bike = await AppDataSource.manager.save(Bike, {
+      name,
       user,
       brand,
       category,
@@ -77,6 +79,7 @@ class BikeController {
       iduser,
       idcategory,
       idbrand,
+      name,
       color,
       size,
       material,
@@ -119,6 +122,7 @@ class BikeController {
 
     const bike = await AppDataSource.manager.save(Bike, {
       id,
+      name,
       user,
       brand,
       category,

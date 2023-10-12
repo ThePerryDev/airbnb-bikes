@@ -10,6 +10,7 @@ function RegisterBike() {
   const [idUser, setIdUser] = useState("");
   const [idCategory, setIdCategory] = useState("");
   const [idBrand, setIdBrand] = useState("");
+  const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const [material, setMaterial] = useState("");
@@ -75,6 +76,7 @@ function RegisterBike() {
       !isNaN(dailyvalueFloat) &&
       !isNaN(latitudeFloat) &&
       !isNaN(longitudeFloat) &&
+      name.trim() !== "" &&
       color.trim() !== "" &&
       material.trim() !== "" &&
       gender.trim() !== "" &&
@@ -85,6 +87,7 @@ function RegisterBike() {
         idUser: idUserInt,
         idCategory: idCategoryInt,
         idBrand: idBrandInt,
+        name: name.trim(),
         color: color.trim(),
         size: sizeInt,
         material: material.trim(),
@@ -111,6 +114,7 @@ function RegisterBike() {
     setIdUser("");
     setIdCategory("");
     setIdBrand("");
+    setName("");
     setColor("");
     setSize("");
     setMaterial("");

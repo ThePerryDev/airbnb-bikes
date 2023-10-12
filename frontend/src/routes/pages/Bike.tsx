@@ -8,6 +8,7 @@ function Bike() {
   const [idUser, setIdUser] = useState("");
   const [idCategory, setIdCategory] = useState("");
   const [idBrand, setIdBrand] = useState("");
+  const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const [material, setMaterial] = useState("");
@@ -68,6 +69,7 @@ function Bike() {
       !isNaN(dailyvalueFloat) &&
       !isNaN(latitudeFloat) &&
       !isNaN(longitudeFloat) &&
+      name.trim() !== "" &&
       color.trim() !== "" &&
       material.trim() !== "" &&
       gender.trim() !== "" &&
@@ -78,6 +80,7 @@ function Bike() {
         idUser: idUserInt,
         idCategory: idCategoryInt,
         idBrand: idBrandInt,
+        name: name.trim(),
         color: color.trim(),
         size: sizeInt,
         material: material.trim(),
@@ -104,6 +107,7 @@ function Bike() {
     setIdUser("");
     setIdCategory("");
     setIdBrand("");
+    setName("");
     setColor("");
     setSize("");
     setMaterial("");
@@ -139,6 +143,11 @@ function Bike() {
           <label>ID da Marca</label>
           <br />
           <input value={idBrand} onChange={(e) => setIdBrand(e.target.value)} />
+        </div>
+        <div>
+          <label>Name</label>
+          <br />
+          <input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
           <label>Cor</label>
@@ -179,7 +188,7 @@ function Bike() {
         <div>
           <label>Suspensão</label>
           <br />
-            <input
+          <input
             type="checkbox"
             checked={suspension}
             onChange={(e) => setSuspension(e.target.checked)}
@@ -263,6 +272,7 @@ function Bike() {
                   <td>{item.idUser}</td>
                   <td>{item.idCategory}</td>
                   <td>{item.idBrand}</td>
+                  <td>{item.name}</td>
                   <td>{item.color}</td>
                   <td>{item.size}</td>
                   <td>{item.material}</td>
