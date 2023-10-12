@@ -27,16 +27,12 @@ function Login() {
                           <h1>Seja Bem Vindo</h1>
                         </div>
                         <div id="botoes">
-                          <Button id="botao">Continuar com Facebook</Button>
+                          <Button id="botao" size="lg">Continuar com Facebook</Button>
+                        </div>
+                        <div id="botoes">
+                          <Button id="botao" size="lg">Continuar com Google</Button>
                         </div>
                       </Col>
-                      <Row>
-                        <Col md={12}>
-                          <div id="botoes">
-                            <Button id="botao">Continuar com Google</Button>
-                          </div>
-                        </Col>
-                      </Row>
                     </Row>
                   </Col>
                   </Row>
@@ -52,14 +48,10 @@ function Login() {
                         <div id="botoes">
                           <Button id="botao">Continuar com Facebook</Button>
                         </div>
-                      </Col>
-                      <Row>
-                        <Col md={12}>
-                          <div id="botoes">
+                        <div id="botoes">
                             <Button id="botao">Continuar com Google</Button>
-                          </div>
-                        </Col>
-                      </Row>
+                        </div>
+                      </Col>
                     </Row>
                   </Col>
                   </Row>
