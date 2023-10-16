@@ -3,6 +3,11 @@ import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./login.css";
 
 function Login() {
+
+  const googleLogin = () => {
+    window.open("http://localhost:3000/auth/google", "_self");
+  }
+
   return (
     <div>
       <header></header>
@@ -30,7 +35,7 @@ function Login() {
                           <Button id="botao" size="lg">Continuar com Facebook</Button>
                         </div>
                         <div id="botoes">
-                          <Button id="botao" size="lg">Continuar com Google</Button>
+                          <Button id="botao" size="lg" onClick={googleLogin}>Continuar com Google</Button>
                         </div>
                       </Col>
                     </Row>
