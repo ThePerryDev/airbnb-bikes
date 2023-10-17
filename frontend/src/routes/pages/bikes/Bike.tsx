@@ -8,19 +8,20 @@ import { useCallback, useEffect, useState } from "react";
 import { BikeProps } from "../../../types";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import mapBike from "./imagens/mapBike.png";
+import { useParams } from "react-router-dom";
 
 function Bike() {
+  const { id } = useParams();
   const [bike, setBike] = useState<BikeProps>();
   useEffect(() => {
-    // Busque as informações da bicicleta de ID 1 da sua API aqui
-    // Substitua a chamada abaixo pela lógica de busca real
-    fetch("http://localhost:3001/bike/4")
+    fetch(`http://localhost:3001/bike/${id}`)
       .then((r) => r.json())
       .then((r) => setBike(r))
       .catch((error) =>
         console.error("Erro ao buscar informações da bicicleta:", error)
       );
-  }, []);
+  }, [id]);
 
   const initMap = useCallback(() => {
     if (bike?.latitude !== undefined && bike?.longitude !== undefined) {
@@ -31,20 +32,32 @@ function Bike() {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
+      const customIcon = L.icon({
+        iconUrl: mapBike,
+        iconSize: [35, 35],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -30],
+      });
+
       // Adicione um marcador no mapa (opcional)
-      L.marker([bike.latitude, bike.longitude])
+      L.marker([bike.latitude, bike.longitude], { icon: customIcon })
         .addTo(map)
         .bindPopup("Localização da bicicleta")
         .openPopup();
-    } else {
-      console.log("Latitude e/ou longitude indefinidas");
     }
   }, [bike]);
 
   useEffect(() => {
-    // Chame a função de inicialização do mapa após a renderização do componente
     initMap();
   }, [initMap]);
+
+  const getSuspension = (bike: BikeProps | undefined) => {
+    if (bike?.suspension === true) {
+      return "Possui suspensão";
+    } else {
+      return "Não possui suspensão";
+    }
+  };
 
   return (
     <div id="body">
@@ -122,7 +135,7 @@ function Bike() {
                 <Col md={5}>
                   <Card className="cards text-right">
                     <Card.Title>Suspensão</Card.Title>
-                    <Card.Text>{bike?.suspension}</Card.Text>
+                    <Card.Text>{getSuspension(bike)}</Card.Text>
                   </Card>
                 </Col>
                 <Col md={5}>
