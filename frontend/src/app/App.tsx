@@ -6,9 +6,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Demo from "../routes/demo/Demo";
 import Home from "../routes/home/Home";
 import Login  from "../routes/pages/login/Login";
+import { useContext } from "react";
+import { myContext } from "../Context";
 
 
 function App() {
+  const userObject = useContext(myContext);
+  console.log(userObject);
   return (
       <BrowserRouter>
         <Routes>

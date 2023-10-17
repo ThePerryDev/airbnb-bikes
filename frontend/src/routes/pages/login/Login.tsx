@@ -1,12 +1,21 @@
 import { Link } from "react-router-dom";
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./login.css";
+//import axios from "axios";
 
 function Login() {
 
   const googleLogin = () => {
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:3001/auth/google", "_self");
   }
+
+  /*const logout = () =>{
+    axios.get("http://localhost:3001/auth/logout").then(res =>{
+      if (res.data){
+        window.location.href = "/"
+      }
+    })
+  }*/
 
   return (
     <div>
@@ -54,7 +63,7 @@ function Login() {
                           <Button id="botao">Continuar com Facebook</Button>
                         </div>
                         <div id="botoes">
-                            <Button id="botao">Continuar com Google</Button>
+                            <Button id="botao" onClick={googleLogin}>Continuar com Google</Button>
                         </div>
                       </Col>
                     </Row>

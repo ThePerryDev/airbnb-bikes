@@ -39,8 +39,8 @@ passport.deserializeUser((user:any, done:any) =>{
 });
 
 passport.use(new GoogleStrategy({
-  clientID: "483922791543-ee87iheehpji4eho814ers8p1givsb7r.apps.googleusercontent.com",
-  clientSecret: "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",
+  clientID: "483922791543-k64unliohtrncpe20rbl1nh2gg171v0p.apps.googleusercontent.com",
+  clientSecret: "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",
   callbackURL: "/auth/google/callback"
 },
 function(accessToken:any, refreshToken:any, profile:any, cb:any) {
@@ -55,13 +55,23 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000');
+    res.redirect('http://localhost:3000/home');
   });
 
 app.listen(PORT, () => {
   console.log(`Rodando na porta ${PORT}`);
 });
 
+app.get("/getuser", (req,res) => {
+    res.send(req.user);
+});
+
+/*app.get("/logout", (req,res) => {
+  if(req.user){
+    req.logout();
+    res.send("Logout Concluido");
+  }
+});*/
 
 // define a rota para o pacote /routes
 app.use(routes);
