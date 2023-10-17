@@ -15,6 +15,7 @@ export interface BikeProps {
   dailyvalue: number;
   latitude: number;
   longitude: number;
+  user: UsersProps;
 }
 
 export interface CategoriesProps {

@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
-import { BikeProps } from "../../../types";
+import { BikeProps, UsersProps } from "../../../types";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import mapBike from "./imagens/mapBike.png";
@@ -182,12 +182,8 @@ function Bike() {
                 <Container className="valContainers">
                   <Card className="perfil">
                     <Card.Img src={perfil} id="perfilImg"></Card.Img>
-                    <Card.Text>Contato</Card.Text>
-                    <Card.Text>Contato</Card.Text>
-                    <Card.Text>Contato</Card.Text>
-                    <Card.Text>Contato</Card.Text>
-                    <Card.Text>Contato</Card.Text>
-                    <Card.Text>Contato</Card.Text>
+                    <Card.Text>{bike?.user.phone}</Card.Text>
+                    <Card.Text>{bike?.user.mail}</Card.Text>
                   </Card>
                 </Container>
               </Card>
