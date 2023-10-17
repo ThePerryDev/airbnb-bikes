@@ -17,6 +17,8 @@ function App() {
         <Route path="/bike" element={<Bike />} />
         <Route path="/home" element={<Home />} />
         <Route path="/registerbike" />
+        <Route path="/avalovador" />
+        <Route path="/avalocatorio" />
       </Routes>
     </BrowserRouter>
   );

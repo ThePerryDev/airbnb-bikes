@@ -183,7 +183,17 @@ function User() {
         <Row>
           <Col>
             <Link to="/regiterbike">
-              <Button></Button>
+              <Button>Cadastrar bicicletas</Button>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/avalovador">
+              <Button>Avaliações do locador</Button>
+            </Link>
+          </Col>
+          <Col>
+            <Link to="/avalocatorio">
+              <Button>Avaliações do locatório</Button>
             </Link>
           </Col>
         </Row>
