@@ -3,7 +3,7 @@ import { UsersProps } from "../../../types";
 import UsersService from "../../../services/UsersService";
 import { Link } from "react-router-dom";
 import "./user.css";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import bicicletaTeste from "./images/bicicleta.png"
 
 function User() {
@@ -63,6 +63,21 @@ function User() {
     setPhone("");
   };
 
+  const items = [
+    {
+      src: require("./images/bicicleta.png"),
+      alt: "Imagem 1",
+    },
+    {
+      src: require("./images/bicicleta.png"),
+      alt: "Imagem 1",
+    },
+    {
+      src: require("./images/bicicleta.png"),
+      alt: "Imagem 1",
+    },
+  ];
+
   return (
     <div id="body">
       <Container>
@@ -82,80 +97,88 @@ function User() {
         </Row>
 
         <Row id="RowProdutos">
-          <Card.Text>Meus Produtos</Card.Text>
+          <Card.Text>Meus Alugueis:</Card.Text>
         </Row>
 
-        <Row id="rowInfos">
-          <Col md={4}>
-            <Card id="imgBike">
-              <Card.Img src={bicicletaTeste} />
-            </Card>
-          </Col>
-
-          <Col md={4} id="colInfos">
-            <Row>
-              <div id="cardInfos">
-                <Card.Text id="texto">INFORMAÇÕES</Card.Text>
-              </div>
-            </Row>
-            <Row>
-              <div id="cardInfos">
-                <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
-              </div>
-            </Row>
-          </Col>
-
-          <Col md={4} id="colInfos">
-            <Row>
-              <div id="cardInfos">
-                <Card.Text>STATUS</Card.Text>
-              </div>
-            </Row>
-            <Row>
-              <div id="cardInfos">
-                <Card.Text id="texto">AVALIAÇÕES</Card.Text>
-              </div>
-            </Row>
-          </Col>
-        </Row>
+        <Carousel data-bs-theme="dark" className="carrossel">
+          {items.map((item) => (
+            <Carousel.Item key={item.src}>
+              <Row>
+                <Col md={4} id="colBike">
+                  <img src={item.src} alt={item.alt} id="imgBike"/>
+                </Col>
+                <Col md={8}>
+                  <Row>
+                    <Col>
+                      <div id="cardInfos">
+                        <Card.Text>INFORMAÇÕES</Card.Text>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div id="cardStatus">
+                        <Card.Text>STATUS</Card.Text>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div id="cardDatas">
+                        <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div id="cardAva">
+                        <Card.Text>AVALIAÇÃO</Card.Text>
+                      </div>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
         <Row id="RowProdutos">
-          <Card.Text>Meus Produtos</Card.Text>
+          <Card.Text>Meus Produtos:</Card.Text>
         </Row>
 
-        <Row id="rowInfos">
-          <Col md={4}>
-            <Card id="imgBike">
-              <Card.Img src={bicicletaTeste} />
-            </Card>
-          </Col>
-
-          <Col md={4} id="colInfos">
-            <Row>
-              <div id="cardInfos">
-                <Card.Text id="texto">INFORMAÇÕES</Card.Text>
-              </div>
-            </Row>
-            <Row>
-              <div id="cardInfos">
-                <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
-              </div>
-            </Row>
-          </Col>
-
-          <Col md={4} id="colInfos">
-            <Row>
-              <div id="cardInfos">
-                <Card.Text>STATUS</Card.Text>
-              </div>
-            </Row>
-            <Row>
-              <div id="cardInfos">
-                <Card.Text id="texto">AVALIAÇÕES</Card.Text>
-              </div>
-            </Row>
-          </Col>
-        </Row>
+        <Carousel data-bs-theme="dark" className="carrossel">
+          {items.map((item) => (
+            <Carousel.Item key={item.src}>
+              <Row>
+                <Col md={4} id="colBike">
+                  <img src={item.src} alt={item.alt} id="imgBike"/>
+                </Col>
+                <Col md={8}>
+                  <Row>
+                    <Col>
+                      <div id="cardInfos">
+                        <Card.Text>INFORMAÇÕES</Card.Text>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div id="cardStatus">
+                        <Card.Text>STATUS</Card.Text>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div id="cardDatas">
+                        <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div id="cardAva">
+                        <Card.Text>AVALIAÇÃO</Card.Text>
+                      </div>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
         <div>
           <Link to="/">Voltar</Link>

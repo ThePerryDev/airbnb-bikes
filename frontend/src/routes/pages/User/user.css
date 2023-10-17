@@ -8,20 +8,62 @@ body {
   border: 2.5px solid #000;
 }
 
-#texto {
+#colBike{
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 #imgBike{
-    margin: 5%;
+  width: 90%;
 }
 
 #cardInfos {
   background-color: #79ac78;
   color: #ffffff;
-  width: 350px;
-  height: 200px;
-  margin: 10%;
+  width: 80%;
+  height: 8vw;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-block-end: 10%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cardStatus{
+  background-color: #79ac78;
+  color: #ffffff;
+  width: 80%;
+  height: 5vw;
+  margin-top: 10%;
+  margin-left: 10%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cardDatas{
+  background-color: #79ac78;
+  color: #ffffff;
+  width: 80%;
+  height: 15vw;
+  margin-left: 10%;
+  margin-block-end: 5%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cardAva{
+  background-color: #79ac78;
+  color: #ffffff;
+  width: 80%;
+  height: 15vw;
+  margin-left: 10%;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -49,4 +91,10 @@ body {
 
 #RowProdutos{
     margin-top: 5%;
+}
+
+.carrossel{
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 2.5px solid #000;
 }
