@@ -3,7 +3,7 @@ import { UsersProps } from "../../../types";
 import UsersService from "../../../services/UsersService";
 import { Link } from "react-router-dom";
 import "./user.css";
-import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import bicicletaTeste from "./images/bicicleta.png"
 
 function User() {
@@ -105,7 +105,7 @@ function User() {
             <Carousel.Item key={item.src}>
               <Row>
                 <Col md={4} id="colBike">
-                  <img src={item.src} alt={item.alt} id="imgBike"/>
+                  <img src={item.src} alt={item.alt} id="imgBike" />
                 </Col>
                 <Col md={8}>
                   <Row>
@@ -147,7 +147,7 @@ function User() {
             <Carousel.Item key={item.src}>
               <Row>
                 <Col md={4} id="colBike">
-                  <img src={item.src} alt={item.alt} id="imgBike"/>
+                  <img src={item.src} alt={item.alt} id="imgBike" />
                 </Col>
                 <Col md={8}>
                   <Row>
@@ -180,6 +180,13 @@ function User() {
           ))}
         </Carousel>
 
+        <Row>
+          <Col>
+            <Link to="/regiterbike">
+              <Button></Button>
+            </Link>
+          </Col>
+        </Row>
         <div>
           <Link to="/">Voltar</Link>
         </div>
