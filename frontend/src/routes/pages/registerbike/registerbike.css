@@ -12,6 +12,52 @@
     margin-right: 100px;
 }
 
+p{
+    margin-left: 99px;
+    padding-top: 37px;
+}
+
 .handleChange{
     height: 25cm;
+}
+
+#dropdown-basic{
+    width: 270px;
+    height: 40px;
+    background-color:#D0E7D2;
+}
+
+.dropdown{
+    padding-bottom: 45px;
+    margin-left: 99px;
+}
+
+#fileuploader label{
+    width: 792px;
+    height: 100px;
+    margin-left: 99px;
+    margin-top: 53px;
+}
+
+#fileuploader{
+    padding-bottom: 79px;
+}
+
+#mapCard{
+    margin-right: 106px;
+
+}
+
+#cep{
+    width:170px;
+    height: 40px;
+    margin-Top:46px;
+    border-radius: 10px;
+    display:  flex;
+    justify-content: center;
+
+}
+
+#cep ::placeholder {
+    margin-left: 10px;
 }

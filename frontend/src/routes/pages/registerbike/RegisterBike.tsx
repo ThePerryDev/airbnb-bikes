@@ -1,9 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { BikeProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
-import { Link } from "react-router-dom";
+import { Form, Link } from "react-router-dom";
 import "./registerbike.css";
-import { Button, Card, Col, Container, Dropdown, Row } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Dropdown,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -132,9 +140,10 @@ function RegisterBike() {
   };
 
   const initMap = useCallback(() => {
-    const map = L.map("map").setView([0, 0], 13);
+    const map = L.map("map").setView([40.75, 73.97], 13);
     L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-      attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
     // Adicione um marcador no mapa (opcional)
     L.marker([0, 0])
@@ -145,7 +154,7 @@ function RegisterBike() {
   useEffect(() => {
     // Chame a função de inicialização do mapa após a renderização do componente
     initMap();
-  },[initMap]);
+  }, [initMap]);
 
   return (
     <div>
@@ -162,6 +171,7 @@ function RegisterBike() {
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
+                id="fileuploader"
               >
                 <FileUploader
                   multiple={true}
@@ -169,9 +179,6 @@ function RegisterBike() {
                   name="file"
                   types={fileTypes}
                 />
-                <Button id="botao" variant="primary">
-                  Primary
-                </Button>{" "}
               </div>
 
               <Row>
@@ -324,9 +331,14 @@ function RegisterBike() {
                   <Card id="mapCard">
                     <div
                       id="map"
-                      style={{ width: "100%", height: "400px" }}
+                      style={{ width: "auto", height: "300px" }}
                     ></div>
                   </Card>
+
+                  <Col md={3}>
+                    <input type="number" id="cep"
+                    placeholder="CEP"/>
+                  </Col>
                 </Col>
               </Row>
             </Col>
