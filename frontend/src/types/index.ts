@@ -3,6 +3,7 @@ export interface BikeProps {
   idUser: number;
   category: CategoriesProps;
   brand: BrandProps;
+  name: string;
   color: string;
   size: number;
   material: string;
@@ -16,6 +17,7 @@ export interface BikeProps {
   latitude: number;
   longitude: number;
   user: UsersProps;
+  photos: PhotoProps[];
 }
 
 export interface CategoriesProps {
@@ -48,4 +50,9 @@ export interface RentsProps {
   returnDate: Date;
   ownerValuation: number;
   clientValuation: number;
+}
+
+export interface PhotoProps {
+  id: number;
+  filename: string;
 }

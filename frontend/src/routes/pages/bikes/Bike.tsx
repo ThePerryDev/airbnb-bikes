@@ -1,11 +1,10 @@
 import "./bike.css";
 import perfil from "./imagens/perfil.png";
-import bikep from "./imagens/bike.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useCallback, useEffect, useState } from "react";
-import { BikeProps, UsersProps } from "../../../types";
+import { BikeProps } from "../../../types";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import mapBike from "./imagens/mapBike.png";
@@ -62,22 +61,22 @@ function Bike() {
   return (
     <div id="body">
       <Container fluid id="fundo">
-        <Container>
-          <Carousel showThumbs={false} showIndicators={true}>
-            <div>
-              <img src={bikep} alt="Bicicleta 1" />
-            </div>
-            <div>
-              <img src={bikep} alt="Bicicleta 2" />
-            </div>
-            <div>
-              <img src={bikep} alt="Bicicleta 3" />
-            </div>
+        <Container id="carrouselcontainer">
+          <Carousel showThumbs={true} showIndicators={true} >
+            {bike?.photos.map((photo) => (
+              <div key={photo.id}>
+                <img
+                  src={`http://localhost:3001/photo/public/${photo.filename}`}
+                  alt="Foto"
+                  id="carrouselImg"
+                />
+              </div>
+            ))}
           </Carousel>
         </Container>
         <Container>
           <Row>
-            <h1>BICICLETA</h1>
+            <h1>{bike?.name}</h1>
           </Row>
           <Row>
             <Col md={10}>
@@ -182,6 +181,7 @@ function Bike() {
                 <Container className="valContainers">
                   <Card className="perfil">
                     <Card.Img src={perfil} id="perfilImg"></Card.Img>
+                    <Card.Text>{bike?.user.alias}</Card.Text>
                     <Card.Text>{bike?.user.phone}</Card.Text>
                     <Card.Text>{bike?.user.mail}</Card.Text>
                   </Card>

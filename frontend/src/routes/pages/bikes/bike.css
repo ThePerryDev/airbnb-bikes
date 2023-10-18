@@ -2,6 +2,11 @@
   background-color: #effbee;
 }
 
+#carrouselImg {
+  width: auto;
+  height: 800px;
+}
+
 .valores {
   width: 302px;
   min-height: 55px;
