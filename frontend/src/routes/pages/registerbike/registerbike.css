@@ -25,6 +25,7 @@ p{
     width: 270px;
     height: 40px;
     background-color:#D0E7D2;
+    border: 0px;
 }
 
 .dropdown{
@@ -33,14 +34,16 @@ p{
 }
 
 #fileuploader label{
-    width: 792px;
+    width: 250%;
     height: 100px;
-    margin-left: 99px;
+
     margin-top: 53px;
+
 }
 
 #fileuploader{
     padding-bottom: 79px;
+
 }
 
 #mapCard{
@@ -49,15 +52,76 @@ p{
 }
 
 #cep{
-    width:170px;
+    width:auto;
     height: 40px;
     margin-Top:46px;
     border-radius: 10px;
     display:  flex;
     justify-content: center;
+    background-color: #D0E7D2;
+    border: 0px;
+}
 
+#estado{
+    width:170px;
+    height: 40px;
+    margin-Top:46px;
+    border-radius: 10px;
+    
+    display:  flex;
+    justify-content: center;
+    background-color: #D0E7D2;
+    border: 0px;
+   
+}
+
+#cidade{
+    width:80%;
+    height: 40px;
+    margin-Top:46px;
+    border-radius: 10px;
+    display:  flex;
+    justify-content: center;
+    background-color: #D0E7D2;
+    border: 0px;
 }
 
 #cep ::placeholder {
     margin-left: 10px;
+}
+
+
+#bairro{
+    width:auto;
+    height: 40px;
+    margin-Top:46px;
+    border-radius: 10px;
+    display:  flex;
+    justify-content: center;
+    background-color: #D0E7D2;
+    border: 0px;
+}
+
+#numero{
+    width:170px;
+    height: 40px;
+    margin-Top:46px;
+    border-radius: 10px;
+   
+    display:  flex;
+    justify-content: center;
+    background-color: #D0E7D2;
+    border: 0px;
+   
+}
+
+#endereco{
+    width:80%;
+    height: 40px;
+    margin-Top:46px;
+    border-radius: 10px;
+    display:  flex;
+    justify-content: center;
+    background-color: #D0E7D2;
+    border: 0px;
 }

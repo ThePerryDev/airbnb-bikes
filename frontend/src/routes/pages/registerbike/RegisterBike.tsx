@@ -140,7 +140,7 @@ function RegisterBike() {
   };
 
   const initMap = useCallback(() => {
-    const map = L.map("map").setView([40.75, 73.97], 13);
+    const map = L.map("map").setView([40.75, -73.98], 5);
     L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -162,15 +162,11 @@ function RegisterBike() {
       <main>
         <Container fluid id="main">
           <Container id="second">
-            <Col md={12}>
+            <Col md={12} >
               <p>Cadastro de Bicicleta</p>
-
+            </Col>  
+            <Col md={12} className = "d-flex justify-content-center" >
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
                 id="fileuploader"
               >
                 <FileUploader
@@ -178,9 +174,11 @@ function RegisterBike() {
                   handleChange={handleChange}
                   name="file"
                   types={fileTypes}
+                  
                 />
               </div>
-
+              </Col>
+              <Col md={12}>
               <Row>
                 <Col md={6}>
                   <Dropdown>
@@ -334,12 +332,34 @@ function RegisterBike() {
                       style={{ width: "auto", height: "300px" }}
                     ></div>
                   </Card>
-
-                  <Col md={3}>
-                    <input type="number" id="cep"
-                    placeholder="CEP"/>
+                <Row>
+                  <Col md={6}>
+                    <input type="number" id="cep" placeholder="CEP" />
                   </Col>
+                  <Col md={6}>
+                      <input type="text" id="estado" placeholder="ESTADO" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12}>
+                    <input type="number" id="cidade" placeholder="CIDADE" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={6}>
+                    <input type="text" id="cep" placeholder="BAIRRO" />
+                  </Col>
+                  <Col md={6}>
+                      <input type="number" id="numero" placeholder="NÚMERO" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12}>
+                    <input type="number" id="endereco" placeholder="ENDEREÇO" />
+                  </Col>
+                </Row>
                 </Col>
+
               </Row>
             </Col>
           </Container>
