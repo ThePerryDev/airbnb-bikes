@@ -105,7 +105,7 @@ function User() {
             <Carousel.Item key={item.src}>
               <Row>
                 <Col md={4} id="colBike">
-                  <div>
+                  <div id="cardBike">
                     <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
                     <Row><Card.Text>Nome da Bike</Card.Text></Row>
                     <Row>
@@ -132,24 +132,24 @@ function User() {
                   <Row>
                     <Col>
                       <div id="cardInfos">
-                        <Card.Text>INFORMAÇÕES</Card.Text>
+                        <Card.Text className="text">INFORMAÇÕES</Card.Text>
                       </div>
                     </Col>
                     <Col>
                       <div id="cardStatus">
-                        <Card.Text>STATUS</Card.Text>
+                        <Card.Text className="text">STATUS</Card.Text>
                       </div>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
                       <div id="cardDatas">
-                        <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                        <Card.Text className="text">DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
                       </div>
                     </Col>
                     <Col>
                       <div id="cardAva">
-                        <Card.Text>AVALIAÇÃO</Card.Text>
+                        <Card.Text className="text">AVALIAÇÃO</Card.Text>
                       </div>
                     </Col>
                   </Row>
@@ -168,30 +168,51 @@ function User() {
             <Carousel.Item key={item.src}>
               <Row>
                 <Col md={4} id="colBike">
-                  <img src={item.src} alt={item.alt} id="imgBike" />
+                  <div id="cardBike">
+                    <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
+                    <Row><Card.Text>Nome da Bike</Card.Text></Row>
+                    <Row>
+                      <Card id="cardInfoBike">
+                        <Card.Text>Informações da bike</Card.Text>
+                      </Card>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Row>
+                          <Card.Text>R$80.00/</Card.Text>
+                        </Row>
+                        <Row>
+                          <Card.Text>aaaa</Card.Text>
+                        </Row>
+                      </Col>
+                      <Col>
+                        <Button>Detalhes</Button>
+                      </Col>
+                    </Row>
+                  </div>
                 </Col>
                 <Col md={8}>
                   <Row>
                     <Col>
                       <div id="cardInfos">
-                        <Card.Text>INFORMAÇÕES</Card.Text>
+                        <Card.Text className="text">INFORMAÇÕES</Card.Text>
                       </div>
                     </Col>
                     <Col>
                       <div id="cardStatus">
-                        <Card.Text>STATUS</Card.Text>
+                        <Card.Text className="text">STATUS</Card.Text>
                       </div>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
                       <div id="cardDatas">
-                        <Card.Text>DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                        <Card.Text className="text">DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
                       </div>
                     </Col>
                     <Col>
                       <div id="cardAva">
-                        <Card.Text>AVALIAÇÃO</Card.Text>
+                        <Card.Text className="text">AVALIAÇÃO</Card.Text>
                       </div>
                     </Col>
                   </Row>
@@ -200,6 +221,8 @@ function User() {
             </Carousel.Item>
           ))}
         </Carousel>
+
+        
         <Container fluid>
           <Container id="centerContainer">
             <Row>

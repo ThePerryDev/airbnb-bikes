@@ -14,7 +14,7 @@ body {
 #colBike{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;  
 }
 
 #imgBike{
@@ -108,14 +108,6 @@ body {
   justify-content: center;
 }
 
-#button{
-  background-color:#79ac78;
-  border: 2.5px solid #000;
-  border-radius: 20px;
-  height: 7vw;
-  width: 15vw;
-}
-
 #centerContainer{
   margin-top: 3%;
   display: flex;
@@ -126,4 +118,29 @@ body {
 #cardInfoBike{
   background-color: gray;
   
+}
+
+.text{
+  font-size:16px;
+}
+
+#button{
+  background-color:#79ac78;
+  border: 2.5px solid #000;
+  border-radius: 20px;
+  height: 9vw;
+  width: 15vw;
+}
+
+@media (max-width: 520px) {
+  .text{
+    font-size:10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .text{
+    height: 30vw;
+    width: 30vw;
+  }
 }
