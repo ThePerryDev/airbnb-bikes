@@ -65,16 +65,16 @@ function User() {
 
   const items = [
     {
-      src: require("./images/bicicleta.png"),
-      alt: "Imagem 1",
+      src: require("./images/bicicleta2.png"),
+      alt: "Imagem bicicleta",
     },
     {
-      src: require("./images/bicicleta.png"),
-      alt: "Imagem 1",
+      src: require("./images/bicicleta2.png"),
+      alt: "Imagem bicicleta",
     },
     {
-      src: require("./images/bicicleta.png"),
-      alt: "Imagem 1",
+      src: require("./images/bicicleta2.png"),
+      alt: "Imagem bicicleta",
     },
   ];
 
@@ -105,7 +105,28 @@ function User() {
             <Carousel.Item key={item.src}>
               <Row>
                 <Col md={4} id="colBike">
-                  <img src={item.src} alt={item.alt} id="imgBike" />
+                  <div>
+                    <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
+                    <Row><Card.Text>Nome da Bike</Card.Text></Row>
+                    <Row>
+                      <Card id="cardInfoBike">
+                        <Card.Text>Informações da bike</Card.Text>
+                      </Card>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Row>
+                          <Card.Text>R$80.00/</Card.Text>
+                        </Row>
+                        <Row>
+                          <Card.Text>aaaa</Card.Text>
+                        </Row>
+                      </Col>
+                      <Col>
+                        <Button>Detalhes</Button>
+                      </Col>
+                    </Row>
+                  </div>
                 </Col>
                 <Col md={8}>
                   <Row>
@@ -179,24 +200,29 @@ function User() {
             </Carousel.Item>
           ))}
         </Carousel>
+        <Container fluid>
+          <Container id="centerContainer">
+            <Row>
+              <Card.Text>Meus Produtos:</Card.Text>
+              <Col md={4} id="colButton">
+                <Link to="/regiterbike">
+                  <Button id="button">CADASTRAR BICICLETAS</Button>
+                </Link>
+              </Col>
+              <Col md={4} id="colButton">
+                <Link to="/avalovador">
+                  <Button id="button">AVALIAÇÕES DO LOCADOR</Button>
+                </Link>
+              </Col>
+              <Col md={4} id="colButton">
+                <Link to="/avalocatorio">
+                  <Button id="button">AVALIAÇÕES DO LOCATÓRIO</Button>
+                </Link>
+              </Col>
+            </Row>
+          </Container>
+        </Container>
 
-        <Row>
-          <Col>
-            <Link to="/regiterbike">
-              <Button>Cadastrar bicicletas</Button>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/avalovador">
-              <Button>Avaliações do locador</Button>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/avalocatorio">
-              <Button>Avaliações do locatório</Button>
-            </Link>
-          </Col>
-        </Row>
         <div>
           <Link to="/">Voltar</Link>
         </div>
