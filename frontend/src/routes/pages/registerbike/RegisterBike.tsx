@@ -162,23 +162,20 @@ function RegisterBike() {
       <main>
         <Container fluid id="main">
           <Container id="second">
-            <Col md={12} >
+            <Col md={12}>
               <p>Cadastro de Bicicleta</p>
-            </Col>  
-            <Col md={12} className = "d-flex justify-content-center" >
-              <div
-                id="fileuploader"
-              >
+            </Col>
+            <Col md={12} className="d-flex justify-content-center">
+              <div id="fileuploader">
                 <FileUploader
                   multiple={true}
                   handleChange={handleChange}
                   name="file"
                   types={fileTypes}
-                  
                 />
               </div>
-              </Col>
-              <Col md={12}>
+            </Col>
+            <Col md={12}>
               <Row>
                 <Col md={6}>
                   <Dropdown>
@@ -332,34 +329,91 @@ function RegisterBike() {
                       style={{ width: "auto", height: "300px" }}
                     ></div>
                   </Card>
-                <Row>
-                  <Col md={6}>
-                    <input type="number" id="cep" placeholder="CEP" />
-                  </Col>
-                  <Col md={6}>
-                      <input type="text" id="estado" placeholder="ESTADO" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={12}>
-                    <input type="number" id="cidade" placeholder="CIDADE" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={6}>
-                    <input type="text" id="cep" placeholder="BAIRRO" />
-                  </Col>
-                  <Col md={6}>
-                      <input type="number" id="numero" placeholder="NÚMERO" />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={12}>
-                    <input type="number" id="endereco" placeholder="ENDEREÇO" />
-                  </Col>
-                </Row>
+                  <Row>
+                    <Col md={6}>
+                      <input
+                        className="d-flex text-center"
+                        type="number"
+                        id="cep"
+                        placeholder="CEP"
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <input
+                        className="d-flex text-center"
+                        type="text"
+                        id="estado"
+                        placeholder="ESTADO"
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={12}>
+                      <input
+                        className="d-flex text-center"
+                        type="text"
+                        id="cidade"
+                        placeholder="CIDADE"
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={6}>
+                      <input
+                        className="d-flex text-center"
+                        type="text"
+                        id="cep"
+                        placeholder="BAIRRO"
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <input
+                        className="d-flex text-center"
+                        type="number"
+                        id="numero"
+                        placeholder="NÚMERO"
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={12}>
+                      <input
+                        className="d-flex text-center"
+                        type="number"
+                        id="endereco"
+                        placeholder="ENDEREÇO"
+                      />
+                    </Col>
+                  </Row>
                 </Col>
-
+               
+                  <div className="d-flex justify-content-center">
+                    <input
+                      className="d-flex text-center"
+                      type="text"
+                      id="textbox"
+                      placeholder="Insira aqui alguma recomendação ou instrução para o aluguel"
+                    />
+                  </div>
+                
+                <Row>
+                  <Col md={6} className="colvalor d-flex">
+                    <input
+                      className="d-flex text-center"
+                      type="number"
+                      id="cep"
+                      placeholder="VALOR DA HORA"
+                    />
+                  </Col>
+                  <Col md={6} className="colvalor d-flex">
+                    <input
+                      className="d-flex align-item-center text-center"
+                      type="number"
+                      id="numero"
+                      placeholder="VALOR DA DIÁRIA"
+                    />
+                  </Col>
+                </Row>
               </Row>
             </Col>
           </Container>
