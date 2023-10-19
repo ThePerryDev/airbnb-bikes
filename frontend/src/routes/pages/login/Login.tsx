@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import devicon_google from "./img/devicon_google.png";
+import logos_facebook from "./img/logos_facebook.png";
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./login.css";
 //import axios from "axios";
@@ -57,7 +59,13 @@ function Login() {
                               </div>
                               <div id="botoes">
                                 <Button id="botao" size="lg">
-                                  Continuar com Facebook
+                                  <div className="button-content">
+                                    <img
+                                      src={logos_facebook}
+                                      alt="logos_facebook"
+                                    />
+                                    Continuar com Facebook
+                                  </div>
                                 </Button>
                               </div>
                               <div id="botoes">
@@ -66,7 +74,13 @@ function Login() {
                                   size="lg"
                                   onClick={googleLogin}
                                 >
-                                  Continuar com Google
+                                  <div className="button-content">
+                                    <img
+                                      src={devicon_google}
+                                      alt="devicon_google"
+                                    />
+                                    Continuar com Google
+                                  </div>
                                 </Button>
                               </div>
                             </Col>
@@ -87,12 +101,24 @@ function Login() {
                               </div>
                               <div id="botoes">
                                 <Button id="botao">
-                                  Continuar com Facebook
+                                  <div className="button-content">
+                                    <img
+                                      src={logos_facebook}
+                                      alt="logos_facebook"
+                                    />
+                                    Continuar com Facebook
+                                  </div>
                                 </Button>
                               </div>
                               <div id="botoes">
                                 <Button id="botao" onClick={googleLogin}>
-                                  Continuar com Google
+                                  <div className="button-content">
+                                    <img
+                                      src={devicon_google}
+                                      alt="devicon_google"
+                                    />
+                                    Continuar com Google
+                                  </div>
                                 </Button>
                               </div>
                             </Col>
@@ -106,7 +132,6 @@ function Login() {
             </Row>
           </Container>
         </Container>
-
         <Link to="/">Voltar</Link>
       </main>
     </div>

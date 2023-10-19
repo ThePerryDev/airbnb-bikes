@@ -12,6 +12,10 @@
   align-items: center;
   font-family: 'Ubuntu', sans-serif;
   background-color: #EFFBEE;
+  background-image: url(./img/bike-parking.png);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 900px;
 }
 
 #caixa{
@@ -69,6 +73,33 @@
   border: none;
 }
 
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+@media screen and (max-width: 1220px){
+  #principal{
+    background-color: #EFFBEE;
+    background-image: url(./img/bike-parking.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 800px;
+  }
+}
+
+@media screen and (max-width: 790px){
+  #principal{
+    background-color: #EFFBEE;
+    background-image: url(./img/bike-parking.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 700px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   #caixa{
     width: 300px;
@@ -102,4 +133,12 @@
     background-color: #79AC78 ;
     border: none;
   }
+
+  .button-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
 }
+
