@@ -137,10 +137,3 @@ body {
     font-size:10px;
   }
 }
-
-@media (max-width: 520px) {
-  .text{
-    height: 30vw;
-    width: 30vw;
-  }
-}

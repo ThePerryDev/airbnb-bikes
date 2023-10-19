@@ -222,29 +222,26 @@ function User() {
           ))}
         </Carousel>
 
-        
+
         <Container fluid>
           <Container id="centerContainer">
             <Row>
-              <Card.Text>Meus Produtos:</Card.Text>
-              <Col md={4} id="colButton">
+              <span>
                 <Link to="/regiterbike">
                   <Button id="button">CADASTRAR BICICLETAS</Button>
                 </Link>
-              </Col>
-              <Col md={4} id="colButton">
                 <Link to="/avalovador">
                   <Button id="button">AVALIAÇÕES DO LOCADOR</Button>
                 </Link>
-              </Col>
-              <Col md={4} id="colButton">
                 <Link to="/avalocatorio">
                   <Button id="button">AVALIAÇÕES DO LOCATÓRIO</Button>
                 </Link>
-              </Col>
+              </span>
             </Row>
           </Container>
         </Container>
+
+
 
         <div>
           <Link to="/">Voltar</Link>
