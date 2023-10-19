@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import lupa from "./img/lupa.png";
-import menu from "./img/menu.png";
 import logo from "./img/logo.png";
 import user from "./img/user.png";
-import config from "./img/config.png";
-import { Row, Col, Container, AccordionHeader } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import "./Components.css";
 
 function Header() {
@@ -28,17 +26,10 @@ function Header() {
           </Col>
           <Col>
             <nav id="header-nav">
-              <button className="botao-user">
+              <Link className="botao-user" to="/login">
                 <img src={user} alt="Pagina de usuário" />
-              </button>
+              </Link>
 
-              <button className="botao-config">
-                <img src={config} alt="Pagina de configuração" />
-              </button>
-
-              <button className="botao-menu">
-                <img src={menu} alt="Pagina de menu" />
-              </button>
             </nav>
           </Col>
         </Row>
