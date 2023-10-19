@@ -62,7 +62,7 @@ function Bike() {
     <div id="body">
       <Container fluid id="fundo">
         <Container id="carrouselcontainer">
-          <Carousel showThumbs={true} showIndicators={true} >
+          <Carousel showThumbs={true} showIndicators={true} dynamicHeight={true} >
             {bike?.photos.map((photo) => (
               <div key={photo.id}>
                 <img
@@ -89,7 +89,7 @@ function Bike() {
                 </Col>
               </Row>
               <Row className="rowcard">
-                <Col md={5} sm={12}>
+                <Col md={5} sm={12} className="respCard">
                   <Card className="cards">
                     <Card.Title>Cor</Card.Title>
                     <Card.Text>{bike?.color}</Card.Text>
@@ -103,7 +103,7 @@ function Bike() {
                 </Col>
               </Row>
               <Row className="rowcard">
-                <Col md={5} sm={12}>
+                <Col md={5} sm={12} className="respCard">
                   <Card className="cards">
                     <Card.Title>Material</Card.Title>
                     <Card.Text>{bike?.material}</Card.Text>
@@ -117,7 +117,7 @@ function Bike() {
                 </Col>
               </Row>
               <Row className="rowcard">
-                <Col md={5} sm={12}>
+                <Col md={5} sm={12} className="respCard">
                   <Card className="cards">
                     <Card.Title>Marchas</Card.Title>
                     <Card.Text>{bike?.speedkit}</Card.Text>
@@ -131,7 +131,7 @@ function Bike() {
                 </Col>
               </Row>
               <Row>
-                <Col md={5} sm={12}>
+                <Col md={5} sm={12} className="respCard">
                   <Card className="cards text-right">
                     <Card.Title>Suspensão</Card.Title>
                     <Card.Text>{getSuspension(bike)}</Card.Text>
@@ -153,11 +153,15 @@ function Bike() {
                 </Col>
               </Row>
               <Row id="mapCardRow">
-                <Col md={10} sm={12}>
+                <Col md={10} sm={12} className="respCard">
                   <Card id="mapCard">
                     <div
                       id="map"
-                      style={{ width: "100%", height: "400px" }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "15px",
+                      }}
                     ></div>
                     <Card.Text></Card.Text>
                   </Card>
@@ -177,7 +181,15 @@ function Bike() {
                     <Card.Text>{bike?.hourlyvalue}</Card.Text>
                   </Card>
                 </Container>
-                <Card.Text>CONTATOS</Card.Text>
+                <Card.Title>AVALIAÇÕES</Card.Title>
+                <Container className="valContainers">
+                  <Card className="perfil">
+                    <Card.Text>Avaliação</Card.Text>
+                    <Card.Text>Avaliação</Card.Text>
+                    <Card.Text>Avaliação</Card.Text>
+                  </Card>
+                </Container>
+                <Card.Title>CONTATOS</Card.Title>
                 <Container className="valContainers">
                   <Card className="perfil">
                     <Card.Img src={perfil} id="perfilImg"></Card.Img>

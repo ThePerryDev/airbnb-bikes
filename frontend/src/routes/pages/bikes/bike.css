@@ -2,11 +2,6 @@
   background-color: #effbee;
 }
 
-#carrouselImg {
-  width: auto;
-  height: 800px;
-}
-
 .valores {
   width: 302px;
   min-height: 55px;
@@ -88,5 +83,9 @@
   #cardCont {
     width: auto;
     right: 0px;
+  }
+
+  .respCard {
+    margin-bottom: 30px;
   }
 }
