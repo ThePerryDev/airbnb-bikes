@@ -79,9 +79,9 @@ function Bike() {
             <h1>{bike?.name}</h1>
           </Row>
           <Row>
-            <Col md={10}>
+            <Col md={10} sm={12}>
               <Row className="rowcard">
-                <Col md={10}>
+                <Col md={10} sm={12}>
                   <Card className="cards">
                     <Card.Title>Categoria</Card.Title>
                     <Card.Text>{bike?.category.name}</Card.Text>
@@ -89,13 +89,13 @@ function Bike() {
                 </Col>
               </Row>
               <Row className="rowcard">
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards">
                     <Card.Title>Cor</Card.Title>
                     <Card.Text>{bike?.color}</Card.Text>
                   </Card>
                 </Col>
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards rightCards">
                     <Card.Title>Tamanho</Card.Title>
                     <Card.Text>{bike?.size}</Card.Text>
@@ -103,13 +103,13 @@ function Bike() {
                 </Col>
               </Row>
               <Row className="rowcard">
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards">
                     <Card.Title>Material</Card.Title>
                     <Card.Text>{bike?.material}</Card.Text>
                   </Card>
                 </Col>
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards rightCards">
                     <Card.Title>Gênero</Card.Title>
                     <Card.Text>{bike?.gender}</Card.Text>
@@ -117,13 +117,13 @@ function Bike() {
                 </Col>
               </Row>
               <Row className="rowcard">
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards">
                     <Card.Title>Marchas</Card.Title>
                     <Card.Text>{bike?.speedkit}</Card.Text>
                   </Card>
                 </Col>
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards rightCards">
                     <Card.Title>Aro</Card.Title>
                     <Card.Text>{bike?.rim}</Card.Text>
@@ -131,13 +131,13 @@ function Bike() {
                 </Col>
               </Row>
               <Row>
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards text-right">
                     <Card.Title>Suspensão</Card.Title>
                     <Card.Text>{getSuspension(bike)}</Card.Text>
                   </Card>
                 </Col>
-                <Col md={5}>
+                <Col md={5} sm={12}>
                   <Card className="cards rightCards text-right">
                     <Card.Title>Marca</Card.Title>
                     <Card.Text>{bike?.brand.name}</Card.Text>
@@ -145,7 +145,7 @@ function Bike() {
                 </Col>
               </Row>
               <Row id="rowDesc">
-                <Col md={10}>
+                <Col md={10} sm={12}>
                   <Card className="cards" id="cardDesc">
                     <Card.Title>Descrição</Card.Title>
                     <Card.Text>{bike?.description}</Card.Text>
@@ -153,7 +153,7 @@ function Bike() {
                 </Col>
               </Row>
               <Row id="mapCardRow">
-                <Col md={10}>
+                <Col md={10} sm={12}>
                   <Card id="mapCard">
                     <div
                       id="map"
@@ -164,7 +164,7 @@ function Bike() {
                 </Col>
               </Row>
             </Col>
-            <Col md={2}>
+            <Col md={2} sm={12}>
               <Card id="cardCont">
                 <Card.Title>VALORES</Card.Title>
                 <Container className="valContainers">

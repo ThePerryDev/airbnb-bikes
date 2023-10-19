@@ -83,3 +83,10 @@
   height: 450px;
   border-radius: 15px;
 }
+
+@media (max-width: 575.99px) {
+  #cardCont {
+    width: auto;
+    right: 0px;
+  }
+}
