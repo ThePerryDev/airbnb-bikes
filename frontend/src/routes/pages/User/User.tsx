@@ -116,14 +116,18 @@ function User() {
                     <Row>
                       <Col>
                         <Row>
-                          <Card.Text>R$80.00/</Card.Text>
-                        </Row>
-                        <Row>
-                          <Card.Text>aaaa</Card.Text>
+                          <Col>
+                            <Row>
+                              <Card.Text><span>R$80.00/</span><span id="textoCinza">dia</span></Card.Text>
+                            </Row>
+                            <Row>
+                              <Card.Text id="textoCinza">aaaa</Card.Text>
+                            </Row>
+                          </Col>
                         </Row>
                       </Col>
                       <Col>
-                        <Button>Detalhes</Button>
+                        <Button id="detalhes">Detalhes</Button>
                       </Col>
                     </Row>
                   </div>
@@ -179,14 +183,18 @@ function User() {
                     <Row>
                       <Col>
                         <Row>
-                          <Card.Text>R$80.00/</Card.Text>
-                        </Row>
-                        <Row>
-                          <Card.Text>aaaa</Card.Text>
+                          <Col>
+                            <Row>
+                              <Card.Text><span>R$80.00/</span><span id="textoCinza">dia</span></Card.Text>
+                            </Row>
+                            <Row>
+                              <Card.Text id="textoCinza">aaaa</Card.Text>
+                            </Row>
+                          </Col>
                         </Row>
                       </Col>
                       <Col>
-                        <Button>Detalhes</Button>
+                        <Button id="detalhes">Detalhes</Button>
                       </Col>
                     </Row>
                   </div>
@@ -222,26 +230,27 @@ function User() {
           ))}
         </Carousel>
 
-
         <Container fluid>
           <Container id="centerContainer">
             <Row>
-              <span>
+              <Col md={4} sm={3}>
                 <Link to="/regiterbike">
                   <Button id="button">CADASTRAR BICICLETAS</Button>
                 </Link>
+              </Col>
+              <Col md={4} sm={3}>
                 <Link to="/avalovador">
                   <Button id="button">AVALIAÇÕES DO LOCADOR</Button>
                 </Link>
+              </Col>
+              <Col md={4} sm={3}>
                 <Link to="/avalocatorio">
                   <Button id="button">AVALIAÇÕES DO LOCATÓRIO</Button>
                 </Link>
-              </span>
+              </Col>
             </Row>
           </Container>
         </Container>
-
-
 
         <div>
           <Link to="/">Voltar</Link>

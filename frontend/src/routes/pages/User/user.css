@@ -116,8 +116,9 @@ body {
 }
 
 #cardInfoBike{
-  background-color: gray;
-  
+  background-color: #D9D9D9;
+  color: #000;
+  height: 10vw;
 }
 
 .text{
@@ -130,10 +131,33 @@ body {
   border-radius: 20px;
   height: 9vw;
   width: 15vw;
+  margin: 1%;
+}
+
+#detalhes{
+  background-color: #79ac78;
+  border: 2.5px solid;
+  border-radius: 10px;
+  width: 10vw;
+  height: 3vw;
+}
+
+#textoCinza{
+  color: #90A3BF;
 }
 
 @media (max-width: 520px) {
   .text{
     font-size:10px;
+  }
+  #button{
+    font-size:10px;
+  }
+}
+
+@media (max-width: 904px) {
+  #button{
+    width:23vw;
+    height: 15vw;
   }
 }
