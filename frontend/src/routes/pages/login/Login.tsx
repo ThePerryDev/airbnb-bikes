@@ -14,6 +14,14 @@ function Login() {
     // Essa é uma forma de iniciar o processo de autenticação com o Google
   };
 
+  const facebookLogin = () => {
+    // Função para iniciar o processo de autenticação com o Google
+    window.open("http://localhost:3000/auth/facebook", "_self");
+    // Abre uma nova janela ou guia no navegador para a página de autenticação do Google
+    // O segundo argumento "_self" especifica que a página atual será substituída pela página de autenticação
+    // Essa é uma forma de iniciar o processo de autenticação com o Google
+  };
+
   /*const logout = () => {
     // Função para efetuar o logout do usuário
     axios.get("http://localhost:3000/auth/logout").then((res) => {
@@ -58,7 +66,7 @@ function Login() {
                                 <h1>Seja Bem Vindo</h1>
                               </div>
                               <div id="botoes">
-                                <Button id="botao" size="lg">
+                                <Button id="botao" size="lg" onClick={facebookLogin}>
                                   <div className="button-content">
                                     <img
                                       src={logos_facebook}
@@ -100,7 +108,7 @@ function Login() {
                                 <h1>Cadastre-se Aqui</h1>
                               </div>
                               <div id="botoes">
-                                <Button id="botao">
+                                <Button id="botao" size="lg" onClick={facebookLogin}>
                                   <div className="button-content">
                                     <img
                                       src={logos_facebook}
