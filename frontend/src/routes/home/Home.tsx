@@ -1,61 +1,44 @@
-import "./home.css";
-import homebikes from "./img/homebikes.png";
-import { Row, Col, Container } from "react-bootstrap";
-import Header from "../components/Header";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
+import lupa from "./img/lupa.png"
+import logo from "./img/logo.png"
+import user from "./img/user.png"
+import config from "./img/config.png"
+import "./home.css";
 
 function Home() {
+
   return (
     <div>
-      <Header />
+      <header>
+        <button className="logo"><img src={logo} alt="logo" /></button>
+        <form action="" className="searchbar">
+          <input type="text" placeholder="Search..." />
+          <button type="submit"><img src={lupa} alt="search icon" /></button>
+        </form>
+        <nav>
+          <button className="botao-user"><img src={user} alt="Pagina de usuário" /></button>
+          <button className="botao-config"><img src={config} alt="Pagina de configuração" /></button>
+        </nav>
+      </header>
+
       <main>
-        <Container>
-          <Row id="headerhome">
-            <Col>
-              <Row id="alignrow">
-                <h1>
-                  <b>O MELHOR AGREGADOR PARA ALUGUEL DE BICICLETAS</b>
-                </h1>
-                <h3>
-                  <b>Sua melhor escolha para pedalar</b>
-                </h3>
-                <Link className="catalog-button" to="/catalog">
-                  Acesse o Catálogo
-                </Link>
-              </Row>
-            </Col>
-            <Col>
-              <img src={homebikes} alt="home page bikes" />
-            </Col>
-          </Row>
-
-          <Row id="mainhome1">
-            <h2>Escolha a bicicleta que faz mais o seu estilo</h2>
-            <Row>
-              <div className="home-bike-card">
-                <img src="" alt="bike" className="home-bike-photo" />
-                <Link className="home-bike-button" to="/">
-                  Confirma
-                </Link>
+        <div className="container">
+          <div className="card">
+            <div className="cardcontent">
+              <div className="cardphoto">
+                <img src="#" alt="bike_photo" />
               </div>
-            </Row>
-          </Row>
-
-          <Row>
-            <h2>Procurando em alguma cidade especifica?</h2>
-            <Row>
-            <div className="home-city-card">
-                <img src="" alt="city" className="home-city-photo" />
-                <Link className="home-city-button" to="/">
-                  Confirma
-                </Link>
-              </div>
-            </Row>
-          </Row>
-        </Container>
+              <h3>título da bike</h3>
+              <div className="descritivo">Aqui tem texto</div>
+              <h3>R$00,00</h3>
+              <button>Details</button>
+              <p id="cidade">cidade</p>
+              <button>fav</button>
+            </div>
+          </div>
+        </div>
       </main>
-      <Footer/>
+      <Link to="/">Voltar</Link>
     </div>
   );
 }

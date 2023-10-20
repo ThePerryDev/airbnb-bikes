@@ -20,7 +20,6 @@ function Demo() {
             <option value="/user">User</option>
             <option value="/bike">Bike</option>
             <option value="/home">Home</option>
-            <option value="/catalog">Catalog</option>
           </select>
           <Link to={navegar}>Confirma</Link>
         </nav>
