@@ -5,7 +5,6 @@ const routes = Router();
 
 routes.post("/", controller.create);
 routes.get("/", controller.list);
-routes.get("/:id", controller.listById);
 routes.delete("/", controller.delete);
 routes.put("/", controller.update);
 

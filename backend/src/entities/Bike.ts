@@ -22,9 +22,6 @@ export class Bike {
   id: number;
 
   @Column({ nullable: false, length: 30 })
-  name: string;
-
-  @Column({ nullable: false, length: 30 })
   color: string;
 
   @Column({ nullable: false })
