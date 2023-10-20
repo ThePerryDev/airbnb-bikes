@@ -4,122 +4,54 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-h1, h2, h3 {
-    margin: 0;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    background: #79AC78;
-}
-
-.logo {
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    background: white; 
-}
-
-.logo img{
-    max-width: 80px;
-}
-
-.searchbar {
-    width: 100%;
-    max-width: 300px;
-    background: rgba(255, 255, 255, 0.5);
-    display: flex;
-    justify-content: center;
-    border-radius: 60px;
-    padding: 10px 20px;
-}
-
-.searchbar input{
-    background: transparent;
-    border: 0;
-    outline: none;
-    font-size: 20px;
-    margin: 0;
-}
-
-::placeholder{
-    color: black;
-}
-
-.searchbar button img {
-    width: 25px;
-}
-.searchbar button {
-    border: 0;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    background: transparent;
-}
-
-.botao-user {
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    background: white; 
-}
-
-.botao-user img{
-    max-width: 80px;
-}
-
-.botao-config {
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    background: white; 
-}
-
-.botao-config img{
-    max-width: 80px;
-}
-
-main{
-    background-color: #EFFBEE;
-}
-
-.container{
-    display: flex;
-    justify-content: space-between;
-}
-
-.card{
+.catalog-button{
+    color: white;
+    text-decoration: none;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: #79AC78;
+    padding: 0.5vw 7.5vw 0.5vw 7.5vw;
+    border-radius: 20px;
     text-align: center;
-    background-color:bisque;
-    border-radius: 15px;
-    height: 398px;
-    width: 248px;
-    padding: 26px;
-    margin: 20px;
-    max-height: 450px;
+    width: auto;
 }
 
-.cardcontent {
-    background-color:cornsilk;
-    text-align: left;
+#alignrow{
+    align-items: center;
+    height: 100%;
+    padding: 30px 0px 30px 0px;
 }
 
-.cardphoto{
-    background-color: #D9D9D9;
-    height: 180px;
-    max-height: 180px;
-    width: 248px;
-    max-width: 248px;
+#headerhome, #mainhome1{
+    margin-bottom: 5vh;
 }
 
-.descritivo{
-    background-color: #D9D9D9;
-    height: 70px;
-    max-height: 70px;
-    width: 228px;
-    max-width: 228px;
-    border-radius: 15px;
-    padding: 10px;
+.home-bike-card, .home-city-card{
+    border: 1;
+    border-color: white;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 25px;
+    background-color: #d9d9d9;
+    padding: 8px;
+    width: auto;
+}
+
+.home-bike-photo, .home-city-photo{
+    display: block;
+    max-width: 100px;
+    height: 100px;
+    max-height: 100px;
+}
+
+.home-bike-button, .home-city-button{
+    color: white;
+    text-decoration: none;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: #79AC78;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+    width: auto;
 }
