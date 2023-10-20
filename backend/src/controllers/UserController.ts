@@ -63,16 +63,6 @@ class UserController {
     return res.json(users);
   }
 
-  public async listById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    
-    console.log("id", id);
-    const user = await AppDataSource.manager.findOne(User, {
-      where: { id: parseInt(id) },
-    });
-    return res.json(user);
-  }
-
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.body;
     // o método delete retorna o objeto {"raw": [],"affected": 1}

@@ -2,6 +2,7 @@ import AppDataSource from "../data-source";
 import { Request, Response } from "express";
 import { Photo } from "../entities/Photo";
 import { Bike } from "../entities/Bike";
+import { Brand } from "../entities/Brand";
 
 class PhotoController {
   public async create(req: Request, res: Response): Promise<Response> {
