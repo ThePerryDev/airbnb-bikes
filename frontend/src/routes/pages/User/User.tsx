@@ -126,7 +126,7 @@ function User() {
                           </Col>
                         </Row>
                       </Col>
-                      <Col>
+                      <Col id="colDetalhes">
                         <Button id="detalhes">Detalhes</Button>
                       </Col>
                     </Row>
