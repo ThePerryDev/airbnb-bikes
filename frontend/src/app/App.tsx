@@ -5,6 +5,7 @@ import Bike from "../routes/pages/bikes/Bike";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Demo from "../routes/demo/Demo";
 import Home from "../routes/home/Home";
+import Catalog from "../routes/pages/catalogo/Catalog";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/bike" element={<Bike />} />
         <Route path="/bike/:id" element={<Bike />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/catalog" element={<Catalog />} />
       </Routes>
     </BrowserRouter>
   );
