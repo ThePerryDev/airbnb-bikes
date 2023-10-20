@@ -62,145 +62,158 @@ function Bike() {
     <div id="body">
       <Container fluid id="fundo">
         <Container id="carrouselcontainer">
-          <Carousel showThumbs={true} showIndicators={true} dynamicHeight={true} >
-            {bike?.photos.map((photo) => (
-              <div key={photo.id}>
-                <img
-                  src={`http://localhost:3001/photo/public/${photo.filename}`}
-                  alt="Foto"
-                  id="carrouselImg"
-                />
-              </div>
-            ))}
-          </Carousel>
+          <Col md={12}>
+            <Carousel
+              showThumbs={true}
+              showIndicators={true}
+              dynamicHeight={true}
+              infiniteLoop={true}
+              useKeyboardArrows={true}
+            >
+              {bike?.photos.map((photo) => (
+                <div key={photo.id}>
+                  <img
+                    src={`http://localhost:3001/photo/public/${photo.filename}`}
+                    alt="Foto"
+                    id="carrouselImg"
+                  />
+                </div>
+              ))}
+            </Carousel>
+          </Col>
         </Container>
-        <Container>
-          <Row>
-            <h1>{bike?.name}</h1>
-          </Row>
-          <Row>
-            <Col md={10} sm={12}>
-              <Row className="rowcard">
-                <Col md={10} sm={12}>
-                  <Card className="cards">
-                    <Card.Title>Categoria</Card.Title>
-                    <Card.Text>{bike?.category.name}</Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-              <Row className="rowcard">
-                <Col md={5} sm={12} className="respCard">
-                  <Card className="cards">
-                    <Card.Title>Cor</Card.Title>
-                    <Card.Text>{bike?.color}</Card.Text>
-                  </Card>
-                </Col>
-                <Col md={5} sm={12}>
-                  <Card className="cards rightCards">
-                    <Card.Title>Tamanho</Card.Title>
-                    <Card.Text>{bike?.size}</Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-              <Row className="rowcard">
-                <Col md={5} sm={12} className="respCard">
-                  <Card className="cards">
-                    <Card.Title>Material</Card.Title>
-                    <Card.Text>{bike?.material}</Card.Text>
-                  </Card>
-                </Col>
-                <Col md={5} sm={12}>
-                  <Card className="cards rightCards">
-                    <Card.Title>Gênero</Card.Title>
-                    <Card.Text>{bike?.gender}</Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-              <Row className="rowcard">
-                <Col md={5} sm={12} className="respCard">
-                  <Card className="cards">
-                    <Card.Title>Marchas</Card.Title>
-                    <Card.Text>{bike?.speedkit}</Card.Text>
-                  </Card>
-                </Col>
-                <Col md={5} sm={12}>
-                  <Card className="cards rightCards">
-                    <Card.Title>Aro</Card.Title>
-                    <Card.Text>{bike?.rim}</Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={5} sm={12} className="respCard">
-                  <Card className="cards text-right">
-                    <Card.Title>Suspensão</Card.Title>
-                    <Card.Text>{getSuspension(bike)}</Card.Text>
-                  </Card>
-                </Col>
-                <Col md={5} sm={12}>
-                  <Card className="cards rightCards text-right">
-                    <Card.Title>Marca</Card.Title>
-                    <Card.Text>{bike?.brand.name}</Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-              <Row id="rowDesc">
-                <Col md={10} sm={12}>
-                  <Card className="cards" id="cardDesc">
-                    <Card.Title>Descrição</Card.Title>
-                    <Card.Text>{bike?.description}</Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-              <Row id="mapCardRow">
-                <Col md={10} sm={12} className="respCard">
-                  <Card id="mapCard">
-                    <div
-                      id="map"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "15px",
-                      }}
-                    ></div>
-                    <Card.Text></Card.Text>
-                  </Card>
-                </Col>
-              </Row>
-            </Col>
-            <Col md={2} sm={12}>
-              <Card id="cardCont">
-                <Card.Title>VALORES</Card.Title>
-                <Container className="valContainers">
-                  <Card className="valores">
-                    <Card.Text>Diária</Card.Text>
-                    <Card.Text>{bike?.dailyvalue}</Card.Text>
-                  </Card>
-                  <Card className="valores">
-                    <Card.Text>Hora</Card.Text>
-                    <Card.Text>{bike?.hourlyvalue}</Card.Text>
-                  </Card>
-                </Container>
-                <Card.Title>AVALIAÇÕES</Card.Title>
-                <Container className="valContainers">
-                  <Card className="perfil">
-                    <Card.Text>Avaliação</Card.Text>
-                    <Card.Text>Avaliação</Card.Text>
-                    <Card.Text>Avaliação</Card.Text>
-                  </Card>
-                </Container>
-                <Card.Title>CONTATOS</Card.Title>
-                <Container className="valContainers">
-                  <Card className="perfil">
-                    <Card.Img src={perfil} id="perfilImg"></Card.Img>
-                    <Card.Text>{bike?.user.alias}</Card.Text>
-                    <Card.Text>{bike?.user.phone}</Card.Text>
-                    <Card.Text>{bike?.user.mail}</Card.Text>
-                  </Card>
-                </Container>
-              </Card>
-            </Col>
-          </Row>
+        <Container id="Rcont">
+          <Col md={12}>
+            <Row>
+              <h1>{bike?.name}</h1>
+            </Row>
+          </Col>
+          <Col md={12}>
+            <Row>
+              <Col md={8} sm={12} id="Rcol">
+                <Row className="rowcard">
+                  <Col md={12} sm={12}>
+                    <Card className="cards">
+                      <Card.Title>Categoria</Card.Title>
+                      <Card.Text>{bike?.category.name}</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row className="rowcard">
+                  <Col md={6} sm={12} className="respCard">
+                    <Card className="cards">
+                      <Card.Title>Cor</Card.Title>
+                      <Card.Text>{bike?.color}</Card.Text>
+                    </Card>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <Card className="cards rightCards">
+                      <Card.Title>Tamanho</Card.Title>
+                      <Card.Text>{bike?.size}</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row className="rowcard">
+                  <Col md={6} sm={12} className="respCard">
+                    <Card className="cards">
+                      <Card.Title>Material</Card.Title>
+                      <Card.Text>{bike?.material}</Card.Text>
+                    </Card>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <Card className="cards rightCards">
+                      <Card.Title>Gênero</Card.Title>
+                      <Card.Text>{bike?.gender}</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row className="rowcard">
+                  <Col md={6} sm={12} className="respCard">
+                    <Card className="cards">
+                      <Card.Title>Marchas</Card.Title>
+                      <Card.Text>{bike?.speedkit}</Card.Text>
+                    </Card>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <Card className="cards rightCards">
+                      <Card.Title>Aro</Card.Title>
+                      <Card.Text>{bike?.rim}</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={6} sm={12} className="respCard">
+                    <Card className="cards text-right">
+                      <Card.Title>Suspensão</Card.Title>
+                      <Card.Text>{getSuspension(bike)}</Card.Text>
+                    </Card>
+                  </Col>
+                  <Col md={6} sm={12}>
+                    <Card className="cards rightCards text-right">
+                      <Card.Title>Marca</Card.Title>
+                      <Card.Text>{bike?.brand.name}</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row id="rowDesc">
+                  <Col md={12} sm={12}>
+                    <Card className="cards" id="cardDesc">
+                      <Card.Title>Descrição</Card.Title>
+                      <Card.Text>{bike?.description}</Card.Text>
+                    </Card>
+                  </Col>
+                </Row>
+                <Row id="mapCardRow">
+                  <Col md={12} sm={12} className="respCard">
+                    <Card id="mapCard">
+                      <div
+                        id="map"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "15px",
+                        }}
+                      ></div>
+                    </Card>
+                  </Col>
+                </Row>
+              </Col>
+              <Col md={4} sm={12} className="order-md-first">
+                <Card id="cardCont">
+                  <Card.Title className="title">VALORES</Card.Title>
+                  <Container className="valContainers">
+                    <Card className="valores">
+                      <Card.Text>Diária</Card.Text>
+                      <Card.Text>{bike?.dailyvalue}</Card.Text>
+                    </Card>
+                    <Card className="valores">
+                      <Card.Text>Hora</Card.Text>
+                      <Card.Text>{bike?.hourlyvalue}</Card.Text>
+                    </Card>
+                  </Container>
+                  <Card.Title className="title">AVALIAÇÕES</Card.Title>
+                  <Container className="valContainers">
+                    <Card className="perfil">
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                    </Card>
+                  </Container>
+                  <Card.Title className="title">CONTATOS</Card.Title>
+                  <Container className="valContainers">
+                    <Card className="perfil">
+                      <Card.Img src={perfil} id="perfilImg"></Card.Img>
+                      <Card.Text>{bike?.user.alias}</Card.Text>
+                      <Card.Text>{bike?.user.phone}</Card.Text>
+                      <Card.Text>{bike?.user.mail}</Card.Text>
+                    </Card>
+                  </Container>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
         </Container>
       </Container>
     </div>
