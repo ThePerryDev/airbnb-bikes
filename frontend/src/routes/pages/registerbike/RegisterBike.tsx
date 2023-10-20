@@ -165,7 +165,7 @@ function RegisterBike() {
             <Col md={12}>
               <p>Cadastro de Bicicleta</p>
             </Col>
-            <Col md={12} className="d-flex justify-content-center">
+            <Col md={12} className="d-flex">
               <div id="fileuploader">
                 <FileUploader
                   multiple={true}
@@ -386,16 +386,16 @@ function RegisterBike() {
                     </Col>
                   </Row>
                 </Col>
-               
-                  <div className="d-flex justify-content-center">
-                    <input
-                      className="d-flex text-center"
-                      type="text"
-                      id="textbox"
-                      placeholder="Insira aqui alguma recomendação ou instrução para o aluguel"
-                    />
-                  </div>
-                
+
+                <div className="d-flex justify-content-center">
+                  <input
+                    className="d-flex text-center"
+                    type="text"
+                    id="textbox"
+                    placeholder="Insira aqui alguma recomendação ou instrução para o aluguel"
+                  />
+                </div>
+
                 <Row>
                   <Col md={6} className="colvalor d-flex">
                     <input
@@ -412,6 +412,17 @@ function RegisterBike() {
                       id="numero"
                       placeholder="VALOR DA DIÁRIA"
                     />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className="colvalor d-flex">
+                    <Button
+                      className="d-flex text-center"
+                      id="botao"
+                      placeholder="VALOR DA HORA"
+                    >
+                      SALVAR
+                    </Button>
                   </Col>
                 </Row>
               </Row>

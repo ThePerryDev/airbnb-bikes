@@ -12,7 +12,16 @@
 }
 
 #botao{
-    margin-right: 100px;
+    
+    margin-top: 46px;
+    height: 50px;
+    width: 15%;
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 48px;
+    background-color:#D0E7D2;
+    border: 0px;
 }
 
 p{
@@ -40,6 +49,7 @@ p{
     width: 250%;
     height: 100px;
     margin-top: 53px;
+    margin-left:  100px;
 }
 
 #fileuploader{
