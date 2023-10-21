@@ -8,12 +8,13 @@ body{
     background-color: #EFFBEE;
 }
 
-#body{
+#bodyx{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
 }
+
 
 .conteudo{
     padding: 20px;
