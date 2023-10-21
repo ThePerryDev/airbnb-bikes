@@ -9,6 +9,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import mapBike from "./imagens/mapBike.png";
 import { useParams } from "react-router-dom";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function Bike() {
   const { id } = useParams();
@@ -60,6 +62,7 @@ function Bike() {
 
   return (
     <div id="body">
+      <Header />
       <Container fluid id="fundo">
         <Container id="carrouselcontainer">
           <Col md={12}>
@@ -216,6 +219,7 @@ function Bike() {
           </Col>
         </Container>
       </Container>
+      <Footer/>
     </div>
   );
 }
