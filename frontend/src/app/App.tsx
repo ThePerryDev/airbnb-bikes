@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Demo from "../routes/demo/Demo";
 import Home from "../routes/home/Home";
 
+//teste, tá sangrando
+
 function App() {
   return (
     <BrowserRouter>
