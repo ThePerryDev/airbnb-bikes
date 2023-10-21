@@ -9,7 +9,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import mapBike from "./imagens/mapBike.png";
 import { useParams } from "react-router-dom";
-
+//atualizando
 function Bike() {
   const { id } = useParams();
   const [bike, setBike] = useState<BikeProps>();
