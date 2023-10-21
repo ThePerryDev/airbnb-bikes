@@ -30,6 +30,7 @@ export interface UsersProps {
   alias: string;
   mail: string;
   phone: string;
+  bikelist: BikeProps
 }
 
 export interface Error {
@@ -55,4 +56,5 @@ export interface RentsProps {
 export interface PhotoProps {
   id: number;
   filename: string;
+  bikes: BikeProps[];
 }

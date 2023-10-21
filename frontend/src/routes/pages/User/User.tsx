@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { UsersProps } from "../../../types";
+import { BikeProps, UsersProps } from "../../../types";
 import UsersService from "../../../services/UsersService";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./user.css";
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import bicicletaTeste from "./images/bicicleta.png"
@@ -9,61 +9,25 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 function User() {
-  const [alias, setAlias] = useState("");
-  const [mail, setMail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [users, setUsers] = useState([] as UsersProps[]);
-
-  // Disparado ao carregar o componente
+  const { id } = useParams();
+  const [user, setUser] = useState<UsersProps>();
   useEffect(() => {
-    (async () => {
-      try {
-        const userData = await UsersService.get();
-        if (userData) {
-          setUsers(userData);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar dados dos usuários:", error);
-      }
-    })();
-  }, []);
-
-  const load = async () => {
-    const res: UsersProps[] = await UsersService.get();
-    setUsers(res);
-  };
-
-  const save = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Converter os campos numéricos para inteiros ou floats
-
-
-    // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
-    if (
-      alias.trim() !== "" &&
-      mail.trim() !== "" &&
-      phone.trim() !== ""
-    ) {
-      const res = await UsersService.post({
-        alias: alias.trim(),
-        mail: mail.trim(),
-        phone: phone.trim()
-      });
-      if (res.error) {
-        alert(res.error);
-      } else {
-        load();
-        reset();
-      }
-    }
-  };
-
-  const reset = () => {
-    setAlias("");
-    setMail("");
-    setPhone("");
-  };
+    fetch(`http://localhost:3001/user/${id}`)
+      .then((r) => r.json())
+      .then((r) => setUser(r))
+      .catch((error) =>
+        console.error("Erro ao buscar informações de Usuário:", error)
+      );
+  }, [id]);
+  const [bike, setBike] = useState<BikeProps>();
+  useEffect(() => {
+    fetch(`http://localhost:3001/bike/user/${id}`)
+      .then((r) => r.json())
+      .then((r) => setBike(r))
+      .catch((error) =>
+        console.error("Erro ao buscar informações da bicicleta:", error)
+      );
+  }, [id]);
 
   const items = [
     {
@@ -89,11 +53,11 @@ function User() {
           <div id="rowInfos">
             <Row>
               <Col md={6}>
-                <Card.Text id="textoUsuario">Nome do usuário:</Card.Text>
-                <Card.Text id="textoUsuario1">Email:</Card.Text>
+                <Card.Text id="textoUsuario">Nome do usuário: {user?.alias}</Card.Text>
+                <Card.Text id="textoUsuario1">Email: {user?.mail}</Card.Text>
               </Col>
               <Col md={6}>
-                <Card.Text id="textoUsuario">Contato:</Card.Text>
+                <Card.Text id="textoUsuario">Telefone: {user?.phone}</Card.Text>
               </Col>
             </Row>
           </div>
