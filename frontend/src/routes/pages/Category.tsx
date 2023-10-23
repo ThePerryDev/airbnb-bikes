@@ -31,14 +31,11 @@ function Category() {
     e.preventDefault();
 
     // Converter os campos numéricos para inteiros ou floats
-    
 
     // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
-    if (
-      name.trim() !== ""
-    ) {
+    if (name.trim() !== "") {
       const res = await CategoriesService.post({
-        name: name.trim()
+        name: name.trim(),
       });
       if (res.error) {
         alert(res.error);

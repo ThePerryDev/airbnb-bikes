@@ -194,11 +194,36 @@ function Bike() {
                   <Card.Title className="title">AVALIAÇÕES</Card.Title>
                   <Container className="valContainers">
                     <Card className="perfil">
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
                     </Card>
                   </Container>
                   <Card.Title className="title">CONTATOS</Card.Title>

@@ -65,7 +65,7 @@ class UserController {
 
   public async listById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    
+
     console.log("id", id);
     const user = await AppDataSource.manager.findOne(User, {
       where: { id: parseInt(id) },

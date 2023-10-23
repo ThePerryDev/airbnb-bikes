@@ -45,7 +45,7 @@ function Home() {
           <Row>
             <h2>Procurando em alguma cidade especifica?</h2>
             <Row>
-            <div className="home-city-card">
+              <div className="home-city-card">
                 <img src="" alt="city" className="home-city-photo" />
                 <Link className="home-city-button" to="/">
                   Confirma
@@ -55,7 +55,7 @@ function Home() {
           </Row>
         </Container>
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -1,38 +1,37 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
 }
 
-body{
-    background-color: #EFFBEE;
+body {
+  background-color: #effbee;
 }
 
-#bodyx{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+#bodyx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
-
-.conteudo{
-    padding: 20px;
-    background-color: white;
-    border-radius: 30px;
-    box-shadow: 0px 0px 20px black;
+.conteudo {
+  padding: 20px;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px black;
 }
 
 nav {
-    display: flex;
-    margin-top: 20px;
+  display: flex;
+  margin-top: 20px;
 }
 
-p{
-    margin: 0;
+p {
+  margin: 0;
 }
 
 select {
-    margin-left: 1vw;
-    margin-right: 1vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }

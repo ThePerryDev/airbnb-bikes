@@ -1,15 +1,21 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Bike } from "./Bike";
 
 @Entity({ name: "photos" })
 export class Photo {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column({ nullable: false, length: 100 })
-    filename: string;
+  @Column({ nullable: false, length: 100 })
+  filename: string;
 
-    @ManyToOne(() => Bike, (bike) => bike.photos)
-    @JoinColumn({name:"idbike"})
-    bike: Bike;
+  @ManyToOne(() => Bike, (bike) => bike.photos)
+  @JoinColumn({ name: "idbike" })
+  bike: Bike;
 }

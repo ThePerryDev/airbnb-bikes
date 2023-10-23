@@ -1,0 +1,157 @@
+#main {
+  background-color: #effbee;
+}
+
+#second {
+  background-color: #ffffff;
+  border-radius: 25px;
+}
+
+.Row {
+  padding: 0px;
+}
+
+#botao {
+  margin-top: 46px;
+  height: 50px;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+p {
+  margin-left: 99px;
+  padding-top: 37px;
+}
+
+.handleChange {
+  height: 25cm;
+}
+
+#dropdown-basic {
+  width: 270px;
+  height: 40px;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+.dropdown {
+  padding-bottom: 45px;
+  margin-left: 99px;
+}
+
+#fileuploader label {
+  width: 250%;
+  height: 100px;
+  margin-top: 53px;
+  margin-left: 100px;
+}
+
+#fileuploader {
+  padding-bottom: 79px;
+}
+
+#mapCard {
+  margin-right: 106px;
+}
+
+#cep {
+  width: auto;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+#estado {
+  width: 170px;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+#cidade {
+  width: 80%;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+#cep ::placeholder {
+  margin-left: 10px;
+}
+
+#bairro {
+  width: auto;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+#numero {
+  width: 170px;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+#endereco {
+  width: 80%;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #d0e7d2;
+  border: 0px;
+}
+
+.colobs {
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  flex-direction: row;
+}
+
+.colvalor {
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  flex-direction: row;
+}
+
+#textbox {
+  justify-content: center;
+  height: 150px;
+  border-radius: 10px;
+  width: 90%;
+  background-color: #d0e7d2;
+  border: 0px;
+  margin-bottom: 46px;
+  margin-top: 53px;
+}

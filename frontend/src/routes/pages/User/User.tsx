@@ -4,7 +4,7 @@ import UsersService from "../../../services/UsersService";
 import { Link } from "react-router-dom";
 import "./user.css";
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
-import bicicletaTeste from "./images/bicicleta.png"
+import bicicletaTeste from "./images/bicicleta.png";
 
 function User() {
   const [alias, setAlias] = useState("");
@@ -36,17 +36,12 @@ function User() {
 
     // Converter os campos numéricos para inteiros ou floats
 
-
     // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
-    if (
-      alias.trim() !== "" &&
-      mail.trim() !== "" &&
-      phone.trim() !== ""
-    ) {
+    if (alias.trim() !== "" && mail.trim() !== "" && phone.trim() !== "") {
       const res = await UsersService.post({
         alias: alias.trim(),
         mail: mail.trim(),
-        phone: phone.trim()
+        phone: phone.trim(),
       });
       if (res.error) {
         alert(res.error);
@@ -106,8 +101,12 @@ function User() {
               <Row>
                 <Col md={4} id="colBike">
                   <div id="cardBike">
-                    <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
-                    <Row><Card.Text>Nome da Bike</Card.Text></Row>
+                    <Row>
+                      <img src={item.src} alt={item.alt} id="imgBike" />
+                    </Row>
+                    <Row>
+                      <Card.Text>Nome da Bike</Card.Text>
+                    </Row>
                     <Row>
                       <Card id="cardInfoBike">
                         <Card.Text>Informações da bike</Card.Text>
@@ -118,7 +117,10 @@ function User() {
                         <Row>
                           <Col>
                             <Row>
-                              <Card.Text><span>R$80.00/</span><span id="textoCinza">dia</span></Card.Text>
+                              <Card.Text>
+                                <span>R$80.00/</span>
+                                <span id="textoCinza">dia</span>
+                              </Card.Text>
                             </Row>
                             <Row>
                               <Card.Text id="textoCinza">aaaa</Card.Text>
@@ -148,7 +150,9 @@ function User() {
                   <Row>
                     <Col>
                       <div id="cardDatas">
-                        <Card.Text className="text">DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                        <Card.Text className="text">
+                          DATA ALUGUEL <br /> DATA DE ENTREGA
+                        </Card.Text>
                       </div>
                     </Col>
                     <Col>
@@ -173,8 +177,12 @@ function User() {
               <Row>
                 <Col md={4} id="colBike">
                   <div id="cardBike">
-                    <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
-                    <Row><Card.Text>Nome da Bike</Card.Text></Row>
+                    <Row>
+                      <img src={item.src} alt={item.alt} id="imgBike" />
+                    </Row>
+                    <Row>
+                      <Card.Text>Nome da Bike</Card.Text>
+                    </Row>
                     <Row>
                       <Card id="cardInfoBike">
                         <Card.Text>Informações da bike</Card.Text>
@@ -185,7 +193,10 @@ function User() {
                         <Row>
                           <Col>
                             <Row>
-                              <Card.Text><span>R$80.00/</span><span id="textoCinza">dia</span></Card.Text>
+                              <Card.Text>
+                                <span>R$80.00/</span>
+                                <span id="textoCinza">dia</span>
+                              </Card.Text>
                             </Row>
                             <Row>
                               <Card.Text id="textoCinza">aaaa</Card.Text>
@@ -215,7 +226,9 @@ function User() {
                   <Row>
                     <Col>
                       <div id="cardDatas">
-                        <Card.Text className="text">DATA ALUGUEL <br /> DATA DE ENTREGA</Card.Text>
+                        <Card.Text className="text">
+                          DATA ALUGUEL <br /> DATA DE ENTREGA
+                        </Card.Text>
                       </div>
                     </Col>
                     <Col>
@@ -255,9 +268,8 @@ function User() {
         <div>
           <Link to="/">Voltar</Link>
         </div>
-
       </Container>
-    </div >
+    </div>
   );
 }
 

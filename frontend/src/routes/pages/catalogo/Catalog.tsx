@@ -1,6 +1,6 @@
 import lupa from "../../components/img/lupa.png";
 import mapao from "./img/mapao.png";
-import filterbutton from "./img/Filter-button.png"
+import filterbutton from "./img/Filter-button.png";
 import { Row, Col, Container } from "react-bootstrap";
 import Header from "../../components/Header";
 import "./Catalog.css";
@@ -13,15 +13,17 @@ function Catalog() {
         <Container>
           <Row>
             <Col>
-              <Row id="search-row" >
+              <Row id="search-row">
                 <Col>
-                <form action="" className="catalog-searchbar">
-                  <input type="text" placeholder="Search..." />
-                  <button type="submit">
-                    <img src={lupa} alt="search icon" />
+                  <form action="" className="catalog-searchbar">
+                    <input type="text" placeholder="Search..." />
+                    <button type="submit">
+                      <img src={lupa} alt="search icon" />
+                    </button>
+                  </form>
+                  <button className="filter-button">
+                    <img src={filterbutton} alt="Filter Button" />
                   </button>
-                </form>
-                <button className="filter-button"><img src={filterbutton} alt="Filter Button" /></button>
                 </Col>
               </Row>
               <Row id="bikeadline">
