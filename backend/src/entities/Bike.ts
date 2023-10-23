@@ -21,6 +21,9 @@ export class Bike {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ nullable: false, length: 45 })
+  name: string;
+
   @Column({ nullable: false, length: 30 })
   color: string;
 

@@ -1,103 +1,61 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
 }
 
-h1, h2, h3 {
-    margin: 0;
+.catalog-button {
+  color: white;
+  text-decoration: none;
+  font-size: x-large;
+  font-weight: bolder;
+  background-color: #79ac78;
+  padding: 0.5vw 7.5vw 0.5vw 7.5vw;
+  border-radius: 20px;
+  text-align: center;
+  width: auto;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    background: rgba(0, 0, 0, 0.1);
+#alignrow {
+  align-items: center;
+  height: 100%;
+  padding: 30px 0px 30px 0px;
 }
 
-.logo {
-    border: 0;
-    border-radius: 50%;
-    cursor: pointer;
-    background: transparent; 
+#headerhome,
+#mainhome1 {
+  margin-bottom: 5vh;
 }
 
-.logo img{
-    max-width: 80px;
+.home-bike-card,
+.home-city-card {
+  border: 1;
+  border-color: white;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 25px;
+  background-color: #d9d9d9;
+  padding: 8px;
+  width: auto;
 }
 
-.searchbar {
-    width: 100%;
-    max-width: 300px;
-    background: rgba(255, 255, 255, 0.5);
-    display: flex;
-    justify-content: center;
-    border-radius: 60px;
-    padding: 10px 20px;
+.home-bike-photo,
+.home-city-photo {
+  display: block;
+  max-width: 100px;
+  height: 100px;
+  max-height: 100px;
 }
 
-.searchbar input{
-    background: transparent;
-    border: 0;
-    outline: none;
-    font-size: 20px;
-    margin: 0;
-}
-
-::placeholder{
-    color: black;
-}
-
-.searchbar button img {
-    width: 25px;
-}
-.searchbar button {
-    border: 0;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    background: transparent;
-}
-
-main{
-    background-color: cornsilk;
-}
-
-.container{
-    display: flex;
-    justify-content: space-between;
-}
-
-.card{
-    text-align: center;
-    background-color:bisque;
-    border-radius: 15px;
-    height: 398px;
-    width: 248px;
-    padding: 26px;
-    margin: 20px;
-    max-height: 450px;
-}
-
-.cardcontent {
-    background-color:cornsilk;
-    text-align: left;
-}
-
-.cardphoto{
-    background-color: #D9D9D9;
-    height: 180px;
-    max-height: 180px;
-    width: 248px;
-    max-width: 248px;
-}
-
-.descritivo{
-    background-color: #D9D9D9;
-    height: 70px;
-    max-height: 70px;
-    width: 228px;
-    max-width: 228px;
-    border-radius: 15px;
-    padding: 10px;
+.home-bike-button,
+.home-city-button {
+  color: white;
+  text-decoration: none;
+  font-size: x-large;
+  font-weight: bolder;
+  background-color: #79ac78;
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+  text-align: center;
+  width: auto;
 }

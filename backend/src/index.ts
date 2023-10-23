@@ -13,8 +13,10 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 const app = express(); // cria o servidor e coloca na variável app
 const corsOptions = {
+  origin: "http://localhost:3000", // Permitir apenas esta origem
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Permitir esses métodos HTTP
 };
+app.use(cors(corsOptions));
 app.use(cors({ origin: "http://localhost:3100", credentials: true }));
 // suportar parâmetros JSON no body da requisição
 app.use(express.json());
