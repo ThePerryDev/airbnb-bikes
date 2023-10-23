@@ -6,7 +6,6 @@ import { Row, Col, Container } from "react-bootstrap";
 import "./Components.css";
 
 function Header() {
-
   return (
     <header id="header">
       <Container>
@@ -29,7 +28,6 @@ function Header() {
               <Link className="botao-user" to="/login">
                 <img src={user} alt="Pagina de usuário" />
               </Link>
-
             </nav>
           </Col>
         </Row>

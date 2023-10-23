@@ -3,7 +3,7 @@ export interface BikeProps {
   idUser: number;
   idCategory: number;
   idBrand: number;
-  name:string;
+  name: string;
   color: string;
   size: number;
   material: string;
