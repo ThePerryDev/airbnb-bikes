@@ -326,7 +326,11 @@ function RegisterBike() {
                   <Card id="mapCard">
                     <div
                       id="map"
-                      style={{ width: "auto", height: "300px" }}
+                      style={{
+                        width: "auto",
+                        height: "100%",
+                        borderRadius: "15px",
+                      }}
                     ></div>
                   </Card>
                   <Row>

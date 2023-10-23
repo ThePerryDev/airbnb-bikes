@@ -16,6 +16,8 @@ export interface BikeProps {
   dailyvalue: number;
   latitude: number;
   longitude: number;
+  user: UsersProps;
+  photos: PhotoProps[];
 }
 
 export interface CategoriesProps {
@@ -48,4 +50,9 @@ export interface RentsProps {
   returnDate: Date;
   ownerValuation: number;
   clientValuation: number;
+}
+
+export interface PhotoProps {
+  id: number;
+  filename: string;
 }
