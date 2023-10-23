@@ -66,7 +66,11 @@ function Login() {
                                 <h1>Seja Bem Vindo</h1>
                               </div>
                               <div id="botoes">
-                                <Button id="botao" size="lg" onClick={facebookLogin}>
+                                <Button
+                                  id="botao"
+                                  size="lg"
+                                  onClick={facebookLogin}
+                                >
                                   <div className="button-content">
                                     <img
                                       src={logos_facebook}
@@ -108,7 +112,11 @@ function Login() {
                                 <h1>Cadastre-se Aqui</h1>
                               </div>
                               <div id="botoes">
-                                <Button id="botao" size="lg" onClick={facebookLogin}>
+                                <Button
+                                  id="botao"
+                                  size="lg"
+                                  onClick={facebookLogin}
+                                >
                                   <div className="button-content">
                                     <img
                                       src={logos_facebook}
