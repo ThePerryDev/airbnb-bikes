@@ -17,7 +17,7 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Permitir esses métodos HTTP
 };
 app.use(cors(corsOptions));
-app.use(cors({ origin: "http://localhost:3100", credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 // suportar parâmetros JSON no body da requisição
 app.use(express.json());
 // inicializa o servidor na porta especificada

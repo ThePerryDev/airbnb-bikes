@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import "./user.css";
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import bicicletaTeste from "./images/bicicleta.png";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function User() {
   const [alias, setAlias] = useState("");
@@ -75,6 +77,7 @@ function User() {
 
   return (
     <div id="body">
+      <Header/>
       <Container>
         <Row id="RowProdutos">
           <Card.Text>Informações e contato</Card.Text>
@@ -264,11 +267,8 @@ function User() {
             </Row>
           </Container>
         </Container>
-
-        <div>
-          <Link to="/">Voltar</Link>
-        </div>
       </Container>
+      <Footer/>
     </div>
   );
 }

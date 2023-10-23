@@ -9,6 +9,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import mapBike from "./imagens/mapBike.png";
 import { useParams } from "react-router-dom";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function Bike() {
   const { id } = useParams();
@@ -60,6 +62,7 @@ function Bike() {
 
   return (
     <div id="body">
+      <Header />
       <Container fluid id="fundo">
         <Container id="carrouselcontainer">
           <Col md={12}>
@@ -165,7 +168,7 @@ function Bike() {
                 </Row>
                 <Row id="mapCardRow">
                   <Col md={12} sm={12} className="respCard">
-                    <Card id="mapCard">
+                    <Card id="mapCard1">
                       <div
                         id="map"
                         style={{
@@ -194,36 +197,11 @@ function Bike() {
                   <Card.Title className="title">AVALIAÇÕES</Card.Title>
                   <Container className="valContainers">
                     <Card className="perfil">
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text><br></br>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text><br></br>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text><br></br>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text><br></br>
+                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text><br></br>
                     </Card>
                   </Container>
                   <Card.Title className="title">CONTATOS</Card.Title>
@@ -241,6 +219,7 @@ function Bike() {
           </Col>
         </Container>
       </Container>
+      <Footer/>
     </div>
   );
 }

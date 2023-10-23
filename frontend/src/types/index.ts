@@ -1,8 +1,8 @@
 export interface BikeProps {
   id: number;
   idUser: number;
-  idCategory: number;
-  idBrand: number;
+  category: CategoriesProps;
+  brand: BrandProps;
   name: string;
   color: string;
   size: number;

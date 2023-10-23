@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { CategoriesProps } from "../../types";
 import CategoriesService from "../../services/CategoriesService";
 import { Link } from "react-router-dom";
-import "./modelo.css";
 
 function Category() {
   const [name, setName] = useState("");

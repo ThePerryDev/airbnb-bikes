@@ -4,6 +4,7 @@ import filterbutton from "./img/Filter-button.png";
 import { Row, Col, Container } from "react-bootstrap";
 import Header from "../../components/Header";
 import "./Catalog.css";
+import Footer from "../../components/Footer";
 
 function Catalog() {
   return (
@@ -126,6 +127,7 @@ function Catalog() {
           </Row>
         </Container>
       </main>
+      <Footer />
     </div>
   );
 }

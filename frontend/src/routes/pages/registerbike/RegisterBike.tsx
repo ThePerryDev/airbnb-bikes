@@ -10,11 +10,14 @@ import {
   Container,
   Dropdown,
   InputGroup,
+  Navbar,
   Row,
 } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -158,12 +161,12 @@ function RegisterBike() {
 
   return (
     <div>
-      <header></header>
+      <Header />
       <main>
         <Container fluid id="main">
           <Container id="second">
             <Col md={12}>
-              <p>Cadastro de Bicicleta</p>
+              <p id="paragrafoc">Cadastro de Bicicleta</p>
             </Col>
             <Col md={12} className="d-flex">
               <div id="fileuploader">
@@ -182,7 +185,6 @@ function RegisterBike() {
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       MARCA
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -193,12 +195,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       MATERIAL
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -209,12 +209,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       CATEGORIA
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -225,12 +223,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       GÊNERO
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -241,12 +237,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       COR
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -257,12 +251,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       TAMANHO
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -273,12 +265,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       SUSPENSÃO
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -289,12 +279,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       ARO
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -305,12 +293,10 @@ function RegisterBike() {
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
-
                   <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       MARCHA
                     </Dropdown.Toggle>
-
                     <Dropdown.Menu>
                       <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
@@ -434,7 +420,7 @@ function RegisterBike() {
           </Container>
         </Container>
       </main>
-      <footer></footer>
+      <Footer />
     </div>
   );
 }

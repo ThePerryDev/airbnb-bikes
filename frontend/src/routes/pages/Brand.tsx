@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BrandProps } from "../../types";
 import BrandsService from "../../services/BrandService";
 import { Link } from "react-router-dom";
-import "./modelo.css";
 
 function Brand() {
   const [name, setName] = useState("");
