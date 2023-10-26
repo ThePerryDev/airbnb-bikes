@@ -3,6 +3,8 @@ import devicon_google from "./img/devicon_google.png";
 import logos_facebook from "./img/logos_facebook.png";
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
 import "./login.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 //import axios from "axios";
 
 function Login() {
@@ -34,10 +36,10 @@ function Login() {
   };*/
 
   return (
-    <div>
-      <header></header>
+    <div id="mainy">
+      <Header/>
       <main id="principal">
-        <Container id="fundo">
+        <Container id="fundox">
           <Container
             className="d-flex align-items-start justify-content-center"
             id="caixa"
@@ -67,7 +69,7 @@ function Login() {
                               </div>
                               <div id="botoes">
                                 <Button
-                                  id="botao"
+                                  id="botaox"
                                   size="lg"
                                   onClick={facebookLogin}
                                 >
@@ -82,7 +84,7 @@ function Login() {
                               </div>
                               <div id="botoes">
                                 <Button
-                                  id="botao"
+                                  id="botaox"
                                   size="lg"
                                   onClick={googleLogin}
                                 >
@@ -113,7 +115,7 @@ function Login() {
                               </div>
                               <div id="botoes">
                                 <Button
-                                  id="botao"
+                                  id="botaox"
                                   size="lg"
                                   onClick={facebookLogin}
                                 >
@@ -127,7 +129,11 @@ function Login() {
                                 </Button>
                               </div>
                               <div id="botoes">
-                                <Button id="botao" onClick={googleLogin}>
+                              <Button
+                                  id="botaox"
+                                  size="lg"
+                                  onClick={googleLogin}
+                                >
                                   <div className="button-content">
                                     <img
                                       src={devicon_google}
@@ -148,8 +154,8 @@ function Login() {
             </Row>
           </Container>
         </Container>
-        <Link to="/">Voltar</Link>
       </main>
+      <Footer/>
     </div>
   );
 }
