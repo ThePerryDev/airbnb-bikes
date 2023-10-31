@@ -28,6 +28,11 @@ class BikeService {
     const { data } = await api.post("/bike", props);
     return data;
   }
+
+  async listByUser(iduser:string){
+    const { data } = await api.get(`/bike/user/${iduser}`);
+    return data;
+  }
 }
 
 const service = new BikeService();

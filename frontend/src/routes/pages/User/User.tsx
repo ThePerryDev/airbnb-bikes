@@ -7,26 +7,22 @@ import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import bicicletaTeste from "./images/bicicleta.png"
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import bikeService from "../../../services/BikeService";
 
 function User() {
   const { id } = useParams();
-  const [user, setUser] = useState<UsersProps>();
+  const [bikes, setBikes] = useState([] as BikeProps[]);
   useEffect(() => {
-    fetch(`http://localhost:3001/user/${id}`)
-      .then((r) => r.json())
-      .then((r) => setUser(r))
+     if( id ){
+      bikeService.listByUser(id)
+      .then((r) => {
+        setBikes(r)
+        console.log("r:", r);
+      })
       .catch((error) =>
         console.error("Erro ao buscar informações de Usuário:", error)
       );
-  }, [id]);
-  const [bike, setBike] = useState<BikeProps>();
-  useEffect(() => {
-    fetch(`http://localhost:3001/bike/user/${id}`)
-      .then((r) => r.json())
-      .then((r) => setBike(r))
-      .catch((error) =>
-        console.error("Erro ao buscar informações da bicicleta:", error)
-      );
+     }
   }, [id]);
 
   const items = [
@@ -53,11 +49,11 @@ function User() {
           <div id="rowInfos">
             <Row>
               <Col md={6}>
-                <Card.Text id="textoUsuario">Nome do usuário: {user?.alias}</Card.Text>
-                <Card.Text id="textoUsuario1">Email: {user?.mail}</Card.Text>
+                <Card.Text id="textoUsuario">Nome do usuário: {bikes? bikes[0].user.alias :""}</Card.Text>
+                <Card.Text id="textoUsuario1">Email: {bikes? bikes[0].user.mail :""}</Card.Text>
               </Col>
               <Col md={6}>
-                <Card.Text id="textoUsuario">Telefone: {user?.phone}</Card.Text>
+                <Card.Text id="textoUsuario">Telefone: {bikes? bikes[0].user.phone :""}</Card.Text>
               </Col>
             </Row>
           </div>
@@ -66,13 +62,13 @@ function User() {
           <Card.Text>Meus Alugueis:</Card.Text>
         </Row>
         <Carousel data-bs-theme="dark" className="carrossel">
-          {items.map((item) => (
-            <Carousel.Item key={item.src}>
+          {bikes.map((bike, indice) => (
+            <Carousel.Item key={indice}>
               <Row>
                 <Col md={4} id="colBike">
                   <div id="cardBike">
-                    <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
-                    <Row><Card.Text>Nome da Bike</Card.Text></Row>
+                    <Row><img src={`http://localhost:3001/photo/public/${bike.photos[0].filename}`} alt={bike.photos[0].filename} id="imgBike" /></Row>
+                    <Row><Card.Text>{"teste"}</Card.Text></Row>
                     <Row>
                       <Card id="cardInfoBike">
                         <Card.Text>Informações da bike</Card.Text>
@@ -131,12 +127,12 @@ function User() {
           <Card.Text>Meus Produtos:</Card.Text>
         </Row>
         <Carousel data-bs-theme="dark" className="carrossel">
-          {items.map((item) => (
-            <Carousel.Item key={item.src}>
+          {bikes.map((item, indice) => (
+            <Carousel.Item key={indice}>
               <Row>
                 <Col md={4} id="colBike">
                   <div id="cardBike">
-                    <Row><img src={item.src} alt={item.alt} id="imgBike" /></Row>
+                    <Row><img src={"item.src"} alt={"item.alt"} id="imgBike" /></Row>
                     <Row><Card.Text>Nome da Bike</Card.Text></Row>
                     <Row>
                       <Card id="cardInfoBike">
