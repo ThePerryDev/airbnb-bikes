@@ -151,6 +151,10 @@ body {
   justify-content: center;
 }
 
+.details-center {
+  text-align: center;
+}
+
 @media (max-width: 520px) {
   .text{
     font-size:10px;

@@ -15,7 +15,8 @@ function User() {
   const [users, setUsers] = useState([] as UsersProps[]);
   useEffect(() => {
     if (id) {
-      bikeService.listByUser(id)
+      bikeService
+        .listByUser(id)
         .then((r) => {
           setBikes(r);
           console.log("r:", r);
@@ -36,20 +37,6 @@ function User() {
         });
     }
   }, [id]);
-  const items = [
-    {
-      src: require("./images/bicicleta2.png"),
-      alt: "Imagem bicicleta",
-    },
-    {
-      src: require("./images/bicicleta2.png"),
-      alt: "Imagem bicicleta",
-    },
-    {
-      src: require("./images/bicicleta2.png"),
-      alt: "Imagem bicicleta",
-    },
-  ];
 
   return (
     <div id="body">
@@ -61,15 +48,30 @@ function User() {
             <Row>
               <Col md={6}>
                 <Card.Text id="textoUsuario">
-                  Nome do usuário: {bikes && bikes[0] ? bikes[0].user.alias : (users[0] ? users[0].alias : "")}
+                  Nome do usuário:{" "}
+                  {bikes && bikes[0]
+                    ? bikes[0].user.alias
+                    : users[0]
+                    ? users[0].alias
+                    : ""}
                 </Card.Text>
                 <Card.Text id="textoUsuario1">
-                  Email: {bikes && bikes[0] ? bikes[0].user.alias : (users[0] ? users[0].mail : "")}
+                  Email:{" "}
+                  {bikes && bikes[0]
+                    ? bikes[0].user.mail
+                    : users[0]
+                    ? users[0].mail
+                    : ""}
                 </Card.Text>
               </Col>
               <Col md={6}>
                 <Card.Text id="textoUsuario">
-                  Telefone: {bikes && bikes[0] ? bikes[0].user.alias : (users[0] ? users[0].phone : "")}
+                  Telefone:{" "}
+                  {bikes && bikes[0]
+                    ? bikes[0].user.phone
+                    : users[0]
+                    ? users[0].phone
+                    : ""}
                 </Card.Text>
               </Col>
             </Row>
@@ -92,11 +94,11 @@ function User() {
                       />
                     </Row>
                     <Row>
-                      <Card.Text>{"teste"}</Card.Text>
+                      <Card.Text>{bike.name}</Card.Text>
                     </Row>
                     <Row>
                       <Card id="cardInfoBike">
-                        <Card.Text>Informações da bike</Card.Text>
+                        <Card.Text>{bike.description}</Card.Text>
                       </Card>
                     </Row>
                     <Row>
@@ -105,18 +107,23 @@ function User() {
                           <Col>
                             <Row>
                               <Card.Text>
-                                <span>R$80.00/</span>
+                                <span>R$ {bike.dailyvalue}/</span>
                                 <span id="textoCinza">dia</span>
                               </Card.Text>
                             </Row>
                             <Row>
-                              <Card.Text id="textoCinza">aaaa</Card.Text>
+                              <Card.Text>
+                                <span>R$ {bike.hourlyvalue}/</span>
+                                <span id="textoCinza">hora</span>
+                              </Card.Text>
                             </Row>
                           </Col>
                         </Row>
                       </Col>
                       <Col id="colDetalhes">
-                        <Button id="detalhes">Detalhes</Button>
+                        <Link to={`../bike/${bike.id}`}>
+                          <Button id="detalhes">Detalhes</Button>
+                        </Link>
                       </Col>
                     </Row>
                   </div>
@@ -125,7 +132,14 @@ function User() {
                   <Row>
                     <Col>
                       <div id="cardInfos">
-                        <Card.Text className="text">INFORMAÇÕES</Card.Text>
+                        <div>
+                          <Card.Text className="details-center">
+                            <Card.Text>Marca {bike.brand.name}</Card.Text>
+                            <Card.Text>{bike.category.name}</Card.Text>
+                            <Card.Text>Tamanho {bike.size}</Card.Text>
+                            <Card.Text>Material: {bike.material}</Card.Text>
+                          </Card.Text>
+                        </div>
                       </div>
                     </Col>
                     <Col>
@@ -162,7 +176,7 @@ function User() {
               <Row>
                 <Col md={4} id="colBike">
                   <div id="cardBike">
-                    <Row>
+                    <Row className="img-center">
                       <img src={"item.src"} alt={"item.alt"} id="imgBike" />
                     </Row>
                     <Row>
@@ -231,7 +245,7 @@ function User() {
           <Container id="centerContainer">
             <Row>
               <Col md={4} sm={3}>
-                <Link to="/regiterbike">
+                <Link to="../registerbike">
                   <Button id="button">CADASTRAR BICICLETAS</Button>
                 </Link>
               </Col>
