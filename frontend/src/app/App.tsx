@@ -12,6 +12,7 @@ import { Private } from "../routes/pages/Private";
 import { RequireAuth } from "../routes/context/auth/RequireAuth";
 
 function App() {
+
   return (
     <Routes>
       <Route path="/user" element={<User />} />

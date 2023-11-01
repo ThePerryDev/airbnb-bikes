@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./Demo.css";
+import { AuthContext } from "../context/auth/Authcontext";
 
 function Demo() {
   const [navegar, setNavegar] = useState("");
+  const auth = useContext(AuthContext);
 
   return (
+    <>
     <div id="bodyx">
       <div className="conteudo">
         <h1>Welcome to the Bikepass demo!</h1>
@@ -28,6 +31,8 @@ function Demo() {
         </nav>
       </div>
     </div>
+    {auth.user && <a href="javascript:;">Sair</a>}
+    </>
   );
 }
 
