@@ -18,6 +18,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import {useForm} from 'react-hook-form';
+
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -141,6 +143,30 @@ function RegisterBike() {
     setLatitude("");
     setLongitude("");
   };
+
+  //CEP
+  
+  const { register, handleSubmit, setValue, setFocus } = useForm();
+
+  const onSubmit = (e:any) => {
+    console.log(e);
+  }
+
+  const checkCEP = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const cep = e.target.value.replace(/\D/g, '');
+    console.log(cep);
+    fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
+      console.log(data);
+      // register({ name: 'address', value: data.logradouro });
+      setValue('address', data.logradouro);
+      setValue('neighborhood', data.bairro);
+      setValue('city', data.localidade);
+      setValue('uf', data.uf);
+      setFocus('addressNumber');
+    });
+  }
+
+  //FIM CEP
 
   const initMap = useCallback(() => {
     const map = L.map("map").setView([40.75, -73.98], 5);
@@ -319,11 +345,15 @@ function RegisterBike() {
                       }}
                     ></div>
                   </Card>
+                  <Form onSubmit={handleSubmit(onSubmit)}>
                   <Row>
+                    
                     <Col md={6}>
                       <input
                         className="d-flex text-center"
-                        type="number"
+                        type="text"
+                        {...register("cep")}
+                        onBlur={checkCEP}
                         id="cep"
                         placeholder="CEP"
                       />
@@ -332,16 +362,19 @@ function RegisterBike() {
                       <input
                         className="d-flex text-center"
                         type="text"
+                        {...register("uf")}
                         id="estado"
                         placeholder="ESTADO"
                       />
                     </Col>
+                  
                   </Row>
                   <Row>
                     <Col md={12}>
                       <input
                         className="d-flex text-center"
                         type="text"
+                        {...register("city")}
                         id="cidade"
                         placeholder="CIDADE"
                       />
@@ -352,6 +385,7 @@ function RegisterBike() {
                       <input
                         className="d-flex text-center"
                         type="text"
+                        {...register("neighborhood")}
                         id="cep"
                         placeholder="BAIRRO"
                       />
@@ -359,7 +393,8 @@ function RegisterBike() {
                     <Col md={6}>
                       <input
                         className="d-flex text-center"
-                        type="number"
+                        type="text"
+                        {...register("addressNumber" )}
                         id="numero"
                         placeholder="NÚMERO"
                       />
@@ -375,8 +410,9 @@ function RegisterBike() {
                       />
                     </Col>
                   </Row>
+                  </Form>
                 </Col>
-
+                    
                 <div className="d-flex justify-content-center">
                   <input
                     className="d-flex text-center"
@@ -426,3 +462,5 @@ function RegisterBike() {
 }
 
 export default RegisterBike;
+
+
