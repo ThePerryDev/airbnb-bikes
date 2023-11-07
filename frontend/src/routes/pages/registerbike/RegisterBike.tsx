@@ -21,9 +21,6 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {useForm} from 'react-hook-form';
 
-
-
-
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
   const [idCategory, setIdCategory] = useState("");
@@ -408,7 +405,8 @@ function RegisterBike() {
                     <Col md={12}>
                       <input
                         className="d-flex text-center"
-                        type="number"
+                        type="text"
+                        {...register("address" )}
                         id="endereco"
                         placeholder="ENDEREÇO"
                       />
