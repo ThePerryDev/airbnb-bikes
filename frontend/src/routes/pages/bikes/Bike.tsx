@@ -205,8 +205,8 @@ function Bike() {
                     </Card>
                   </Container>
                   <Card.Title className="title">CONTATOS</Card.Title>
-                  <Container className="valContainers">
-                    <Card className="perfil">
+                  <Container className="perContainers">
+                    <Card className="perfil perfil2">
                       <Card.Img src={perfil} id="perfilImg"></Card.Img>
                       <Card.Text>{bike?.user.alias}</Card.Text>
                       <Card.Text>{bike?.user.phone}</Card.Text>
