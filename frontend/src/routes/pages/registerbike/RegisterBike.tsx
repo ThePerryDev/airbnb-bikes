@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { BikeProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./registerbike.css";
 import {
   Button,
@@ -12,6 +12,7 @@ import {
   InputGroup,
   Navbar,
   Row,
+  Form
 } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
 import L from "leaflet";
@@ -19,6 +20,8 @@ import "leaflet/dist/leaflet.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {useForm} from 'react-hook-form';
+
+
 
 
 function RegisterBike() {
@@ -148,7 +151,7 @@ function RegisterBike() {
   
   const { register, handleSubmit, setValue, setFocus } = useForm();
 
-  const onSubmit = (e:any) => {
+  const onSubmit = (e:any)   => {
     console.log(e);
   }
 
@@ -186,6 +189,7 @@ function RegisterBike() {
   }, [initMap]);
 
   return (
+      
     <div>
       <Header />
       <main>
