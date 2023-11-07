@@ -10,6 +10,7 @@ import RegisterBike from "../routes/pages/registerbike/RegisterBike";
 import Login from "../routes/pages/login/Login";
 import { Private } from "../routes/pages/Private";
 import { RequireAuth } from "../routes/context/auth/RequireAuth";
+import { Danilogin } from "../routes/pages/dani-login";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/avalovador" />
       <Route path="/avalocatorio" />
       <Route path="/bike/:id" element={<Bike />} />
+      <Route path="/danilogin" element={<Danilogin />} />
       <Route path="/catalog" element={<Catalog />} />
       <Route path="/login" element={<Login />} />
       <Route path="/private" element={<RequireAuth><Private /></RequireAuth>} />

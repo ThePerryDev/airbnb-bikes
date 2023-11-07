@@ -7,6 +7,11 @@ function Demo() {
   const [navegar, setNavegar] = useState("");
   const auth = useContext(AuthContext);
 
+  const handleLogout = async () => {
+    await auth.signout();
+    window.location.reload();
+  }
+
   return (
     <>
     <div id="bodyx">
@@ -31,7 +36,7 @@ function Demo() {
         </nav>
       </div>
     </div>
-    {auth.user && <a href="javascript:;">Sair</a>}
+    {auth.user && <button onClick={handleLogout}>sair</button>}
     </>
   );
 }
