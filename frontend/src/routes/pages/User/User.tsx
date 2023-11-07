@@ -4,7 +4,6 @@ import UsersService from "../../../services/UsersService";
 import { Link, useParams } from "react-router-dom";
 import "./user.css";
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
-import bicicletaTeste from "./images/bicicleta.png";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import bikeService from "../../../services/BikeService";
@@ -12,7 +11,7 @@ import bikeService from "../../../services/BikeService";
 function User() {
   const { id } = useParams();
   const [bikes, setBikes] = useState([] as BikeProps[]);
-  const [users, setUsers] = useState([] as UsersProps[]);
+  const [users, setUsers] = useState({} as UsersProps);
   useEffect(() => {
     if (id) {
       bikeService
@@ -49,18 +48,14 @@ function User() {
               <Col md={6}>
                 <Card.Text id="textoUsuario">
                   Nome do usuário:{" "}
-                  {bikes && bikes[0]
-                    ? bikes[0].user.alias
-                    : users[0]
-                    ? users[0].alias
-                    : ""}
+                  {(bikes[0] ? bikes[0].user.alias : (users ? users.alias : "asd"))}
                 </Card.Text>
                 <Card.Text id="textoUsuario1">
                   Email:{" "}
                   {bikes && bikes[0]
                     ? bikes[0].user.mail
-                    : users[0]
-                    ? users[0].mail
+                    : users
+                    ? users.mail
                     : ""}
                 </Card.Text>
               </Col>
@@ -69,8 +64,8 @@ function User() {
                   Telefone:{" "}
                   {bikes && bikes[0]
                     ? bikes[0].user.phone
-                    : users[0]
-                    ? users[0].phone
+                    : users
+                    ? users.phone
                     : ""}
                 </Card.Text>
               </Col>
