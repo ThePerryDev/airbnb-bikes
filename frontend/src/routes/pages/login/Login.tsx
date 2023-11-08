@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import devicon_google from "./img/devicon_google.png";
 import logos_facebook from "./img/logos_facebook.png";
 import { Button, Col, Container, Row, Tab, Tabs } from "react-bootstrap";
@@ -10,7 +10,7 @@ import Footer from "../../components/Footer";
 function Login() {
   const googleLogin = () => {
     // Função para iniciar o processo de autenticação com o Google
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("http://localhost:3100/auth/google", "_self");
     // Abre uma nova janela ou guia no navegador para a página de autenticação do Google
     // O segundo argumento "_self" especifica que a página atual será substituída pela página de autenticação
     // Essa é uma forma de iniciar o processo de autenticação com o Google
@@ -18,7 +18,7 @@ function Login() {
 
   const facebookLogin = () => {
     // Função para iniciar o processo de autenticação com o Google
-    window.open("http://localhost:3000/auth/facebook", "_self");
+    window.open("http://localhost:3100/auth/facebook", "_self");
     // Abre uma nova janela ou guia no navegador para a página de autenticação do Google
     // O segundo argumento "_self" especifica que a página atual será substituída pela página de autenticação
     // Essa é uma forma de iniciar o processo de autenticação com o Google

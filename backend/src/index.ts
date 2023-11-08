@@ -91,7 +91,7 @@ app.get(
   passport.authenticate("google", { failureRedirect: "/login" }), // Rota para lidar com o retorno da autenticação do Google
   function (req, res) {
     // Autenticação bem-sucedida, redireciona para a página inicial.
-    res.redirect("http://localhost:3100");
+    res.redirect("http://localhost:3000");
   }
 );
 
@@ -102,7 +102,7 @@ app.get(
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3100");
+    res.redirect("http://localhost:3000");
   }
 );
 

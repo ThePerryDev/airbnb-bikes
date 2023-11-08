@@ -2,7 +2,7 @@ import { useEffect, useState, createContext } from "react";
 import axios, { AxiosResponse } from "axios";
 //import api from './services/api';
 
-export const myContext: any = createContext({});
+export const oAuth: any = createContext({});
 
 export default function Context({ children }: any) {
   const [userObject, setUserObject] = useState<any>();
@@ -28,5 +28,5 @@ export default function Context({ children }: any) {
         .catch( e => console.log("Catch", e))
         .finally( function(){ console.log("finally")});*/
   }, []);
-  return <myContext.Provider value={userObject}>{children}</myContext.Provider>;
+  return <oAuth.Provider value={userObject}>{children}</oAuth.Provider>;
 }
