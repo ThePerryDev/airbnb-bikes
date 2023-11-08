@@ -64,3 +64,13 @@ footer {
   background-color: #727272;
   margin-top: 85px;
 }
+
+#logout-button{
+  border: 0;
+  border-radius: 10%;
+  cursor: pointer;
+  background: #effbee;
+  padding: 5px 10px 5px 10px;
+  font-size: x-large;
+  margin-top: 1vh;
+}

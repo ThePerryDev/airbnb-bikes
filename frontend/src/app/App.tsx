@@ -8,7 +8,7 @@ import Home from "../routes/home/Home";
 import Catalog from "../routes/pages/catalogo/Catalog";
 import RegisterBike from "../routes/pages/registerbike/RegisterBike";
 import Login from "../routes/pages/login/Login";
-import { Private } from "../routes/pages/Private";
+import { Private } from "../routes/pages/private/Private";
 import { RequireAuth } from "../routes/context/auth/RequireAuth";
 import { Danilogin } from "../routes/pages/dani-login";
 
@@ -19,9 +19,9 @@ function App() {
       <Route path="/user" element={<User />} />
       <Route path="/category" element={<Category />} />
       <Route path="/brand" element={<Brand />} />
-      <Route path="/" element={<Demo />} />
+      <Route path="/demo" element={<Demo />} />
       <Route path="/bike" element={<Bike />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/registerbike" element={<RegisterBike />} />
       <Route path="/avalovador" />
       <Route path="/avalocatorio" />

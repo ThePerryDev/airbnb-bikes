@@ -29,6 +29,7 @@
 
 .home-bike-card,
 .home-city-card {
+  margin-right: 1vw;
   border: 1;
   border-color: white;
   border-width: 3px;

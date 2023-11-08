@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/auth/Authcontext";
+import { AuthContext } from "../../context/auth/Authcontext";
 
 export const Private = () => {
     const auth = useContext(AuthContext);

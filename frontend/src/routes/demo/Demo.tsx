@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./Demo.css";
-import { AuthContext } from "../context/auth/Authcontext";
 
 function Demo() {
   const [navegar, setNavegar] = useState("");
-  const auth = useContext(AuthContext);
-
-  const handleLogout = async () => {
-    await auth.signout();
-    window.location.reload();
-  }
 
   return (
     <>
@@ -36,7 +29,6 @@ function Demo() {
         </nav>
       </div>
     </div>
-    {auth.user && <button onClick={handleLogout}>sair</button>}
     </>
   );
 }

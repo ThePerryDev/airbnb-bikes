@@ -4,8 +4,17 @@ import logo from "./img/logo.png";
 import user from "./img/user.png";
 import { Row, Col, Container } from "react-bootstrap";
 import "./Components.css";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth/Authcontext";
 
 function Header() {
+  const auth = useContext(AuthContext);
+  
+  const handleLogout = async () => {
+    await auth.signout();
+    window.location.reload();
+  };
+
   return (
     <header id="header">
       <Container>
@@ -25,9 +34,13 @@ function Header() {
           </Col>
           <Col>
             <nav id="header-nav">
-              <Link className="botao-user" to="/login">
-                <img src={user} alt="Pagina de usuário" />
-              </Link>
+              {auth.user ? (
+                <button id="logout-button" onClick={handleLogout}>sair</button>
+              ) : (
+                <Link className="botao-user" to="/login">
+                  <img src={user} alt="Pagina de usuário" />
+                </Link>
+              )}
             </nav>
           </Col>
         </Row>
