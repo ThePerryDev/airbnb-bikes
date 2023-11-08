@@ -46,7 +46,7 @@ function RegisterBike() {
   };
 
   // Disparado ao carregar o componente
-  useEffect(() => {
+ /* useEffect(() => {
     (async () => {
       try {
         const bikeData = await BikeService.get();
@@ -58,6 +58,8 @@ function RegisterBike() {
       }
     })();
   }, []);
+
+  */
 
   const load = async () => {
     const res: BikeProps[] = await BikeService.get();
@@ -168,22 +170,44 @@ function RegisterBike() {
 
   //FIM CEP
 
-  const initMap = useCallback(() => {
-    const map = L.map("map").setView([40.75, -73.98], 5);
-    L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-    // Adicione um marcador no mapa (opcional)
-    L.marker([0, 0])
-      .addTo(map)
-      .bindPopup("Localização da bicicleta")
-      .openPopup();
-  }, []);
-  useEffect(() => {
-    // Chame a função de inicialização do mapa após a renderização do componente
-    initMap();
-  }, [initMap]);
+  //CONVERTER CEP EM LAT E LONG
+
+//const cep = '01001000'; // CEP de São Paulo - SP
+
+// link da api https://cursos.alura.com.br/forum/topico-reactjs-cep-e-geolocalizacao-225879
+// link api de cep https://opencagedata.com/api#quickstart
+
+const [cep, setCep] = useState('01001000');
+const apiKey = '901777d57a7f424ea1d5201771f802ea';
+
+fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`)
+  .then(response => response.json())
+  .then(data => {
+    const { lat, lng } = data.results[0].geometry;
+    console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+    
+    // Chame a função initMap com as coordenadas lat e lng após obtê-las
+    initMap(lat, lng);
+  })
+  .catch(error => {
+    console.error('Erro ao obter dados de geolocalização:', error);
+});
+
+const initMap = useCallback((lat: number, lng: number) => {
+  const map = L.map("map").setView([lat, lng], 13);
+  console.log ("mapa",lat,lng);
+  L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+  // Adicione um marcador no mapa (opcional)
+  L.marker([lat, lng])
+    .addTo(map)
+    .bindPopup("Localização da bicicleta")
+    .openPopup();
+}, []);
+
+
 
   return (
       
@@ -357,6 +381,7 @@ function RegisterBike() {
                         onBlur={checkCEP}
                         id="cep"
                         placeholder="CEP"
+                        value={cep} onChange={(e) => setCep(e.target.value)}
                       />
                     </Col>
                     <Col md={6}>
