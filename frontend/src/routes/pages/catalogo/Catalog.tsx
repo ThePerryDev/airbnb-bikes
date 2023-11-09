@@ -5,6 +5,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import Header from "../../components/Header";
 import "./Catalog.css";
 import Footer from "../../components/Footer";
+import { Bikead } from "./components/Bikead";
 
 function Catalog() {
   return (
@@ -14,111 +15,27 @@ function Catalog() {
         <Container>
           <Row>
             <Col>
-              <Row id="search-row">
+              <Row>
                 <Col>
-                  <form action="" className="catalog-searchbar">
-                    <input type="text" placeholder="Search..." />
-                    <button type="submit">
-                      <img src={lupa} alt="search icon" />
+                  <div className="adjust" id="searcbarmargin">
+                    <form action="" className="catalog-searchbar">
+                      <input type="text" placeholder="Search..." />
+                      <button type="submit">
+                        <img src={lupa} alt="search icon" />
+                      </button>
+                    </form>
+
+                    <button className="filter-button">
+                      <img src={filterbutton} alt="Filter Button" />
                     </button>
-                  </form>
-                  <button className="filter-button">
-                    <img src={filterbutton} alt="Filter Button" />
-                  </button>
+                  </div>
                 </Col>
               </Row>
               <Row id="bikeadline">
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
-                <div className="bikead">
-                  <div className="bikecontent">
-                    <div className="bikephoto">
-                      <img src="#" alt="bike_photo" />
-                    </div>
-                    <h3>título da bike</h3>
-                    <div className="descritivo">Aqui tem texto</div>
-                    <h3>R$00,00</h3>
-                    <button>Details</button>
-                    <p id="cidade">cidade</p>
-                    <button>fav</button>
-                  </div>
-                </div>
+                <Bikead />
+                <Bikead />
+                <Bikead />
+                <Bikead />
               </Row>
             </Col>
             <Col>

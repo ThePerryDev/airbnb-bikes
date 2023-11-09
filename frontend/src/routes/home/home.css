@@ -27,8 +27,7 @@
   margin-bottom: 5vh;
 }
 
-.home-bike-card,
-.home-city-card {
+.home-bike-card {
   margin-right: 1vw;
   border: 1;
   border-color: white;
@@ -40,16 +39,18 @@
   width: auto;
 }
 
-.home-bike-photo,
-.home-city-photo {
-  display: block;
+.adjust{
+  display: flex;
+  justify-content: center;
+}
+
+.home-bike-photo {
   max-width: 100px;
   height: 100px;
   max-height: 100px;
 }
 
-.home-bike-button,
-.home-city-button {
+.home-bike-button {
   color: white;
   text-decoration: none;
   font-size: x-large;

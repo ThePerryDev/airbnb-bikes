@@ -1,0 +1,34 @@
+.bikead {
+  text-align: center;
+  background-color: white;
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 15px;
+  width: 248px;
+  padding: 26px;
+  max-height: 450px;
+  margin: 15px;
+}
+
+.bikecontent {
+  background-color: cornsilk;
+  text-align: left;
+}
+
+.bikephoto {
+  background-color: #d9d9d9;
+}
+
+.descritivo {
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+#bikeadline {
+  display: flex;
+  justify-content: center;
+  max-height: 50%;
+  overflow-y: auto;
+}
