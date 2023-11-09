@@ -9,9 +9,9 @@ import { Bikead } from "./components/Bikead";
 
 function Catalog() {
   return (
-    <div>
+    <>
       <Header />
-      <main>
+      <main id="catalog">
         <Container>
           <Row>
             <Col>
@@ -45,7 +45,7 @@ function Catalog() {
         </Container>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 

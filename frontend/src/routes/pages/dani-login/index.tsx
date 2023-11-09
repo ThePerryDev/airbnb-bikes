@@ -7,11 +7,10 @@ export const Danilogin = () => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    
     const handleLogin = async () => {
-        if(email&&password) {
-            const isLogged = await auth.signin(email, password);
+        if(email) {
+            const isLogged = await auth.signin(email);
             if(isLogged) {
                 navigate('/');
             } else {
@@ -31,13 +30,6 @@ export const Danilogin = () => {
                 placeholder="Digite seu email"
             />
             
-            <input 
-                type="password" 
-                value={password}
-                onChange = {e => setPassword(e.target.value) }
-                placeholder="Digite sua senha"
-            />
-
             <button onClick={handleLogin}>Logar</button>
         </div>
     )

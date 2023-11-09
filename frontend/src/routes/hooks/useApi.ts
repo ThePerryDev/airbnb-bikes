@@ -10,8 +10,8 @@ export const useApi = () => ({
         console.log("validateToken", response);
         return response.data;
     },
-    signin: async (email: string, password: string) => {
-        const response = await api.post('/signin', { email, password });
+    signin: async (email: string) => {
+        const response = await api.post('/signin', { email });
         console.log("signin", response);
         return response.data;
 

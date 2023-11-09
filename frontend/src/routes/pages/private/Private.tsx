@@ -8,7 +8,7 @@ export const Private = () => {
         <div>
             <h2>Página privada</h2>
 
-            Olá {auth.user?.name} 
+            Olá {auth.user?.alias} 
         </div>
     );
 }

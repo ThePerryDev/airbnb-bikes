@@ -37,7 +37,7 @@ function Header() {
               {auth.user ? (
                 <button id="logout-button" onClick={handleLogout}>sair</button>
               ) : (
-                <Link className="botao-user" to="/login">
+                <Link className="botao-user" to="/danilogin">
                   <img src={user} alt="Pagina de usuário" />
                 </Link>
               )}

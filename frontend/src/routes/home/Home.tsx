@@ -5,15 +5,15 @@ import Header from "../components/Header";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { BikeProps } from "../../types";
+import api from "../../services/api";
 
 function Home() {
   const [bikes, setBikes] = useState<BikeProps[]>([]);
 
   const getBikes = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/bike/`);
+      const response = await api.get(`/bike`);
       const data = response.data;
       setBikes(data);
       console.log("Teste1", data)
@@ -27,9 +27,9 @@ function Home() {
   }, [])
 
   return (
-    <div>
+    <>
       <Header />
-      <main>
+      <div id="home">
         <Container>
           <Row id="headerhome">
             <Col>
@@ -78,9 +78,9 @@ function Home() {
             </Row>
           </Row>
         </Container>
-      </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
