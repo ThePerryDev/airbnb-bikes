@@ -12,14 +12,14 @@ import {
   InputGroup,
   Navbar,
   Row,
-  Form
+  Form,
 } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import {useForm} from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import api from "../../../services/api";
 
 function RegisterBike() {
@@ -46,8 +46,21 @@ function RegisterBike() {
     setFile(file);
   };
 
+  const [category, setCategory] = useState<CategoriesProps[]>();
+  useEffect(() => {
+    fetch(`http://localhost:3001/category`)
+      .then((rCategory) => rCategory.json())
+      .then((rCategory) => {
+        setCategory(rCategory);
+        console.log("Informações da categoria:", rCategory); // Adicione esta linha
+      })
+      .catch((error) =>
+        console.error("Erro ao buscar informações da bicicleta:", error)
+      );
+  }, []);
+
   // Disparado ao carregar o componente
- /* useEffect(() => {
+  /* useEffect(() => {
     (async () => {
       try {
         const bikeData = await BikeService.get();
@@ -62,31 +75,8 @@ function RegisterBike() {
 
   */
 
-  const Categories: React.FC = () => {
-    const [category, setCategory] = useState<CategoriesProps | null>(null);
-  
-    useEffect(() => {
-      const getCategories = async () => {
-        try {
-          const response = await api.get('http://localhost:3001/category');
-          const data = response.data;
-          setCategory(data);
-          console.log(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-  
-      getCategories();
-    }, []);
-  }
-    
-
-        //.catch((error) =>
-          //console.error("Erro ao buscar informações da bicicleta:", error));
-   
-
-
+  //.catch((error) =>
+  //console.error("Erro ao buscar informações da bicicleta:", error));
 
   const save = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -143,7 +133,6 @@ function RegisterBike() {
       if (res.error) {
         alert(res.error);
       } else {
-        
         reset();
       }
     }
@@ -169,70 +158,69 @@ function RegisterBike() {
   };
 
   //CEP
-  
+
   const { register, handleSubmit, setValue, setFocus } = useForm();
 
-  const onSubmit = (e:any)   => {
+  const onSubmit = (e: any) => {
     console.log(e);
-  }
+  };
 
   const checkCEP = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const cep = e.target.value.replace(/\D/g, '');
+    const cep = e.target.value.replace(/\D/g, "");
     console.log(cep);
-    fetch(`https://viacep.com.br/ws/${cep}/json/`).then(res => res.json()).then(data => {
-      console.log(data);
-      // register({ name: 'address', value: data.logradouro });
-      setValue('address', data.logradouro);
-      setValue('neighborhood', data.bairro);
-      setValue('city', data.localidade);
-      setValue('uf', data.uf);
-      setFocus('addressNumber');
-    });
-  }
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // register({ name: 'address', value: data.logradouro });
+        setValue("address", data.logradouro);
+        setValue("neighborhood", data.bairro);
+        setValue("city", data.localidade);
+        setValue("uf", data.uf);
+        setFocus("addressNumber");
+      });
+  };
 
   //FIM CEP
 
   //CONVERTER CEP EM LAT E LONG
 
-//const cep = '01001000'; // CEP de São Paulo - SP
+  //const cep = '01001000'; // CEP de São Paulo - SP
 
-// link da api https://cursos.alura.com.br/forum/topico-reactjs-cep-e-geolocalizacao-225879
-// link api de cep https://opencagedata.com/api#quickstart
+  // link da api https://cursos.alura.com.br/forum/topico-reactjs-cep-e-geolocalizacao-225879
+  // link api de cep https://opencagedata.com/api#quickstart
 
-const [cep, setCep] = useState('01001000');
-const apiKey = '901777d57a7f424ea1d5201771f802ea';
+  const [cep, setCep] = useState("01001000");
+  const apiKey = "901777d57a7f424ea1d5201771f802ea";
 
-fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    const { lat, lng } = data.results[0].geometry;
-    console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-    
-    // Chame a função initMap com as coordenadas lat e lng após obtê-las
-    initMap(lat, lng);
-  })
-  .catch(error => {
-    console.error('Erro ao obter dados de geolocalização:', error);
-});
+  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const { lat, lng } = data.results[0].geometry;
+      console.log(`Latitude: ${lat}, Longitude: ${lng}`);
 
-const initMap = useCallback((lat: number, lng: number) => {
-  const map = L.map("map").setView([lat, lng], 13);
-  console.log ("mapa",lat,lng);
-  L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
-  // Adicione um marcador no mapa (opcional)
-  L.marker([lat, lng])
-    .addTo(map)
-    .bindPopup("Localização da bicicleta")
-    .openPopup();
-}, []);
+      // Chame a função initMap com as coordenadas lat e lng após obtê-las
+      initMap(lat, lng);
+    })
+    .catch((error) => {
+      console.error("Erro ao obter dados de geolocalização:", error);
+    });
 
-
+  const initMap = useCallback((lat: number, lng: number) => {
+    const map = L.map("map").setView([lat, lng], 13);
+    console.log("mapa", lat, lng);
+    L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+    // Adicione um marcador no mapa (opcional)
+    L.marker([lat, lng])
+      .addTo(map)
+      .bindPopup("Localização da bicicleta")
+      .openPopup();
+  }, []);
 
   return (
-      
     <div>
       <Header />
       <main>
@@ -287,13 +275,11 @@ const initMap = useCallback((lat: number, lng: number) => {
                       CATEGORIA
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {category?.map((category) => (
+                        <Dropdown.Item key={category?.id}>
+                          {category?.name}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -393,75 +379,74 @@ const initMap = useCallback((lat: number, lng: number) => {
                     ></div>
                   </Card>
                   <Form onSubmit={handleSubmit(onSubmit)}>
-                  <Row>
-                    
-                    <Col md={6}>
-                      <input
-                        className="d-flex text-center"
-                        type="text"
-                        {...register("cep")}
-                        onBlur={checkCEP}
-                        id="cep"
-                        placeholder="CEP"
-                        value={cep} onChange={(e) => setCep(e.target.value)}
-                      />
-                    </Col>
-                    <Col md={6}>
-                      <input
-                        className="d-flex text-center"
-                        type="text"
-                        {...register("uf")}
-                        id="estado"
-                        placeholder="ESTADO"
-                      />
-                    </Col>
-                  
-                  </Row>
-                  <Row>
-                    <Col md={12}>
-                      <input
-                        className="d-flex text-center"
-                        type="text"
-                        {...register("city")}
-                        id="cidade"
-                        placeholder="CIDADE"
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={6}>
-                      <input
-                        className="d-flex text-center"
-                        type="text"
-                        {...register("neighborhood")}
-                        id="cep"
-                        placeholder="BAIRRO"
-                      />
-                    </Col>
-                    <Col md={6}>
-                      <input
-                        className="d-flex text-center"
-                        type="text"
-                        {...register("addressNumber" )}
-                        id="numero"
-                        placeholder="NÚMERO"
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md={12}>
-                      <input
-                        className="d-flex text-center"
-                        type="text"
-                        {...register("address" )}
-                        id="endereco"
-                        placeholder="ENDEREÇO"
-                      />
-                    </Col>
-                  </Row>
+                    <Row>
+                      <Col md={6}>
+                        <input
+                          className="d-flex text-center"
+                          type="text"
+                          {...register("cep")}
+                          onBlur={checkCEP}
+                          id="cep"
+                          placeholder="CEP"
+                          value={cep}
+                          onChange={(e) => setCep(e.target.value)}
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <input
+                          className="d-flex text-center"
+                          type="text"
+                          {...register("uf")}
+                          id="estado"
+                          placeholder="ESTADO"
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <input
+                          className="d-flex text-center"
+                          type="text"
+                          {...register("city")}
+                          id="cidade"
+                          placeholder="CIDADE"
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={6}>
+                        <input
+                          className="d-flex text-center"
+                          type="text"
+                          {...register("neighborhood")}
+                          id="cep"
+                          placeholder="BAIRRO"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <input
+                          className="d-flex text-center"
+                          type="text"
+                          {...register("addressNumber")}
+                          id="numero"
+                          placeholder="NÚMERO"
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={12}>
+                        <input
+                          className="d-flex text-center"
+                          type="text"
+                          {...register("address")}
+                          id="endereco"
+                          placeholder="ENDEREÇO"
+                        />
+                      </Col>
+                    </Row>
                   </Form>
                 </Col>
-                    
+
                 <div className="d-flex justify-content-center">
                   <input
                     className="d-flex text-center"
