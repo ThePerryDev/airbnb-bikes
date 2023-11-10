@@ -1,0 +1,43 @@
+.filter-button {
+    background: transparent;
+    border: none;
+  }
+  
+  #searcbarmargin{
+    margin: 1vh 0px 2vh 0px;
+  }
+  
+  .catalog-searchbar {
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+    margin: 0px 30px 0px 0px;
+  }
+  
+  .catalog-searchbar input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    margin: 0;
+    width: 65%;
+  }
+  
+  ::placeholder {
+    color: black;
+  }
+  
+  .catalog-searchbar button img {
+    width: 25px;
+  }
+  .catalog-searchbar button {
+    border: 0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+  }
+  

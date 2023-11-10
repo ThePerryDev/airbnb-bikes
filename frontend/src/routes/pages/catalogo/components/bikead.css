@@ -2,7 +2,7 @@
   text-align: center;
   background-color: white;
   border: 1px;
-  border-color: black;
+  border-color: rgba(0, 0, 0, 0.1);
   border-style: solid;
   border-radius: 15px;
   width: 248px;
@@ -12,18 +12,37 @@
 }
 
 .bikecontent {
-  background-color: cornsilk;
   text-align: left;
 }
 
 .bikephoto {
   background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 110px;
+}
+
+#details-button{
+  border: 0;
+  color: white;
+  text-decoration: none;
+  background-color: #79ac78;
+  border-radius: 8px;
+  text-align: center;
+  padding: 0px 10px 0px 10px;
 }
 
 .descritivo {
   background-color: #d9d9d9;
   border-radius: 15px;
   padding: 10px;
+}
+
+.adjust-between{
+  display: flex;
+  justify-content: space-between;
 }
 
 #bikeadline {

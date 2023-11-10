@@ -1,9 +1,7 @@
 import "./home.css";
 import homebikes from "./img/homebikes.png";
 import { Row, Col, Container } from "react-bootstrap";
-import Header from "../components/Header";
-import { Link, useParams } from "react-router-dom";
-import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BikeProps } from "../../types";
 import api from "../../services/api";
@@ -27,8 +25,6 @@ function Home() {
   }, [])
 
   return (
-    <>
-      <Header />
       <div id="home">
         <Container>
           <Row id="headerhome">
@@ -53,7 +49,7 @@ function Home() {
           <Row id="mainhome1">
             <h2>Escolha a bicicleta que faz mais o seu estilo</h2>
             <Row>
-              {bikes.length === 0 ? (<p>Carregando...</p>) : (
+              {bikes.length === 0 ? (<p>Não há bicicletas disponíveis</p>) : (
                 bikes?.map((bike) => (
                   <div className="home-bike-card" key={bike.id}>
                     <div className="adjust">
@@ -79,8 +75,6 @@ function Home() {
           </Row>
         </Container>
       </div>
-      <Footer />
-    </>
   );
 }
 
