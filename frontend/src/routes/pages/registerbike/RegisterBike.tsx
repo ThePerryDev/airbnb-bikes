@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { BikeProps } from "../../../types";
+import { BikeProps, CategoriesProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
 import { Link } from "react-router-dom";
 import "./registerbike.css";
@@ -20,6 +20,7 @@ import "leaflet/dist/leaflet.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import {useForm} from 'react-hook-form';
+import api from "../../../services/api";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -61,10 +62,31 @@ function RegisterBike() {
 
   */
 
-  const load = async () => {
-    const res: BikeProps[] = await BikeService.get();
-    setBikes(res);
-  };
+  const Categories: React.FC = () => {
+    const [category, setCategory] = useState<CategoriesProps | null>(null);
+  
+    useEffect(() => {
+      const getCategories = async () => {
+        try {
+          const response = await api.get('http://localhost:3001/category');
+          const data = response.data;
+          setCategory(data);
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  
+      getCategories();
+    }, []);
+  }
+    
+
+        //.catch((error) =>
+          //console.error("Erro ao buscar informações da bicicleta:", error));
+   
+
+
 
   const save = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -121,7 +143,7 @@ function RegisterBike() {
       if (res.error) {
         alert(res.error);
       } else {
-        load();
+        
         reset();
       }
     }
@@ -489,5 +511,3 @@ const initMap = useCallback((lat: number, lng: number) => {
 }
 
 export default RegisterBike;
-
-
