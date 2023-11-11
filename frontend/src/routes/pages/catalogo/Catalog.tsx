@@ -1,31 +1,22 @@
 import { Row, Col, Container } from "react-bootstrap";
 import "./Catalog.css";
 import { Bikead } from "./components/Bikead";
+import CatalogMap from "./components/CatalogMap";
 import CatalogSearchBar from "./components/CatalogSearchBar";
 
 function Catalog() {
   return (
-    <main id="catalog">
-      <Container>
+      <Container id="catalog">
         <Row>
           <Col>
-            <Row>
-              <Col>
-                <CatalogSearchBar />
-              </Col>
-            </Row>
-            <Row id="bikead-row">
-              <Bikead />
-            </Row>
+            <CatalogSearchBar />
+            <Bikead />
           </Col>
           <Col>
-            <div id="mapao" >
-              <img src="" alt="mapa grande"/>
-            </div>
+            <CatalogMap />
           </Col>
         </Row>
       </Container>
-    </main>
   );
 }
 
