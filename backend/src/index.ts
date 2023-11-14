@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
+//import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+//import { createUser, getUserByGoogleId, IUser } from './userModel';
 const GoogleStrategy = require("passport-google-oauth20");
 const FacebookStrategy = require("passport-facebook");
 
@@ -66,6 +68,39 @@ passport.use(
     }
   )
 );
+
+
+/*passport.use(
+  new GoogleStrategy(
+      {
+        clientID:
+        "483922791543-k64unliohtrncpe20rbl1nh2gg171v0p.apps.googleusercontent.com", // ID do cliente do Google
+      clientSecret: "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", // Chave secreta do cliente do Google
+      callbackURL: "/auth/google/callback", // URL de retorno após a autenticação do Google
+      },
+      async function (accessToken: any, refreshToken: any, profile: any, cb: any) {
+          try {
+              const user: IUser | null = await getUserByGoogleId(profile.id);
+
+              if (!user) {
+                  const newUser: IUser = {
+                      googleId: profile.id,
+                      email: profile.emails ? profile.emails[0].value : '',
+                      name: profile.displayName || '',
+                      photo: profile.photos ? profile.photos[0].value : '',
+                  };
+
+                  const createdUser = await createUser(newUser);
+                  return cb(null, createdUser);
+              }
+
+              return cb(null, user);
+          } catch (err) {
+              return cb(err, null);
+          }
+      }
+  )
+);*/
 
 passport.use(
   new FacebookStrategy(
