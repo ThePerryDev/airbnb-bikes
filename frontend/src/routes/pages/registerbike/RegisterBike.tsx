@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { BikeProps, CategoriesProps } from "../../../types";
+import React, { useEffect, useState } from "react";
+import { BikeProps, CategoriesProps, EnderecoProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
-import { Link } from "react-router-dom";
 import "./registerbike.css";
 import {
   Button,
@@ -9,18 +8,14 @@ import {
   Col,
   Container,
   Dropdown,
-  InputGroup,
-  Navbar,
   Row,
   Form,
 } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useForm } from "react-hook-form";
-import api from "../../../services/api";
+import axios from "axios";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -45,7 +40,9 @@ function RegisterBike() {
   const handleChange = (file: React.SetStateAction<null>) => {
     setFile(file);
   };
-
+  const [cep, setCep] = useState("");
+  const [endereco, setEndereco] = useState<EnderecoProps | null>(null);
+  const [camposPreenchidos, setCamposPreenchidos] = useState<boolean>(false);
   const [category, setCategory] = useState<CategoriesProps[]>();
   useEffect(() => {
     fetch(`http://localhost:3001/category`)
@@ -61,19 +58,19 @@ function RegisterBike() {
 
   // Disparado ao carregar o componente
   /* useEffect(() => {
-    (async () => {
-      try {
-        const bikeData = await BikeService.get();
-        if (bikeData) {
-          setBikes(bikeData);
+      (async () => {
+        try {
+          const bikeData = await BikeService.get();
+          if (bikeData) {
+            setBikes(bikeData);
+          }
+        } catch (error) {
+          console.error("Erro ao buscar dados das bicicletas:", error);
         }
-      } catch (error) {
-        console.error("Erro ao buscar dados das bicicletas:", error);
-      }
-    })();
-  }, []);
+      })();
+    }, []);
 
-  */
+    */
 
   //.catch((error) =>
   //console.error("Erro ao buscar informações da bicicleta:", error));
@@ -159,66 +156,84 @@ function RegisterBike() {
 
   //CEP
 
-  const { register, handleSubmit, setValue, setFocus } = useForm();
+  const API_KEY = "AIzaSyDaUNxhWQrwGSlVnmpoAhY5nTgyRO4fwPI";
+  const API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
+
+  const handleCEPChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const novoCEP = e.target.value;
+    setCep(novoCEP);
+
+    if (novoCEP.length === 8) {
+      try {
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${novoCEP}/json/`
+        );
+
+        if (response.data.erro) {
+          console.error("CEP não encontrado");
+          setEndereco(null);
+          return;
+        }
+
+        const novoEndereco = {
+          logradouro: response.data.logradouro,
+          bairro: response.data.bairro,
+          localidade: response.data.localidade,
+          uf: response.data.uf,
+          cep: response.data.cep,
+        };
+
+        console.log("Endereço:", novoEndereco);
+        setEndereco(novoEndereco);
+
+        // Desativar os campos de endereço
+        document.getElementById("estado")?.setAttribute("disabled", "true");
+        document.getElementById("cidade")?.setAttribute("disabled", "true");
+        document.getElementById("bairro")?.setAttribute("disabled", "true");
+        document.getElementById("endereco")?.setAttribute("disabled", "true");
+      } catch (error) {
+        console.error("Erro na chamada à API:", error);
+        setEndereco(null);
+      }
+    } else {
+      setEndereco(null);
+
+      // Ativar os campos de endereço
+      document.getElementById("estado")?.removeAttribute("disabled");
+      document.getElementById("cidade")?.removeAttribute("disabled");
+      document.getElementById("bairro")?.removeAttribute("disabled");
+      document.getElementById("endereco")?.removeAttribute("disabled");
+    }
+  };
+
+  const obterCoordenadas = async (endereco: EnderecoProps) => {
+    try {
+      const response = await axios.get(API_URL, {
+        params: {
+          address: endereco,
+          key: API_KEY,
+        },
+      });
+
+      if (response.data.status === "OK") {
+        const location = response.data.results[0].geometry.location;
+        console.log("Coordenadas:", location);
+        return location;
+      } else {
+        console.error("Erro ao obter coordenadas:", response.data.status);
+        return null;
+      }
+    } catch (error) {
+      console.error("Erro na chamada à API:", error);
+      return null;
+    }
+  };
+
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (e: any) => {
     console.log(e);
   };
-
-  const checkCEP = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const cep = e.target.value.replace(/\D/g, "");
-    console.log(cep);
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // register({ name: 'address', value: data.logradouro });
-        setValue("address", data.logradouro);
-        setValue("neighborhood", data.bairro);
-        setValue("city", data.localidade);
-        setValue("uf", data.uf);
-        setFocus("addressNumber");
-      });
-  };
-
-  //FIM CEP
-
-  //CONVERTER CEP EM LAT E LONG
-
-  //const cep = '01001000'; // CEP de São Paulo - SP
-
-  // link da api https://cursos.alura.com.br/forum/topico-reactjs-cep-e-geolocalizacao-225879
-  // link api de cep https://opencagedata.com/api#quickstart
-
-  const [cep, setCep] = useState("01001000");
-  const apiKey = "901777d57a7f424ea1d5201771f802ea";
-
-  fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`)
-    .then((response) => response.json())
-    .then((data) => {
-      const { lat, lng } = data.results[0].geometry;
-      console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-
-      // Chame a função initMap com as coordenadas lat e lng após obtê-las
-      initMap(lat, lng);
-    })
-    .catch((error) => {
-      console.error("Erro ao obter dados de geolocalização:", error);
-    });
-
-  const initMap = useCallback((lat: number, lng: number) => {
-    const map = L.map("map").setView([lat, lng], 13);
-    console.log("mapa", lat, lng);
-    L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
-    // Adicione um marcador no mapa (opcional)
-    L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup("Localização da bicicleta")
-      .openPopup();
-  }, []);
 
   return (
     <div>
@@ -368,35 +383,24 @@ function RegisterBike() {
                   </Dropdown>
                 </Col>
                 <Col md={6}>
-                  <Card id="mapCard">
-                    <div
-                      id="map"
-                      style={{
-                        width: "auto",
-                        height: "100%",
-                        borderRadius: "15px",
-                      }}
-                    ></div>
-                  </Card>
+                  <Card id="mapCard"></Card>
                   <Form onSubmit={handleSubmit(onSubmit)}>
                     <Row>
                       <Col md={6}>
                         <input
                           className="d-flex text-center"
                           type="text"
-                          {...register("cep")}
-                          onBlur={checkCEP}
+                          value={cep}
                           id="cep"
                           placeholder="CEP"
-                          value={cep}
-                          onChange={(e) => setCep(e.target.value)}
+                          onChange={handleCEPChange}
                         />
                       </Col>
                       <Col md={6}>
                         <input
                           className="d-flex text-center"
                           type="text"
-                          {...register("uf")}
+                          value={endereco?.uf || ""}
                           id="estado"
                           placeholder="ESTADO"
                         />
@@ -407,7 +411,7 @@ function RegisterBike() {
                         <input
                           className="d-flex text-center"
                           type="text"
-                          {...register("city")}
+                          value={endereco?.localidade || ""}
                           id="cidade"
                           placeholder="CIDADE"
                         />
@@ -418,7 +422,7 @@ function RegisterBike() {
                         <input
                           className="d-flex text-center"
                           type="text"
-                          {...register("neighborhood")}
+                          value={endereco?.bairro || ""}
                           id="cep"
                           placeholder="BAIRRO"
                         />
@@ -427,7 +431,6 @@ function RegisterBike() {
                         <input
                           className="d-flex text-center"
                           type="text"
-                          {...register("addressNumber")}
                           id="numero"
                           placeholder="NÚMERO"
                         />
@@ -438,7 +441,7 @@ function RegisterBike() {
                         <input
                           className="d-flex text-center"
                           type="text"
-                          {...register("address")}
+                          value={endereco?.logradouro || ""}
                           id="endereco"
                           placeholder="ENDEREÇO"
                         />

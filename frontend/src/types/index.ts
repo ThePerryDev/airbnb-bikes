@@ -56,3 +56,11 @@ export interface PhotoProps {
   id: number;
   filename: string;
 }
+
+export interface EnderecoProps {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  cep: string;
+}
