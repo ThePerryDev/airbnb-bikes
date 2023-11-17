@@ -2,6 +2,7 @@ import AppDataSource from "../data-source";
 import { Request, Response } from "express";
 import { Rent } from "../entities/Rent";
 import { User } from "../entities/User";
+import { Bike } from "../entities/Bike";
 
 class RentController {
   public async create(req: Request, res: Response): Promise<Response> {
@@ -73,6 +74,38 @@ class RentController {
       },
       order: {
         rentalDate: "DESC",
+      },
+    });
+    return res.json(rents);
+  }
+
+  public async listByOwner(req: Request, res: Response): Promise<Response> {
+    const { iduser } = req.params;
+    const owner = await AppDataSource.manager.findOneBy(User, {
+      id: parseInt(iduser),
+    });
+    const rents = await AppDataSource.manager.find(Rent, {
+      where: { owner },
+      relations: {
+        owner: true,
+        client: true,
+        bike: true,
+      },
+    });
+    return res.json(rents);
+  }
+
+  public async listByClient(req: Request, res: Response): Promise<Response> {
+    const { iduser } = req.params;
+    const client = await AppDataSource.manager.findOneBy(User, {
+      id: parseInt(iduser),
+    });
+    const rents = await AppDataSource.manager.find(Rent, {
+      where: { client },
+      relations: {
+        owner: true,
+        client: true,
+        bike: true,
       },
     });
     return res.json(rents);

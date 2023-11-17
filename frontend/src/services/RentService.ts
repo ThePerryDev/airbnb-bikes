@@ -2,6 +2,9 @@ import { RentsProps } from "../types";
 import api from "./api";
 
 class RentService {
+  listByOwner(id: string) {
+    throw new Error("Method not implemented.");
+  }
   async get(): Promise<RentsProps[]> {
     const { data } = await api.get("/rents");
     return data;
