@@ -1,85 +1,43 @@
-import AppDataSource from "../data-source";
-import { Request, Response } from "express";
+import { Repository, FindOneOptions } from "typeorm";
 import { User } from "../entities/User";
+import { createConnection, Connection, getRepository } from "typeorm";
 
-class UserController {
-  public async create(req: Request, res: Response): Promise<Response> {
-    const { alias, mail, phone } = req.body;
-    const user = await AppDataSource.manager
-      .save(User, { alias, mail, phone })
-      .catch((e) => {
-        // testa se o alias é repetido
-        if (/(alias)[\s\S]+(already exists)/.test(e.detail)) {
-          return { error: "Codinome já existe", props: "alias" };
-        }
-        // testa se o e-mail é repetido
-        else if (/(mail)[\s\S]+(already exists)/.test(e.detail)) {
-          return { error: "E-mail já existe", props: "mail" };
-        }
-        // testa se o e-mail é repetido
-        else if (/(phone)[\s\S]+(already exists)/.test(e.detail)) {
-          return { error: "Telefone já existe", props: "phone" };
-        }
-        return { error: e.message, props: "" };
-      });
-    return res.json(user);
-  }
+let userRepository: Repository<User>;
 
-  public async update(req: Request, res: Response): Promise<Response> {
-    const { id, alias, mail, phone } = req.body;
-    //obtém o usuário na tabela users
-    const user = await AppDataSource.manager.findOneBy(User, { id });
-    if (!user) {
-      //verifica se o usuário existe
-      return res.json({ error: "Usuário inexistente", props: "user" });
-    }
-    user.alias = alias;
-    user.mail = mail;
-    user.phone = phone;
-    const r = await AppDataSource.manager.save(User, user).catch((e) => {
-      // testa se o alias é repetido
-      if (/(alias)[\s\S]+(already exists)/.test(e.detail)) {
-        return { error: "Codinome já existe", props: "alias" };
-      }
-      // testa se o e-mail é repetido
-      else if (/(mail)[\s\S]+(already exists)/.test(e.detail)) {
-        return { error: "E-mail já existe", props: "mail" };
-      }
-      // testa se o e-mail é repetido
-      else if (/(phone)[\s\S]+(already exists)/.test(e.detail)) {
-        return { error: "Telefone já existe", props: "phone" };
-      }
-      return { error: e.message, props: "" };
-    });
-    return res.json(r);
-  }
-
-  public async list(_: Request, res: Response): Promise<Response> {
-    const users = await AppDataSource.manager.find(User, {
-      order: {
-        alias: "ASC",
-      },
-    });
-    return res.json(users);
-  }
-
-  public async listById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-
-    console.log("id", id);
-    const user = await AppDataSource.manager.findOne(User, {
-      where: { id: parseInt(id) },
-    });
-    return res.json(user);
-  }
-
-  public async delete(req: Request, res: Response): Promise<Response> {
-    const { id } = req.body;
-    // o método delete retorna o objeto {"raw": [],"affected": 1}
-    // a propriedade affected terá valor 0 se não tiver sido excluído o registro
-    const { affected } = await AppDataSource.manager.delete(User, { id });
-    return res.json({ affected });
-  }
+async function initializeService(): Promise<void> {
+  const connection: Connection = await createConnection();
+  userRepository = getRepository(User);
 }
 
-export default new UserController();
+export async function createUser(user: Partial<User>): Promise<User> {
+  const newUser = userRepository.create(user);
+  const savedUser = await userRepository.save(newUser);
+  return savedUser;
+}
+
+export async function getUserByGoogleId(googleId: string): Promise<User | undefined> {
+  return userRepository.findOne({ where: { googleId } });
+}
+
+export async function getUserById(id: number): Promise<User | undefined> {
+  const options: FindOneOptions<User> = { where: { id } };
+  return userRepository.findOne(options);
+}
+
+export async function updateUser(user: User): Promise<User> {
+  return userRepository.save(user);
+}
+
+export async function getAllUsers(): Promise<User[]> {
+  return userRepository.find();
+}
+
+export async function deleteUser(id: number): Promise<{ affected: number }> {
+  const { affected } = await userRepository.delete(id);
+  return { affected };
+}
+
+// Chamar a inicialização ao iniciar o aplicativo
+initializeService();
+
+export { initializeService };

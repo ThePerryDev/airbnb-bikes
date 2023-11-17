@@ -15,12 +15,14 @@ const PgDataSource = new DataSource({
   migrations: ["src/migrations/*.ts"],
 });
 
-PgDataSource.initialize()
-  .then(() => {
+export async function initializeDataSource(): Promise<void> {
+  try {
+    await PgDataSource.initialize();
     console.log("Data Source inicializado!");
-  })
-  .catch((e) => {
-    console.error("Erro na inicialização do Data Source:", e.message);
-  });
+  } catch (error) {
+    console.error("Erro na inicialização do Data Source:", error.message);
+    throw error;
+  }
+}
 
 export default PgDataSource;

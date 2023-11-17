@@ -4,8 +4,6 @@ import dotenv from "dotenv";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
-//import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-//import { createUser, getUserByGoogleId, IUser } from './userModel';
 const GoogleStrategy = require("passport-google-oauth20");
 const FacebookStrategy = require("passport-facebook");
 
@@ -34,18 +32,6 @@ app.use(
 app.use(passport.initialize()); // Inicializa o Passport para autenticação
 app.use(passport.session()); // Configura o Passport para usar sessões
 
-/*app.use(
-  session({
-    secret: "secretcode", // Chave secreta usada para criptografar a sessão
-    resave: true, // Força a sessão a ser regravada no armazenamento
-    saveUninitialized: true, // Salva sessões não inicializadas (vazias)
-    cookie: {
-      secure: false, // Defina como true se estiver usando HTTPS
-      maxAge: 3600000, // Tempo de vida do cookie da sessão em milissegundos (1 hora neste exemplo)
-    },
-  })
-);*/
-
 passport.serializeUser((user: any, done: any) => {
   return done(null, user); // Função para serializar o usuário (armazenar na sessão)
 });
@@ -69,38 +55,6 @@ passport.use(
   )
 );
 
-
-/*passport.use(
-  new GoogleStrategy(
-      {
-        clientID:
-        "483922791543-k64unliohtrncpe20rbl1nh2gg171v0p.apps.googleusercontent.com", // ID do cliente do Google
-      clientSecret: "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", // Chave secreta do cliente do Google
-      callbackURL: "/auth/google/callback", // URL de retorno após a autenticação do Google
-      },
-      async function (accessToken: any, refreshToken: any, profile: any, cb: any) {
-          try {
-              const user: IUser | null = await getUserByGoogleId(profile.id);
-
-              if (!user) {
-                  const newUser: IUser = {
-                      googleId: profile.id,
-                      email: profile.emails ? profile.emails[0].value : '',
-                      name: profile.displayName || '',
-                      photo: profile.photos ? profile.photos[0].value : '',
-                  };
-
-                  const createdUser = await createUser(newUser);
-                  return cb(null, createdUser);
-              }
-
-              return cb(null, user);
-          } catch (err) {
-              return cb(err, null);
-          }
-      }
-  )
-);*/
 
 passport.use(
   new FacebookStrategy(

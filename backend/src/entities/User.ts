@@ -6,14 +6,17 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false, length: 15, unique: true })
-  alias: string;
+  @Column({ nullable: true, unique:true })
+  googleId: string;
 
-  @Column({ nullable: false, length: 50, unique: true })
-  mail: string;
+  @Column({ nullable: true, unique:true })
+  email: string;
 
-  @Column({ nullable: false, length: 20, unique: true })
-  phone: string;
+  @Column({ nullable: true, unique:true })
+  username: string;
+
+  @Column({ nullable: true })
+  imageUser: string;
 
   @OneToMany(() => Rent, (rent) => rent.bike)
   rents: Rent[];
