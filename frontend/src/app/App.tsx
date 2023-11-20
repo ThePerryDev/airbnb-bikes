@@ -7,10 +7,9 @@ import Demo from "../routes/demo/Demo";
 import Home from "../routes/home/Home";
 import Catalog from "../routes/pages/catalogo/Catalog";
 import RegisterBike from "../routes/pages/registerbike/RegisterBike";
-import Login from "../routes/pages/login/Login";
 import { Private } from "../routes/pages/private/Private";
 import { RequireAuth } from "../routes/context/auth/RequireAuth";
-import { Danilogin } from "../routes/pages/dani-login";
+import { Danilogin } from "../routes/pages/dani-login/HandleLogin";
 
 function App() {
 
@@ -28,7 +27,6 @@ function App() {
       <Route path="/bike/:id" element={<Bike />} />
       <Route path="/danilogin" element={<Danilogin />} />
       <Route path="/catalog" element={<Catalog />} />
-      <Route path="/login" element={<Login />} />
       <Route path="/private" element={<RequireAuth><Private /></RequireAuth>} />
     </Routes>
   );
