@@ -10,7 +10,9 @@ export const useApi = () => ({
         console.log("validateToken", response);
         return response.data;
     },
-    signin: async (email: string) => {
+    signin: async (email: string, jtiToken: string) => {
+        /**PAREI AQUI */
+        // let user = await api.get()
         const response = await api.post('/signin', { email });
         console.log("signin", response);
         return response.data;

@@ -21,7 +21,7 @@ export const AuthProvider = ({ children}: {children: JSX.Element}) => {
     }, [api]);
     
     const signin = async (email: string) => {
-        const data = await api.signin(email);
+        const data = await api.signin(email, 'jtiToken');
         if(data.user && data.token) {
             setUser(data.user);
             setToken(data.token);
