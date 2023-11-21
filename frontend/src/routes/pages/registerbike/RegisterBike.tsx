@@ -41,8 +41,8 @@ function RegisterBike() {
     setFile(file);
   };
   const [cep, setCep] = useState("");
+  const [numero, setNumero] = useState("");
   const [endereco, setEndereco] = useState<EnderecoProps | null>(null);
-  const [camposPreenchidos, setCamposPreenchidos] = useState<boolean>(false);
   const [category, setCategory] = useState<CategoriesProps[]>();
   useEffect(() => {
     fetch(`http://localhost:3001/category`)
@@ -159,11 +159,18 @@ function RegisterBike() {
   const API_KEY = "AIzaSyDaUNxhWQrwGSlVnmpoAhY5nTgyRO4fwPI";
   const API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 
+  const handleNumeroChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const novoNumero = e.target.value;
+    setNumero(novoNumero);
+  };
+
   const handleCEPChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const novoCEP = e.target.value;
     setCep(novoCEP);
 
-    if (novoCEP.length === 8) {
+    const novoCEP2= novoCEP.replace(/^[0-9]/g, "");
+
+    if (novoCEP2.length === 8) {
       try {
         const response = await axios.get(
           `https://viacep.com.br/ws/${novoCEP}/json/`
@@ -181,7 +188,11 @@ function RegisterBike() {
           localidade: response.data.localidade,
           uf: response.data.uf,
           cep: response.data.cep,
+          numero: numero,
         };
+
+        // Atualizar o número no endereço
+        novoEndereco.numero = numero;
 
         console.log("Endereço:", novoEndereco);
         setEndereco(novoEndereco);
@@ -191,6 +202,9 @@ function RegisterBike() {
         document.getElementById("cidade")?.setAttribute("disabled", "true");
         document.getElementById("bairro")?.setAttribute("disabled", "true");
         document.getElementById("endereco")?.setAttribute("disabled", "true");
+
+        // Chamar a função para obter coordenadas
+        obterCoordenadas();
       } catch (error) {
         console.error("Erro na chamada à API:", error);
         setEndereco(null);
@@ -206,26 +220,44 @@ function RegisterBike() {
     }
   };
 
-  const obterCoordenadas = async (endereco: EnderecoProps) => {
-    try {
-      const response = await axios.get(API_URL, {
-        params: {
-          address: endereco,
-          key: API_KEY,
-        },
-      });
+  const obterCoordenadas = async () => {
+    // Verifica se todos os campos de endereço foram preenchidos
+    if (
+      endereco &&
+      endereco.uf &&
+      endereco.localidade &&
+      endereco.bairro &&
+      endereco.logradouro &&
+      document.getElementById("numero") instanceof HTMLInputElement
+    ) {
+      try {
+        const enderecoCompleto = `${endereco.logradouro}, ${
+          (document.getElementById("numero") as HTMLInputElement).value
+        }, ${endereco.bairro}, ${endereco.localidade}, ${endereco.uf}`;
+        const response = await axios.get(API_URL, {
+          params: {
+            address: enderecoCompleto,
+            key: API_KEY,
+          },
+        });
 
-      if (response.data.status === "OK") {
-        const location = response.data.results[0].geometry.location;
-        console.log("Coordenadas:", location);
-        return location;
-      } else {
-        console.error("Erro ao obter coordenadas:", response.data.status);
-        return null;
+        if (
+          response.data &&
+          response.data.results &&
+          response.data.results.length > 0 &&
+          response.data.results[0].geometry &&
+          response.data.results[0].geometry.location
+        ) {
+          const coordenadas = response.data.results[0].geometry.location;
+          setLatitude(coordenadas.lat);
+          setLongitude(coordenadas.lng);
+          console.log("Coordenadas obtidas:", coordenadas);
+        } else {
+          console.error("Coordenadas não encontradas");
+        }
+      } catch (error) {
+        console.error("Erro ao obter coordenadas:", error);
       }
-    } catch (error) {
-      console.error("Erro na chamada à API:", error);
-      return null;
     }
   };
 
@@ -432,7 +464,9 @@ function RegisterBike() {
                           className="d-flex text-center"
                           type="text"
                           id="numero"
+                          value={numero}
                           placeholder="NÚMERO"
+                          onChange={handleNumeroChange}
                         />
                       </Col>
                     </Row>
