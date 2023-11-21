@@ -10,8 +10,8 @@ import { AuthContext } from "../context/auth/Authcontext";
 function Header() {
   const auth = useContext(AuthContext);
   
-  const handleLogout = async () => {
-    await auth.signout();
+  const handleLogout = () => {
+    auth.signout();
     window.location.reload();
   };
 

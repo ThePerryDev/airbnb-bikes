@@ -3,7 +3,7 @@ import { UsersProps } from '../../../types/index';
 
 export type AuthContextType = {
     user: UsersProps | null;
-    signin: (email: string, jtiToken: string) => Promise<boolean>;
+    signin: (alias:string, email: string, jtiToken: string) => Promise<boolean>;
     signout: () => void;
 }
 
