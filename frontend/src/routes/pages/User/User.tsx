@@ -16,6 +16,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import bikeService from "../../../services/BikeService";
 import AvLocatorio from "../../components/Avlocatorio/Avlocatorio";
+import AvLocador from "../../components/Avlocador/Avlocador";
 
 function User() {
   const { id } = useParams();
@@ -291,7 +292,7 @@ function User() {
               </Col>
               <Col md={4} sm={3}>
                 <Button id="button" onClick={lcdorTroca}>AVALIAÇÕES DO LOCADOR</Button>
-                {/*<AvLocador show={cardlcdorV} onClose={lcdorTroca} />*/}
+                <AvLocador show={cardlcdorV} onClose={lcdorTroca} />
               </Col>
               <Col md={4} sm={3}>
                 <Button id="button" onClick={lctarioTroca}>AVALIAÇÕES DO LOCATÓRIO</Button>
