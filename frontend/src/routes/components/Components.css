@@ -8,26 +8,19 @@
   margin-top: 1vh;
 }
 
-.botao-user {
+.botao-header {
   border: 0;
   border-radius: 50%;
   cursor: pointer;
   background: #effbee;
-}
-
-.botao-user img {
-  padding: 15px;
-  max-width: 150px;
-}
-
-#logout-button{
-  border: 0;
-  border-radius: 10%;
   cursor: pointer;
-  background: #effbee;
-  padding: 5px 10px 5px 10px;
-  font-size: x-large;
-  margin-top: 1vh;
+  padding: 15px;
+  font-size: large;
+  margin-left: 15px;
+}
+
+.botao-header img {
+  max-width: 30px;
 }
 
 #logoequipe {

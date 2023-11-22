@@ -3,14 +3,14 @@
 //Se estiver, mostra a página que ele gostaria de acessar (user)
 
 import { useContext } from "react";
-import { Danilogin } from "../../pages/dani-login/HandleLogin";
+import { Login } from "../../pages/Login/Login";
 import { AuthContext } from "./Authcontext";
 
 export const RequireAuth = ({ children }: { children: JSX.Element}) => {
     const auth = useContext(AuthContext);
 
     if(!auth.user) {
-        return <Danilogin />
+        return <Login />
     }
     return children;
 }
