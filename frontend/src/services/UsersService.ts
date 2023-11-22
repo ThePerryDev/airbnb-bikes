@@ -15,6 +15,18 @@ class UsersService {
     const { data } = await api.post("/user", props);
     return data;
   }
+
+  async put(props: {
+    id: number;
+    alias: string;
+    mail: string;
+    phone: string;
+    token: string;
+  }): Promise<any> {
+    const { data } = await api.put("/user", props);
+    return data;
+  }
+
 }
 
 const service = new UsersService();
