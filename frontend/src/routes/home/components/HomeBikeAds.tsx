@@ -12,7 +12,6 @@ function HomeBikeAds() {
       const response = await api.get(`/bike`);
       const data = response.data;
       setBikes(data);
-      console.log("Teste1", data);
     } catch (error) {
       console.log(error);
     }
@@ -43,8 +42,8 @@ function HomeBikeAds() {
                 )}
               </div>
               <div className="adjust">
-                <Link className="home-bike-button" to="/bike">
-                  Confirma
+                <Link className="home-bike-button" to={`/bike/${bike.id}`} >
+                  Detalhes
                 </Link>
               </div>
             </div>

@@ -9,24 +9,23 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     const validateToken = async () => {
-        console.log("oooi")
       const token = localStorage.getItem("authToken");
       const email = localStorage.getItem("authEmail");
       const alias = localStorage.getItem("authAlias");
       if (alias && token && email) {
         const data = await api.validateToken(alias, email, token);
         if (data && data.token) {
-        //   setUser(data);
+          setUser(data);
         }
       }
     };
 
     validateToken();
-  }, [api]);
+  }, []);
 
   const signin = async (alias: string, email: string, jtiToken: string) => {
     const data = await api.signin(alias, email, jtiToken);
-    console.log(data);
+    
     if (data.id && data.token) {
       setUser(data);
       setLocalStorage(data);

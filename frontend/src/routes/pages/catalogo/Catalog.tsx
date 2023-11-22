@@ -1,7 +1,6 @@
 import { Row, Col, Container } from "react-bootstrap";
 import "./Catalog.css";
 import { Bikead } from "./components/Bikead";
-import CatalogMap from "./components/CatalogMap";
 import CatalogSearchBar from "./components/CatalogSearchBar";
 
 function Catalog() {
@@ -11,9 +10,6 @@ function Catalog() {
           <Col>
             <CatalogSearchBar />
             <Bikead />
-          </Col>
-          <Col>
-            <CatalogMap />
           </Col>
         </Row>
       </Container>

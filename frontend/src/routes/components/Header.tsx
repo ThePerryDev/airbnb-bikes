@@ -10,8 +10,8 @@ import { AuthContext } from "../context/auth/Authcontext";
 function Header() {
   const auth = useContext(AuthContext);
   
-  const handleLogout = () => {
-    auth.signout();
+  const handleLogout = async () => {
+    await auth.signout();
     window.location.reload();
   };
 
@@ -23,14 +23,6 @@ function Header() {
             <Link className="logo" to="/">
               <img src={logo} alt="logo" />
             </Link>
-          </Col>
-          <Col xs={6}>
-            <form action="" className="searchbar">
-              <input type="text" placeholder="Search..." />
-              <button type="submit">
-                <img src={lupa} alt="search icon" />
-              </button>
-            </form>
           </Col>
           <Col>
             <nav id="header-nav">

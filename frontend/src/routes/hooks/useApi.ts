@@ -5,8 +5,9 @@ import { Search } from "../utils/SearchMethods";
 export const useApi = () => ({
   validateToken: async (alias:string, email:string, token: string) => {
     const user = await getUser(alias, email);
-    console.log(user.token, token)
-    return user.token === token ? user : null;
+    const response = user.token === token ? user : null;
+
+    return response;
   },
 
   signin: async (name: string, email: string, jtiToken: string) => {

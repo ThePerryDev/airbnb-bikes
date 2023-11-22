@@ -12,7 +12,6 @@ export const Bikead = () => {
       const response = await api.get(`/bike`);
       const data = response.data;
       setBikes(data);
-      console.log("Teste1", data);
     } catch (error) {
       console.log(error);
     }

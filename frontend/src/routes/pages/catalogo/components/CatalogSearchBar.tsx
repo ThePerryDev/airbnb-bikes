@@ -9,7 +9,7 @@ function CatalogSearchBar() {
       <Col>
         <div className="adjust" id="searcbarmargin">
           <form action="" className="catalog-searchbar">
-            <input type="text" placeholder="Search..." />
+            <input type="text" placeholder="Filtrar..." />
             <button type="submit">
               <img src={lupa} alt="search icon" />
             </button>
