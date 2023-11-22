@@ -16,6 +16,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -34,7 +35,7 @@ function RegisterBike() {
   const [dailyvalue, setDailyvalue] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-  const [bikes, setBikes] = useState([] as BikeProps[]);
+  //  const [bikes, setBikes] = useState([] as BikeProps[]);
   const fileTypes = ["JPEG", "PNG", "GIF"];
   const [file, setFile] = useState(null);
   const handleChange = (file: React.SetStateAction<null>) => {
@@ -49,35 +50,14 @@ function RegisterBike() {
       .then((rCategory) => rCategory.json())
       .then((rCategory) => {
         setCategory(rCategory);
-        console.log("Informações da categoria:", rCategory); // Adicione esta linha
+        console.log("Informações da categoria:", rCategory);
       })
       .catch((error) =>
         console.error("Erro ao buscar informações da bicicleta:", error)
       );
   }, []);
 
-  // Disparado ao carregar o componente
-  /* useEffect(() => {
-      (async () => {
-        try {
-          const bikeData = await BikeService.get();
-          if (bikeData) {
-            setBikes(bikeData);
-          }
-        } catch (error) {
-          console.error("Erro ao buscar dados das bicicletas:", error);
-        }
-      })();
-    }, []);
-
-    */
-
-  //.catch((error) =>
-  //console.error("Erro ao buscar informações da bicicleta:", error));
-
-  const save = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const save = async () => {
     // Converter os campos numéricos para inteiros ou floats
     const idUserInt = parseInt(idUser);
     const idCategoryInt = parseInt(idCategory);
@@ -159,21 +139,11 @@ function RegisterBike() {
   const API_KEY = "AIzaSyDaUNxhWQrwGSlVnmpoAhY5nTgyRO4fwPI";
   const API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 
-  const handleNumeroChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const novoNumero = e.target.value;
-    setNumero(novoNumero);
-  };
-
-  const handleCEPChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const novoCEP = e.target.value;
-    setCep(novoCEP);
-
-    const novoCEP2= novoCEP.replace(/^[0-9]/g, "");
-
-    if (novoCEP2.length === 8) {
+  const handleCEPChange = async () => {
+    if (cep.length === 8) {
       try {
         const response = await axios.get(
-          `https://viacep.com.br/ws/${novoCEP}/json/`
+          `https://viacep.com.br/ws/${cep}/json/`
         );
 
         if (response.data.erro) {
@@ -191,10 +161,8 @@ function RegisterBike() {
           numero: numero,
         };
 
-        // Atualizar o número no endereço
-        novoEndereco.numero = numero;
-
-        console.log("Endereço:", novoEndereco);
+        const fullAddress = `${novoEndereco.logradouro}, ${novoEndereco.bairro}, ${novoEndereco.localidade}, ${novoEndereco.uf}`;
+        console.log("Endereço:", fullAddress);
         setEndereco(novoEndereco);
 
         // Desativar os campos de endereço
@@ -204,7 +172,7 @@ function RegisterBike() {
         document.getElementById("endereco")?.setAttribute("disabled", "true");
 
         // Chamar a função para obter coordenadas
-        obterCoordenadas();
+        AddressToCoordinates(fullAddress);
       } catch (error) {
         console.error("Erro na chamada à API:", error);
         setEndereco(null);
@@ -220,46 +188,23 @@ function RegisterBike() {
     }
   };
 
-  const obterCoordenadas = async () => {
-    // Verifica se todos os campos de endereço foram preenchidos
-    if (
-      endereco &&
-      endereco.uf &&
-      endereco.localidade &&
-      endereco.bairro &&
-      endereco.logradouro &&
-      document.getElementById("numero") instanceof HTMLInputElement
-    ) {
-      try {
-        const enderecoCompleto = `${endereco.logradouro}, ${
-          (document.getElementById("numero") as HTMLInputElement).value
-        }, ${endereco.bairro}, ${endereco.localidade}, ${endereco.uf}`;
-        const response = await axios.get(API_URL, {
-          params: {
-            address: enderecoCompleto,
-            key: API_KEY,
-          },
+  const AddressToCoordinates = (address) => {
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
+  
+    useEffect(() => {
+      const geocoder = new Geocoder();
+  
+      geocoder
+        .geocode({ address })
+        .then((response) => {
+          setLatitude(response.results[0].geometry.location.lat);
+          setLongitude(response.results[0].geometry.location.lng);
+        })
+        .catch((error) => {
+          console.error(error);
         });
-
-        if (
-          response.data &&
-          response.data.results &&
-          response.data.results.length > 0 &&
-          response.data.results[0].geometry &&
-          response.data.results[0].geometry.location
-        ) {
-          const coordenadas = response.data.results[0].geometry.location;
-          setLatitude(coordenadas.lat);
-          setLongitude(coordenadas.lng);
-          console.log("Coordenadas obtidas:", coordenadas);
-        } else {
-          console.error("Coordenadas não encontradas");
-        }
-      } catch (error) {
-        console.error("Erro ao obter coordenadas:", error);
-      }
-    }
-  };
+    }, [address]);
 
   const { register, handleSubmit } = useForm();
 
@@ -415,7 +360,8 @@ function RegisterBike() {
                   </Dropdown>
                 </Col>
                 <Col md={6}>
-                  <Card id="mapCard"></Card>
+                  <Card id="mapCard">
+                  </Card>
                   <Form onSubmit={handleSubmit(onSubmit)}>
                     <Row>
                       <Col md={6}>
@@ -425,7 +371,7 @@ function RegisterBike() {
                           value={cep}
                           id="cep"
                           placeholder="CEP"
-                          onChange={handleCEPChange}
+                          onChange={(e) => setCep(e.target.value)}
                         />
                       </Col>
                       <Col md={6}>
@@ -465,8 +411,8 @@ function RegisterBike() {
                           type="text"
                           id="numero"
                           value={numero}
+                          onChange={(e) => setNumero(e.target.value)}
                           placeholder="NÚMERO"
-                          onChange={handleNumeroChange}
                         />
                       </Col>
                     </Row>
@@ -479,6 +425,13 @@ function RegisterBike() {
                           id="endereco"
                           placeholder="ENDEREÇO"
                         />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <button onClick={handleCEPChange}>
+                          Obter Coordenadas
+                        </button>
                       </Col>
                     </Row>
                   </Form>
@@ -516,7 +469,7 @@ function RegisterBike() {
                     <Button
                       className="d-flex text-center"
                       id="botao"
-                      placeholder="VALOR DA HORA"
+                      onClick={save}
                     >
                       SALVAR
                     </Button>

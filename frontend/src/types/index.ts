@@ -63,4 +63,5 @@ export interface EnderecoProps {
   localidade: string;
   uf: string;
   cep: string;
+  numero: string
 }
