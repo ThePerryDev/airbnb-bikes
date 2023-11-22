@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BikeProps, CategoriesProps, EnderecoProps } from "../../../types";
+import {
+  BikeProps,
+  CategoriesProps,
+  EnderecoProps,
+  BrandProps,
+} from "../../../types";
 import BikeService from "../../../services/BikeService";
 import "./registerbike.css";
 import {
@@ -17,6 +22,18 @@ import Footer from "../../components/Footer";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import {
+  setKey,
+  setLanguage,
+  setRegion,
+  fromAddress,
+  fromLatLng,
+  fromPlaceId,
+  setLocationType,
+  geocode,
+  RequestType,
+} from "react-geocode";
+import { setDefaults } from "../../components/mapas";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
@@ -50,6 +67,17 @@ function RegisterBike() {
       .then((rCategory) => rCategory.json())
       .then((rCategory) => {
         setCategory(rCategory);
+      })
+      .catch((error) =>
+        console.error("Erro ao buscar informações da bicicleta:", error)
+      );
+  }, []);
+  const [brand, setBrand] = useState<BrandProps[]>();
+  useEffect(() => {
+    fetch(`http://localhost:3001/brand`)
+      .then((rBrand) => rBrand.json())
+      .then((rBrand) => {
+        setBrand(rBrand);
       })
       .catch((error) =>
         console.error("Erro ao buscar informações da bicicleta:", error)
@@ -160,7 +188,7 @@ function RegisterBike() {
           numero: numero,
         };
 
-        const fullAddress = `${novoEndereco.logradouro}, ${novoEndereco.bairro}, ${novoEndereco.localidade}, ${novoEndereco.uf}`;
+        const fullAddress = `${novoEndereco.logradouro}, ${novoEndereco.numero}, ${novoEndereco.bairro}, ${novoEndereco.localidade}, ${novoEndereco.uf}`;
         console.log("Endereço:", fullAddress);
         setEndereco(novoEndereco);
 
@@ -171,7 +199,7 @@ function RegisterBike() {
         document.getElementById("endereco")?.setAttribute("disabled", "true");
 
         // Chamar a função para obter coordenadas
-        AddressToCoordinates();
+        AddressToCoordinates(fullAddress, API_KEY);
       } catch (error) {
         console.error("Erro na chamada à API:", error);
         setEndereco(null);
@@ -187,8 +215,19 @@ function RegisterBike() {
     }
   };
 
-  const AddressToCoordinates = () => {
-    console.log("Passou");
+  setDefaults({
+    key: "AIzaSyDaUNxhWQrwGSlVnmpoAhY5nTgyRO4fwPI",
+    language: "pt-br",
+    region: "br",
+  });
+
+  const AddressToCoordinates = async (fullAddress: string, key: string) => {
+    fromAddress(fullAddress)
+      .then(({ results }) => {
+        const { lat, lng } = results[0].geometry.location;
+        console.log(lat, lng);
+      })
+      .catch(console.error);
   };
 
   const { register, handleSubmit } = useForm();
@@ -224,13 +263,11 @@ function RegisterBike() {
                       MARCA
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {brand?.map((brand) => (
+                        <Dropdown.Item key={brand?.id}>
+                          {brand?.name}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -238,12 +275,18 @@ function RegisterBike() {
                       MATERIAL
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                      <Dropdown.Item href="#/action-1">Alumínio</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">
-                        Another action
+                        Fibra de Carbono
                       </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
+                      <Dropdown.Item href="#/action-3">Ferro</Dropdown.Item>
+                      <Dropdown.Item href="#/action-4">Aço</Dropdown.Item>
+                      <Dropdown.Item href="#/action-5">Titânio</Dropdown.Item>
+                      <Dropdown.Item href="#/action-6">
+                        Cromo-molibdênio
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-7">
+                        Alumínio e carbono
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -264,13 +307,9 @@ function RegisterBike() {
                       GÊNERO
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-1">Feminino</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Masculino</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">Unissex</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>

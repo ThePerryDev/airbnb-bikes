@@ -12,8 +12,8 @@ import { Category } from "./Category";
 import { User } from "./User";
 import { Rent } from "./Rent";
 
-export type Gender = "masculino" | "feminino" | "unissex";
-export type Material = "aluminio" | "carbono" | "ferro";
+export type Gender = "Masculino" | "Feminino" | "Unissex";
+export type Material = "Alumínio" | "Fibra de Carbono" | "Ferro" | "Aço" | "Titânio" | "Cromo-molibdênio" | "Alumínio e carbono";
 
 @Entity({ name: "bikes" })
 export class Bike {
@@ -32,14 +32,14 @@ export class Bike {
   @Column({
     nullable: false,
     type: "enum",
-    enum: ["aluminio", "carbono", "ferro"],
+    enum: ["Alumínio", "Fibra de Carbono", "Ferro", "Aço", "Titânio", "Cromo-molibdênio", "Alumínio e carbono"],
   })
   material: Material;
 
   @Column({
     nullable: false,
     type: "enum",
-    enum: ["feminino", "masculino", "unissex"],
+    enum: ["Feminino", "Masculino", "Unissex"],
   })
   gender: Gender;
 
