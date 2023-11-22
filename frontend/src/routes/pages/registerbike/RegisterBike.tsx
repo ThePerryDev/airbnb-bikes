@@ -50,7 +50,6 @@ function RegisterBike() {
       .then((rCategory) => rCategory.json())
       .then((rCategory) => {
         setCategory(rCategory);
-        console.log("Informações da categoria:", rCategory);
       })
       .catch((error) =>
         console.error("Erro ao buscar informações da bicicleta:", error)
@@ -172,7 +171,7 @@ function RegisterBike() {
         document.getElementById("endereco")?.setAttribute("disabled", "true");
 
         // Chamar a função para obter coordenadas
-        AddressToCoordinates(fullAddress);
+        AddressToCoordinates();
       } catch (error) {
         console.error("Erro na chamada à API:", error);
         setEndereco(null);
@@ -188,23 +187,9 @@ function RegisterBike() {
     }
   };
 
-  const AddressToCoordinates = (address) => {
-    const [latitude, setLatitude] = useState(null);
-    const [longitude, setLongitude] = useState(null);
-  
-    useEffect(() => {
-      const geocoder = new Geocoder();
-  
-      geocoder
-        .geocode({ address })
-        .then((response) => {
-          setLatitude(response.results[0].geometry.location.lat);
-          setLongitude(response.results[0].geometry.location.lng);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, [address]);
+  const AddressToCoordinates = () => {
+    console.log("Passou");
+  };
 
   const { register, handleSubmit } = useForm();
 
@@ -360,8 +345,7 @@ function RegisterBike() {
                   </Dropdown>
                 </Col>
                 <Col md={6}>
-                  <Card id="mapCard">
-                  </Card>
+                  <Card id="mapCard"></Card>
                   <Form onSubmit={handleSubmit(onSubmit)}>
                     <Row>
                       <Col md={6}>
@@ -381,6 +365,7 @@ function RegisterBike() {
                           value={endereco?.uf || ""}
                           id="estado"
                           placeholder="ESTADO"
+                          readOnly
                         />
                       </Col>
                     </Row>
@@ -392,6 +377,7 @@ function RegisterBike() {
                           value={endereco?.localidade || ""}
                           id="cidade"
                           placeholder="CIDADE"
+                          readOnly
                         />
                       </Col>
                     </Row>
@@ -403,6 +389,7 @@ function RegisterBike() {
                           value={endereco?.bairro || ""}
                           id="cep"
                           placeholder="BAIRRO"
+                          readOnly
                         />
                       </Col>
                       <Col md={6}>
@@ -424,6 +411,7 @@ function RegisterBike() {
                           value={endereco?.logradouro || ""}
                           id="endereco"
                           placeholder="ENDEREÇO"
+                          readOnly
                         />
                       </Col>
                     </Row>
