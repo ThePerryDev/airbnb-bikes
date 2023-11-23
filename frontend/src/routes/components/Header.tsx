@@ -29,7 +29,7 @@ function Header() {
               {auth.user ? (
                 <div>
                   <button className="botao-header">
-                    <Link to="/private">
+                    <Link to="/user">
                       <img src={user} alt="Pagina de usuário" />
                     </Link>
                   </button>
@@ -39,7 +39,7 @@ function Header() {
                   </button>
                 </div>
               ) : (
-                <Link className="botao-header" to="/private">
+                <Link className="botao-header" to="/user">
                   <img src={user} alt="Pagina de usuário" />
                 </Link>
               )}

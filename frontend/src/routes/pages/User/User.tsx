@@ -77,7 +77,6 @@ function User() {
 
   return (
     <div id="body">
-      <Header/>
       <Container>
         <Row id="RowProdutos">
           <Card.Text>Informações e contato</Card.Text>
@@ -268,7 +267,6 @@ function User() {
           </Container>
         </Container>
       </Container>
-      <Footer/>
     </div>
   );
 }
