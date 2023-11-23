@@ -44,7 +44,7 @@ function User() {
 
   const getRents = async () => {
     try {
-      const response = await api.get(`/rent`);
+      const response = await api.get(`/rent/client/:iduser`);
       const data = response.data;
       setRents(data);
     } catch (error) {
@@ -210,18 +210,18 @@ function User() {
                   <Col md={4} id="colBike">
                     <div id="cardBike">
                       <Row>
-                        <img
+                        {/* <img
                           src={`http://localhost:3001/photo/public/${bike.photos[0].filename}`}
-                          alt={bike.photos[0].filename}
+                          // alt={bike.photos[0].filename}
                           id="imgBike"
-                        />
+                        /> */}
                       </Row>
                       <Row>
-                        <Card.Text>{bike.name}</Card.Text>
+                        {/* <Card.Text>{bike.name}</Card.Text> */}
                       </Row>
                       <Row>
                         <Card id="cardInfoBike">
-                          <Card.Text>{bike.description}</Card.Text>
+                          {/* <Card.Text>{bike.description}</Card.Text> */}
                         </Card>
                       </Row>
                       <Row>
@@ -230,13 +230,13 @@ function User() {
                             <Col>
                               <Row>
                                 <Card.Text>
-                                  <span>R$ {bike.dailyvalue}/</span>
+                                  {/* <span>R$ {bike.dailyvalue}/</span> */}
                                   <span id="textoCinza">dia</span>
                                 </Card.Text>
                               </Row>
                               <Row>
                                 <Card.Text>
-                                  <span>R$ {bike.hourlyvalue}/</span>
+                                  {/* <span>R$ {bike.hourlyvalue}/</span> */}
                                   <span id="textoCinza">hora</span>
                                 </Card.Text>
                               </Row>
@@ -244,9 +244,9 @@ function User() {
                           </Row>
                         </Col>
                         <Col id="colDetalhes">
-                          <Link to={`../bike/${bike.id}`}>
+                          {/* <Link to={`../bike/${bike.id}`}>
                             <Button id="detalhes">Detalhes</Button>
-                          </Link>
+                          </Link> */}
                         </Col>
                       </Row>
                     </div>
@@ -257,10 +257,10 @@ function User() {
                         <div id="cardInfos">
                           <div>
                             <Card.Text className="details-center">
-                              <Card.Text>Marca {bike.brand.name}</Card.Text>
+                              {/* <Card.Text>Marca {bike.brand.name}</Card.Text>
                               <Card.Text>{bike.category.name}</Card.Text>
                               <Card.Text>Tamanho {bike.size}</Card.Text>
-                              <Card.Text>Material: {bike.material}</Card.Text>
+                              <Card.Text>Material: {bike.material}</Card.Text> */}
                             </Card.Text>
                           </div>
                         </div>
