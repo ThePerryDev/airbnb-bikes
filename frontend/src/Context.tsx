@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react";
-import axios, { AxiosResponse } from "axios";
-//import api from './services/api';
+import { AxiosResponse } from "axios";
+import api from './services/api';
 
 export const myContext: any = createContext({});
 
@@ -8,8 +8,8 @@ export default function Context({ children }: any) {
   const [userObject, setUserObject] = useState<any>();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/getuser", { withCredentials: true })
+    api
+      .get("/getuser", { withCredentials: true })
       .then((res: AxiosResponse) => {
         if (res.data) {
           setUserObject(res.data);
@@ -20,13 +20,6 @@ export default function Context({ children }: any) {
       .finally(function () {
         console.log("finally");
       });
-    /*api.get("http://localhost:3000/getuser")
-        .then( (r)=> {
-            console.log("data",r.data) 
-            setUserObject(r.data);
-        })
-        .catch( e => console.log("Catch", e))
-        .finally( function(){ console.log("finally")});*/
   }, []);
   return <myContext.Provider value={userObject}>{children}</myContext.Provider>;
 }

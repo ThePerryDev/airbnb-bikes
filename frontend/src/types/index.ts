@@ -30,6 +30,7 @@ export interface UsersProps {
   alias: string;
   mail: string;
   phone: string;
+  token: string;
 }
 
 export interface Error {

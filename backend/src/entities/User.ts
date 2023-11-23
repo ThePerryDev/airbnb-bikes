@@ -12,8 +12,11 @@ export class User {
   @Column({ nullable: false, length: 50, unique: true })
   mail: string;
 
-  @Column({ nullable: false, length: 20, unique: true })
+  @Column({ nullable: false, length: 20, unique: false })
   phone: string;
+
+  @Column({ nullable: true, length: 64, unique: true })
+  token: string;
 
   @OneToMany(() => Rent, (rent) => rent.bike)
   rents: Rent[];

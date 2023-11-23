@@ -1,42 +1,6 @@
 #header {
   padding: 8px;
   background: #79ac78;
-  margin-bottom: 20px;
-}
-
-.searchbar {
-  margin-top: 1vh;
-  width: 100%;
-  background: white;
-  display: flex;
-  justify-content: center;
-  border-radius: 25px;
-}
-
-.searchbar input {
-  background: transparent;
-  border: 0;
-  outline: none;
-  font-size: 20px;
-  margin: 0;
-  width: 80%;
-}
-
-::placeholder {
-  color: black;
-}
-
-.searchbar button img {
-  width: 25px;
-}
-
-.searchbar button {
-  border: 0;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  background: transparent;
 }
 
 #header-nav {
@@ -44,16 +8,19 @@
   margin-top: 1vh;
 }
 
-.botao-user {
+.botao-header {
   border: 0;
   border-radius: 50%;
   cursor: pointer;
   background: #effbee;
+  cursor: pointer;
+  padding: 15px;
+  font-size: large;
+  margin-left: 15px;
 }
 
-.botao-user img {
-  padding: 15px;
-  max-width: 150px;
+.botao-header img {
+  max-width: 30px;
 }
 
 #logoequipe {
@@ -62,5 +29,8 @@
 
 footer {
   background-color: #727272;
-  margin-top: 85px;
+  vertical-align: baseline;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }

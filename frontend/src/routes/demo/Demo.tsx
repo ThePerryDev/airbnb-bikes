@@ -6,6 +6,7 @@ function Demo() {
   const [navegar, setNavegar] = useState("");
 
   return (
+    <>
     <div id="bodyx">
       <div className="conteudo">
         <h1>Welcome to the Bikepass demo!</h1>
@@ -28,6 +29,7 @@ function Demo() {
         </nav>
       </div>
     </div>
+    </>
   );
 }
 
