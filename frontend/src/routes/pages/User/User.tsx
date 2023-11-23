@@ -204,7 +204,6 @@ function User() {
           <p>Não há alugueis</p>
         ) : (
           rents?.map((rent) => (
-
           <Carousel data-bs-theme="dark" className="carrossel">
               <Carousel.Item key={rent.id}>
                 <Row>
