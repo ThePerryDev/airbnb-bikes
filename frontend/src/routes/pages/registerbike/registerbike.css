@@ -28,6 +28,19 @@
   padding-top: 37px;
 }
 
+#nome {
+  margin-left: 99px;
+  width: 80%;
+  height: 40px;
+  margin-top: 46px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #79ac78;
+  border: 0px;
+  align-items: center;
+}
+
 .handleChange {
   height: 25cm;
 }
@@ -53,11 +66,6 @@
 
 #fileuploader {
   padding-bottom: 79px;
-}
-
-#mapCard {
-  margin-right: 106px;
-  height: 300px;
 }
 
 #cep {
@@ -137,7 +145,7 @@
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  background-color: #79AC78;
+  background-color: #79ac78;
   border: 0px;
   align-items: center;
 }

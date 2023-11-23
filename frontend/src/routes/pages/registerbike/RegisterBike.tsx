@@ -23,6 +23,34 @@ function RegisterBike() {
   const handleCategoryChange = (selectedCategoryName: string) => {
     setSelectedCategory(selectedCategoryName);
   };
+  const [selectedMaterial, setSelectedMaterial] = useState("");
+  const handleMaterialChange = (selectedMaterialName: string) => {
+    setSelectedMaterial(selectedMaterialName);
+  };
+  const [selectedGender, setSelectedGender] = useState("");
+  const handleGenderChange = (selectedGenderName: string) => {
+    setSelectedGender(selectedGenderName);
+  };
+  const [selectedColor, setSelectedColor] = useState("");
+  const handleColorChange = (selectedColorName: string) => {
+    setSelectedColor(selectedColorName);
+  };
+  const [selectedSize, setSelectedSize] = useState<number>(0);
+  const handleSizeChange = (selectedSizeName: number) => {
+    setSelectedSize(selectedSizeName);
+  };
+  const [selectedSuspension, setSelectedSuspension] = useState<boolean>(false);
+  const handleSuspensionChange = (selectedSuspensionName: boolean) => {
+    setSelectedSuspension(selectedSuspensionName);
+  };
+  const [selectedRim, setSelectedRim] = useState<number>(0);
+  const handleRimChange = (selectedRimName: number) => {
+    setSelectedRim(selectedRimName);
+  };
+  const [selectedGearSet, setSelectedGearSet] = useState<number>(0);
+  const handleGearSetChange = (selectedGearSetName: number) => {
+    setSelectedGearSet(selectedGearSetName);
+  };
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
@@ -38,9 +66,13 @@ function RegisterBike() {
   const [longitude, setLongitude] = useState("");
   //  const [bikes, setBikes] = useState([] as BikeProps[]);
   const fileTypes = ["JPEG", "PNG", "GIF"];
-  const [file, setFile] = useState(null);
-  const handleChange = (file: React.SetStateAction<null>) => {
-    setFile(file);
+  const [files, setFiles] = useState<File[]>([]);
+  const handleChange = (uploadedFiles: FileList | null) => {
+    if (uploadedFiles) {
+      // Use the callback function to ensure you get the updated state
+      setFiles((prevFiles) => [...prevFiles, ...Array.from(uploadedFiles)]);
+    }
+    console.log(files);
   };
   const [cep, setCep] = useState("");
   const [numero, setNumero] = useState("");
@@ -71,17 +103,40 @@ function RegisterBike() {
   const save = async () => {
     const selectedBrand1 = selectedBrand;
     const selectedCategory1 = selectedCategory;
-    const speedkitInt = parseInt(speedkit);
-    const rimInt = parseInt(rim);
-    const sizeInt = parseInt(size);
+    const speedkitInt = selectedGearSet;
+    const rimInt = selectedRim;
+    const sizeInt = selectedSize;
     const hourlyvalueFloat = parseFloat(hourlyvalue);
     const dailyvalueFloat = parseFloat(dailyvalue);
-    const latitudeFloat = parseFloat(latitude);
-    const longitudeFloat = parseFloat(longitude);
+    const coordinates = await AddressToCoordinates(
+      `${endereco?.logradouro}, ${numero}, ${endereco?.bairro}, ${endereco?.localidade}, ${endereco?.uf}`,
+      API_KEY
+    );
+    const latitudeFloat = parseFloat(coordinates?.latitude);
+    const longitudeFloat = parseFloat(coordinates?.longitude);
     const idUser: number = auth.user?.id || 0;
+    const bike = {
+      name: name.trim(),
+      marca: selectedBrand,
+      categoria: selectedCategory,
+      speedkit: speedkitInt,
+      rim: rimInt,
+      size: sizeInt,
+      hourlyvalue: hourlyvalueFloat,
+      dailyvalue: dailyvalueFloat,
+      idUser: idUser,
+      latitude: latitudeFloat,
+      longitude: longitudeFloat,
+      color: selectedColor,
+      material: selectedMaterial,
+      gender: selectedGender,
+      suspension: selectedSuspension,
+      description: description.trim(),
+    };
+    console.log(bike);
     if (
-      selectedBrand1 &&
-      selectedCategory1 &&
+      selectedBrand &&
+      selectedCategory &&
       !isNaN(idUser) &&
       !isNaN(sizeInt) &&
       !isNaN(speedkitInt) &&
@@ -91,35 +146,33 @@ function RegisterBike() {
       !isNaN(latitudeFloat) &&
       !isNaN(longitudeFloat) &&
       name.trim() !== "" &&
-      color.trim() !== "" &&
-      material.trim() !== "" &&
-      gender.trim() !== "" &&
-      typeof suspension === "boolean" &&
+      selectedColor &&
+      selectedMaterial &&
+      selectedGender &&
+      typeof selectedSuspension === "boolean" &&
       description.trim() !== ""
     ) {
       // Obter o ID da marca pelo nome
-      const brandName = selectedBrand1;
+      const brandName = selectedBrand;
       try {
         const brandResponse = await fetch(
-          `http://localhost:3001/brand/name/${brandName}`
+          `http://localhost:3001/brand/id/${brandName}`
         );
         const brandData = await brandResponse.json();
         console.log(brandData);
-
-        if (brandData.length > 0) {
-          const brandId = brandData[0].id;
-
+        if (brandData) {
+          const brandId = brandData.id;
           // Obter o ID da categoria pelo nome
-          const categoryName = selectedCategory1;
+          const categoryName = selectedCategory;
           try {
             const categoryResponse = await fetch(
-              `http://localhost:3001/category/name/${categoryName}`
+              `http://localhost:3001/category/id/${categoryName}`
             );
             const categoryData = await categoryResponse.json();
             console.log(categoryData);
 
-            if (categoryData.length > 0) {
-              const categoryId = categoryData[0].id;
+            if (categoryData) {
+              const categoryId = categoryData.id;
 
               // Enviar a solicitação para salvar os dados da bicicleta
               const res = await BikeService.post({
@@ -127,13 +180,13 @@ function RegisterBike() {
                 idCategory: categoryId,
                 idBrand: brandId,
                 name: name.trim(),
-                color: color.trim(),
+                color: selectedColor,
                 size: sizeInt,
-                material: material.trim(),
-                gender: gender.trim(),
+                material: selectedMaterial,
+                gender: selectedGender,
                 speedkit: speedkitInt,
                 rim: rimInt,
-                suspension: suspension,
+                suspension: selectedSuspension,
                 description: description.trim(),
                 hourlyvalue: hourlyvalueFloat,
                 dailyvalue: dailyvalueFloat,
@@ -142,6 +195,19 @@ function RegisterBike() {
               });
               if (res.error) {
                 alert(res.error);
+              } else {
+                // Bicicleta criada com sucesso, agora você pode chamar savePhotos
+                const idbike = res.id; // Supondo que o ID da bicicleta seja retornado pela API
+
+                try {
+                  // Chamar savePhotos com o ID da bicicleta e os arquivos
+                  const photoIds = await savePhotos(idbike, files);
+
+                  // Aqui você pode fazer algo com os IDs das fotos, se necessário
+                  console.log("IDs das fotos:", photoIds);
+                } catch (error) {
+                  console.error("Erro ao salvar fotos:", error);
+                }
               }
             }
           } catch (error) {
@@ -151,6 +217,42 @@ function RegisterBike() {
       } catch (error) {
         console.error("Erro ao buscar informações da marca:", error);
       }
+    }
+  };
+
+  const savePhotos = async (idbike: number, files: File[]) => {
+    try {
+      if (!files || files.length === 0) {
+        throw new Error("No files provided");
+      }
+
+      const photoIds = [];
+
+      // Iterar sobre cada arquivo e fazer uma solicitação POST separada para cada um
+      for (const img of files) {
+        const formData = new FormData();
+        formData.append("idbike", idbike.toString());
+        formData.append("file", img);
+
+        const response = await axios.post(
+          "http://localhost:3001/photo",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        // Adicionar o ID da foto à lista
+        photoIds.push(response.data);
+      }
+
+      console.log("IDs das fotos:", photoIds);
+      return photoIds;
+    } catch (error) {
+      console.error("Erro ao salvar fotos:", error);
+      throw error;
     }
   };
 
@@ -191,7 +293,12 @@ function RegisterBike() {
         document.getElementById("endereco")?.setAttribute("disabled", "true");
 
         // Chamar a função para obter coordenadas
-        AddressToCoordinates(fullAddress, API_KEY);
+        const coordinates = await AddressToCoordinates(fullAddress, API_KEY);
+        if (coordinates) {
+          // Atualizar os estados latitude e longitude
+          setLatitude(coordinates.latitude);
+          setLongitude(coordinates.longitude);
+        }
       } catch (error) {
         console.error("Erro na chamada à API:", error);
         setEndereco(null);
@@ -214,12 +321,15 @@ function RegisterBike() {
   });
 
   const AddressToCoordinates = async (fullAddress: string, key: string) => {
-    fromAddress(fullAddress)
-      .then(({ results }) => {
-        const { lat, lng } = results[0].geometry.location;
-        console.log(lat, lng);
-      })
-      .catch(console.error);
+    try {
+      const response = await fromAddress(fullAddress);
+      const { lat, lng } = response.results[0].geometry.location;
+      console.log(lat, lng);
+      return { latitude: lat, longitude: lng };
+    } catch (error) {
+      console.error("Erro ao obter coordenadas:", error);
+      return null;
+    }
   };
 
   const colors = ["Vermelho", "Azul", "Verde", "Amarelo", "Preto", "Branco"];
@@ -239,15 +349,7 @@ function RegisterBike() {
     { value: false, label: "Não possui suspensão" },
   ];
   const wheelSizes = [12, 16, 20, 24, 26, 27.5, 29];
-  const gearOptions = [
-    "1 marcha",
-    "3 marchas",
-    "7 marchas",
-    "21 marchas",
-    "24 marchas",
-    "27 marchas",
-    "30 marchas",
-  ];
+  const gearOptions = [1, 3, 7, 21, 24, 27, 30];
 
   const { handleSubmit } = useForm();
 
@@ -262,6 +364,16 @@ function RegisterBike() {
           <Container id="second">
             <Col md={12}>
               <p id="paragrafoc">Cadastro de Bicicleta</p>
+            </Col>
+            <Col md={12}>
+              <input
+                className="d-flex text-center"
+                type="text"
+                id="nome"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Insira aqui o modelo da sua bicicleta"
+              />
             </Col>
             <Col md={12} className="d-flex">
               <div id="fileuploader">
@@ -300,6 +412,7 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleMaterialChange(material)}
                         >
                           {material}
                         </Dropdown.Item>
@@ -330,6 +443,7 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleGenderChange(gender)}
                         >
                           {gender}
                         </Dropdown.Item>
@@ -345,6 +459,7 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleColorChange(color)}
                         >
                           {color}
                         </Dropdown.Item>
@@ -360,6 +475,7 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleSizeChange(size)}
                         >
                           {size} polegadas
                         </Dropdown.Item>
@@ -375,6 +491,7 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleSuspensionChange(option.value)}
                         >
                           {option.label}
                         </Dropdown.Item>
@@ -390,6 +507,7 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleRimChange(size)}
                         >
                           {size} polegadas
                         </Dropdown.Item>
@@ -405,8 +523,9 @@ function RegisterBike() {
                         <Dropdown.Item
                           key={index}
                           href={`#/action-${index + 1}`}
+                          onClick={() => handleGearSetChange(option)}
                         >
-                          {option}
+                          {option} marchas
                         </Dropdown.Item>
                       ))}
                     </Dropdown.Menu>

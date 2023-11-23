@@ -7,6 +7,11 @@ class CategoryService {
     return data;
   }
 
+  async GetByName(name: string) {
+    const { data } = await api.get(`/category/id/${name}`);
+    return data;
+  }
+
   async post(props: { name: string }): Promise<any> {
     const { data } = await api.post("/category", props);
     return data;

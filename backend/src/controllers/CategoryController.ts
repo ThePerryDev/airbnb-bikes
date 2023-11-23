@@ -48,7 +48,14 @@ class CategoryController {
     return res.json(categories);
   }
 
+  public async GetByName(req: Request, res: Response): Promise<Response> {
+    const { name } = req.params;
 
+    const category = await AppDataSource.manager.findOne(Category, {
+      where: { name },
+    });
+    return res.json(category);
+  }
 
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.body;

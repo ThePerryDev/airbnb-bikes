@@ -2,7 +2,7 @@ class Search<T>{
     sequential(e:T, v:T[]):number{
         let pos: number = -1;
         for(let i:number =0; i< v.length; ++i){
-            if(e == v[i])
+            if(e === v[i])
                 return i;
         }
         return pos;
@@ -10,9 +10,9 @@ class Search<T>{
 
     sequential_w(e:T, v:T[]):number{
         let pos:number = 0;
-        while(pos <v.length && v[pos]!= e)
+        while(pos <v.length && v[pos]!== e)
             ++pos;
-        if(pos == v.length)
+        if(pos === v.length)
             return -1;
         else 
             return pos;        
@@ -22,9 +22,9 @@ class Search<T>{
     sequential_ws(e:string, v:any[]):number{
         let pos:number = 0;
         v.push(e);
-        while(v[pos]!= e)
+        while(v[pos]!== e)
             ++pos;
-        if(pos == (v.length-1)){
+        if(pos === (v.length-1)){
             v.pop();
             return -1;
         } else{
@@ -39,7 +39,7 @@ class Search<T>{
         let middle = Math.floor((start + end)/2);        
         while( start <= end ){
             //console.log("middle: ", middle);
-            if (v[middle] == e){
+            if (v[middle] === e){
                 return middle
             } else if(v[middle]>e){
                         end = middle-1;
