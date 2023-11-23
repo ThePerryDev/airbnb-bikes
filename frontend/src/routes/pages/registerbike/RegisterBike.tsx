@@ -360,7 +360,7 @@ function RegisterBike() {
 
   return (
     <div>
-      <main>
+      <main id="registerbike">
         <Container fluid id="main">
           <Container id="second">
             <Col md={12}>
@@ -649,7 +649,7 @@ function RegisterBike() {
                   <Col md={12} className="colvalor d-flex">
                     <Button
                       className="d-flex text-center"
-                      id="botao"
+                      id="botao7"
                       onClick={save}
                     >
                       SALVAR

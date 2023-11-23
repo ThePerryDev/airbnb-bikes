@@ -9,16 +9,51 @@ import { RequireAuth } from "../routes/context/auth/RequireAuth";
 import { Login } from "../routes/pages/Login/Login";
 
 function App() {
-
   return (
     <Routes>
-      <Route path="/user/:id" element={<RequireAuth><User /></RequireAuth>} />
+      <Route
+        path="/user"
+        element={
+          <RequireAuth>
+            <User />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/user/:id"
+        element={
+          <RequireAuth>
+            <User />
+          </RequireAuth>
+        }
+      />
       <Route path="/" element={<Home />} />
-      <Route path="/registerbike" element={<RequireAuth><RegisterBike /></RequireAuth>} />
-      <Route path="/bike/:id" element={<RequireAuth><Bike /></RequireAuth>}/>
+      <Route
+        path="/registerbike"
+        element={
+          <RequireAuth>
+            <RegisterBike />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/bike/:id"
+        element={
+          <RequireAuth>
+            <Bike />
+          </RequireAuth>
+        }
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/catalog" element={<Catalog />} />
-      <Route path="/private" element={<RequireAuth><Private /></RequireAuth>} />
+      <Route
+        path="/private"
+        element={
+          <RequireAuth>
+            <Private />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 }

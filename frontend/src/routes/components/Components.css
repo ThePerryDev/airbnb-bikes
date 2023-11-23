@@ -32,5 +32,6 @@ footer {
   background-color: #727272;
   vertical-align: baseline;
   width: 100%;
-    margin-top: 20px;
+  bottom: 0;
+  position: fixed;
 }

@@ -29,7 +29,7 @@ function Header() {
               {auth.user ? (
                 <div>
                   <button className="botao-header">
-                    <Link to="/user">
+                    <Link to={`/user/${auth.user?.id}`}>
                       <img src={user} alt="Pagina de usuário" />
                     </Link>
                   </button>
@@ -39,9 +39,11 @@ function Header() {
                   </button>
                 </div>
               ) : (
-                <Link className="botao-header" to="/login">
-                  <img src={user} alt="Pagina de usuário" />
-                </Link>
+                <button className="botao-header">
+                  <Link to="/user">
+                    <img src={user} alt="Pagina de usuário" />
+                  </Link>
+                </button>
               )}
             </nav>
           </Col>
