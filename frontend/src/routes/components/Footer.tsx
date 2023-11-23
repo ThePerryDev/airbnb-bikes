@@ -14,7 +14,11 @@ function Footer() {
             </a>
           </Col>
           <Col>
-            <a href="https://github.com/ThePerryDev/bikepass" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/ThePerryDev/bikepass"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img id="logoequipe" src={logoequipe} alt="logo equipe" />
             </a>
           </Col>

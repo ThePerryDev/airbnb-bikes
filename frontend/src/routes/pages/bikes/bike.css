@@ -3,7 +3,7 @@
 }
 
 .valores {
-  width: 302px;
+  width: 100%;
   min-height: 55px;
   border-radius: 15px;
   text-align: center;
@@ -12,7 +12,7 @@
 }
 
 .perfil {
-  width: 302px;
+  width: 100%;
   min-height: 55px;
   border-radius: 15px;
   text-align: center;
@@ -20,19 +20,28 @@
   background-color: #d0e7d2;
 }
 
+.perfil2 {
+  height: 95%;
+}
+
 #perfilImg {
   margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 15px;
-  height: 150px;
-  width: 150px;
+  height: 250px;
+  width: 250px;
 }
 
 .valContainers {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.perContainers {
+  height: 100%;
+  font-size: 18px;
 }
 
 .rowcard {
@@ -72,7 +81,7 @@
   padding-top: 30px;
 }
 
-#mapCard {
+#mapCard1 {
   width: auto;
   height: 450px;
   border-radius: 15px;
@@ -86,7 +95,7 @@
   text-align: center;
 }
 
-@media (max-width: 575.99px) {
+@media (max-width: 767px) {
   #cardCont {
     width: auto;
     margin-bottom: 30px;

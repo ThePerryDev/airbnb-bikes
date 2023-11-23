@@ -26,25 +26,30 @@ function Bike() {
 
   const initMap = useCallback(() => {
     if (bike?.latitude !== undefined && bike?.longitude !== undefined) {
-      const map = L.map("map").setView([bike.latitude, bike.longitude], 13);
+      // Verificar se o mapa já foi inicializado
+      const mapElement = document.getElementById("map");
 
-      L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
+      if (mapElement && !mapElement.classList.contains("leaflet-container")) {
+        const map = L.map("map").setView([bike.latitude, bike.longitude], 13);
 
-      const customIcon = L.icon({
-        iconUrl: mapBike,
-        iconSize: [35, 35],
-        iconAnchor: [15, 30],
-        popupAnchor: [0, -30],
-      });
+        L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
 
-      // Adicione um marcador no mapa (opcional)
-      L.marker([bike.latitude, bike.longitude], { icon: customIcon })
-        .addTo(map)
-        .bindPopup("Localização da bicicleta")
-        .openPopup();
+        const customIcon = L.icon({
+          iconUrl: mapBike,
+          iconSize: [35, 35],
+          iconAnchor: [15, 30],
+          popupAnchor: [0, -30],
+        });
+
+        // Adicione um marcador no mapa (opcional)
+        L.marker([bike.latitude, bike.longitude], { icon: customIcon })
+          .addTo(map)
+          .bindPopup("Localização da bicicleta")
+          .openPopup();
+      }
     }
   }, [bike]);
 
@@ -168,7 +173,7 @@ function Bike() {
                 </Row>
                 <Row id="mapCardRow">
                   <Col md={12} sm={12} className="respCard">
-                    <Card id="mapCard">
+                    <Card id="mapCard1">
                       <div
                         id="map"
                         style={{
@@ -197,16 +202,46 @@ function Bike() {
                   <Card.Title className="title">AVALIAÇÕES</Card.Title>
                   <Container className="valContainers">
                     <Card className="perfil">
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
-                      <Card.Text>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porttitor tortor at semper. Suspendisse potenti. Nulla facilisi. Vestibulum in consectetur massa, vel ultrices justo."</Card.Text>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <br></br>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <br></br>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <br></br>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <br></br>
+                      <Card.Text>
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit. In porttitor tortor at semper. Suspendisse
+                        potenti. Nulla facilisi. Vestibulum in consectetur
+                        massa, vel ultrices justo."
+                      </Card.Text>
+                      <br></br>
                     </Card>
                   </Container>
                   <Card.Title className="title">CONTATOS</Card.Title>
-                  <Container className="valContainers">
-                    <Card className="perfil">
+                  <Container className="perContainers">
+                    <Card className="perfil perfil2">
                       <Card.Img src={perfil} id="perfilImg"></Card.Img>
                       <Card.Text>{bike?.user.alias}</Card.Text>
                       <Card.Text>{bike?.user.phone}</Card.Text>

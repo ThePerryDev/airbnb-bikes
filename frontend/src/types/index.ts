@@ -31,6 +31,7 @@ export interface UsersProps {
   mail: string;
   phone: string;
   bikelist: BikeProps
+  token: string;
 }
 
 export interface Error {
@@ -58,4 +59,13 @@ export interface PhotoProps {
   id: number;
   filename: string;
   bikes: BikeProps[];
+}
+
+export interface EnderecoProps {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  cep: string;
+  numero: string
 }

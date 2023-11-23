@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
-import lupa from "./img/lupa.png";
 import logo from "./img/logo.png";
 import user from "./img/user.png";
+import logout from "./img/logoutico.png";
 import { Row, Col, Container } from "react-bootstrap";
 import "./Components.css";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth/Authcontext";
 
 function Header() {
+  const auth = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    await auth.signout();
+    window.location.reload();
+  };
 
   return (
     <header id="header">
@@ -16,20 +24,25 @@ function Header() {
               <img src={logo} alt="logo" />
             </Link>
           </Col>
-          <Col xs={6}>
-            <form action="" className="searchbar">
-              <input type="text" placeholder="Search..." />
-              <button type="submit">
-                <img src={lupa} alt="search icon" />
-              </button>
-            </form>
-          </Col>
           <Col>
             <nav id="header-nav">
-              <Link className="botao-user" to="/login">
-                <img src={user} alt="Pagina de usuário" />
-              </Link>
+              {auth.user ? (
+                <div>
+                  <button className="botao-header">
+                    <Link to="/user">
+                      <img src={user} alt="Pagina de usuário" />
+                    </Link>
+                  </button>
 
+                  <button className="botao-header" onClick={handleLogout}>
+                    <img src={logout} alt="Logout Button" />
+                  </button>
+                </div>
+              ) : (
+                <Link className="botao-header" to="/user">
+                  <img src={user} alt="Pagina de usuário" />
+                </Link>
+              )}
             </nav>
           </Col>
         </Row>

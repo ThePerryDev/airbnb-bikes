@@ -16,17 +16,17 @@ class UserController {
         else if (/(mail)[\s\S]+(already exists)/.test(e.detail)) {
           return { error: "E-mail já existe", props: "mail" };
         }
-        // testa se o e-mail é repetido
-        else if (/(phone)[\s\S]+(already exists)/.test(e.detail)) {
-          return { error: "Telefone já existe", props: "phone" };
-        }
+        // // testa se o e-mail é repetido
+        // else if (/(phone)[\s\S]+(already exists)/.test(e.detail)) {
+        //   return { error: "Telefone já existe", props: "phone" };
+        // }
         return { error: e.message, props: "" };
       });
     return res.json(user);
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { id, alias, mail, phone } = req.body;
+    const { id, alias, mail, phone, token } = req.body;
     //obtém o usuário na tabela users
     const user = await AppDataSource.manager.findOneBy(User, { id });
     if (!user) {
@@ -36,6 +36,7 @@ class UserController {
     user.alias = alias;
     user.mail = mail;
     user.phone = phone;
+    user.token = token;
     const r = await AppDataSource.manager.save(User, user).catch((e) => {
       // testa se o alias é repetido
       if (/(alias)[\s\S]+(already exists)/.test(e.detail)) {
@@ -45,10 +46,10 @@ class UserController {
       else if (/(mail)[\s\S]+(already exists)/.test(e.detail)) {
         return { error: "E-mail já existe", props: "mail" };
       }
-      // testa se o e-mail é repetido
-      else if (/(phone)[\s\S]+(already exists)/.test(e.detail)) {
-        return { error: "Telefone já existe", props: "phone" };
-      }
+      // // testa se telefone é repetido
+      // else if (/(phone)[\s\S]+(already exists)/.test(e.detail)) {
+      //   return { error: "Telefone já existe", props: "phone" };
+      // }
       return { error: e.message, props: "" };
     });
     return res.json(r);
@@ -65,7 +66,7 @@ class UserController {
 
   public async listById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    
+
     console.log("id", id);
     const user = await AppDataSource.manager.findOne(User, {
       where: { id: parseInt(id) },
