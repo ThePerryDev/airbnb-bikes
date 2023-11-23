@@ -60,10 +60,11 @@
   margin-top: 5%;
 }
 
-@media screen and (max-width: 1220px) {
+
+@media screen and (max-width: 750px) {
   #caixa {
-    width: 700px;
-    height: 400px;
+    width: 500px;
+    height: 300px;
     background-color: #fff;
     border: solid 5px #effbee;
     border-radius: 15px;
@@ -72,19 +73,19 @@
   }
   
   .img-col {
-    width: 350px;
+    width: 250px;
     background-color: transparent;
   }
   
   .text-col {
-    width: 350px;
+    width: 250px;
   }
   
   #titulo {
     align-items: center;
     justify-content: center;
     font-family: "Ubuntu", sans-serif;
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: 600;
     margin-top: 10%;
     margin-bottom: 35%;
@@ -104,10 +105,10 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 550px) {
   #caixa {
-    width: 700px;
-    height: 400px;
+    width: 300px;
+    height: 150px;
     background-color: #fff;
     border: solid 5px #effbee;
     border-radius: 15px;
@@ -116,78 +117,36 @@
   }
   
   .img-col {
-    width: 350px;
+    display: flex;
+    width: 150px;
     background-color: transparent;
   }
   
   .text-col {
-    width: 350px;
+    display: flex;
+    width: 150px;
   }
   
   #titulo {
+    display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Ubuntu", sans-serif;
-    font-size: 2.5em;
-    font-weight: 600;
-    margin-top: 10%;
-    margin-bottom: 35%;
+    font-size: 1.5em;
+    font-weight: 200;
   }
   
   #subtitulo {
+    display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Ubuntu", sans-serif;
-    font-size: 1em;
-    font-weight: 400;
+    font-size: 0.8em;
+    font-weight: 100;
   }
   
   #botao {
+    display: flex;
     background-color: transparent;
-    margin-top: 5%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  #caixa {
-    width: 700px;
-    height: 400px;
-    background-color: #fff;
-    border: solid 5px #effbee;
-    border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .img-col {
-    width: 350px;
-    background-color: transparent;
-  }
-  
-  .text-col {
-    width: 350px;
-  }
-  
-  #titulo {
-    align-items: center;
-    justify-content: center;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 2.5em;
-    font-weight: 600;
-    margin-top: 10%;
-    margin-bottom: 35%;
-  }
-  
-  #subtitulo {
-    align-items: center;
-    justify-content: center;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 1em;
-    font-weight: 400;
-  }
-  
-  #botao {
-    background-color: transparent;
-    margin-top: 5%;
   }
 }

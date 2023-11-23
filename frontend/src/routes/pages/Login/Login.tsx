@@ -29,7 +29,7 @@ export const Login = () => {
                   </Col>
                   <Col md={6} className="text-col d-flex flex-column justify-content-center align-items-center">
                     <Card.Title id="titulo" className="mb-4 text-center">
-                      Login
+                     Bem-Vindo
                     </Card.Title>
                     <Card.Subtitle id="subtitulo" className="mb-4 text-muted text-center">
                       Utilize o Google para <br/> Entrar ou se Registrar
