@@ -11,10 +11,15 @@ function HomeBikeAds() {
     try {
       const response = await api.get(`/bike`);
       const data = response.data;
-      setBikes(data);
+  
+      // Ordena os objetos com base na propriedade 'id'
+      const bikesOrdenadas = [...data].sort((a: any, b: any) => a.id - b.id);
+
+      setBikes(bikesOrdenadas);
+
     } catch (error) {
       console.log(error);
-    }
+    } 
   };
 
   useEffect(() => {

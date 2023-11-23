@@ -8,7 +8,7 @@ function Catalog() {
       <Container id="catalog">
         <Row>
           <Col>
-            <CatalogSearchBar />
+            {/* <CatalogSearchBar /> */}
             <Bikead />
           </Col>
         </Row>
