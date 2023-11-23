@@ -24,25 +24,35 @@ export const Login = () => {
                 id="caixa"
               >
                 <Card.Body>
-                  <Card.Title>Login</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    Faça seu Login com o Google
+                  <Card.Title
+                    id="titulo"
+                    className="d-flex justify-content-center"
+                  >
+                    <h2>Login</h2>
+                  </Card.Title>
+                  <Card.Subtitle
+                    id="subtitulo"
+                    className="mb-2 text-muted d-flex justify-content-center"
+                  >
+                    Utilize o Google para <br />Entrar ou se Registrar
                   </Card.Subtitle>
-                  <Card.Text>
-                    <GoogleLogin
-                      onSuccess={(credentialResponse) => {
-                        const token: any = credentialResponse.credential;
-                        const decoded = jwtDecode<JwtPayload>(token);
-                        let email = "" + decoded.email;
-                        let alias = "" + decoded.name;
-                        let jtiToken = "" + decoded.jti;
-                        auth.signin(alias, email, jtiToken);
-                        navigate("/");
-                      }}
-                      onError={() => {
-                        console.log("login failed");
-                      }}
-                    />
+                  <Card.Text className="d-flex align-items-center justify-content-center" >
+                    <div id="botao">
+                      <GoogleLogin
+                        onSuccess={(credentialResponse) => {
+                          const token: any = credentialResponse.credential;
+                          const decoded = jwtDecode<JwtPayload>(token);
+                          let email = "" + decoded.email;
+                          let alias = "" + decoded.name;
+                          let jtiToken = "" + decoded.jti;
+                          auth.signin(alias, email, jtiToken);
+                          navigate("/");
+                        }}
+                        onError={() => {
+                          console.log("login failed");
+                        }}
+                      />
+                    </div>
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -51,25 +61,5 @@ export const Login = () => {
         </Container>
       </main>
     </div>
-    /*<div id="loginbox">
-
-        <h1>Faça seu Login com o Google</h1>
-
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            const token: any = credentialResponse.credential;
-            const decoded = jwtDecode<JwtPayload>(token);
-            let email = "" + decoded.email;
-            let alias = "" + decoded.name;
-            let jtiToken = "" + decoded.jti;
-            auth.signin(alias, email, jtiToken);
-            navigate("/");
-          }}
-          onError={() => {
-            console.log("login failed");
-          }}
-        />
-
-    </div>*/
   );
 };

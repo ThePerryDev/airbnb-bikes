@@ -12,7 +12,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Ubuntu", sans-serif;
   background-color: #effbee;
   background-image: url(./img/bike-parking.png);
   background-repeat: no-repeat;
@@ -21,16 +20,32 @@
 }
 
 #caixa {
-  width: 450px;
-  height: 500px;
+  width: 350px;
+  height: 400px;
   background-color: #fff;
+  border:transparent;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
-/*#loginbox{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-}*/
+#titulo{
+  align-items: center;
+  justify-content: center;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
+  margin-top: 20%;
+  margin-bottom: 30%;
+}
+
+#subtitulo{
+  align-items: center;
+  justify-content: center;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+}
+
+#botao{
+  background-color: transparent;
+  margin-top: 30%;
+}
