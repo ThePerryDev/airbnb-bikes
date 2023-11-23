@@ -16,6 +16,17 @@ class UsersService {
     return data;
   }
 
+  async put(props: {
+    id: number;
+    alias: string;
+    mail: string;
+    phone: string;
+    token: string;
+  }): Promise<any> {
+    const { data } = await api.put("/user", props);
+    return data;
+  }
+
   async listById(id: string) {
     const { data } = await api.get(`/user/${id}`);
     return data;

@@ -67,7 +67,6 @@ function Bike() {
 
   return (
     <div id="body">
-      <Header />
       <Container fluid id="fundo">
         <Container id="carrouselcontainer">
           <Col md={12}>
@@ -199,50 +198,11 @@ function Bike() {
                       <Card.Text>{bike?.hourlyvalue}</Card.Text>
                     </Card>
                   </Container>
-                  <Card.Title className="title">AVALIAÇÕES</Card.Title>
                   <Container className="valContainers">
-                    <Card className="perfil">
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <br></br>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <br></br>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <br></br>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <br></br>
-                      <Card.Text>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. In porttitor tortor at semper. Suspendisse
-                        potenti. Nulla facilisi. Vestibulum in consectetur
-                        massa, vel ultrices justo."
-                      </Card.Text>
-                      <br></br>
-                    </Card>
                   </Container>
-                  <Card.Title className="title">CONTATOS</Card.Title>
+                  <Card.Title className="title">CONTATO</Card.Title>
                   <Container className="perContainers">
                     <Card className="perfil perfil2">
-                      <Card.Img src={perfil} id="perfilImg"></Card.Img>
                       <Card.Text>{bike?.user.alias}</Card.Text>
                       <Card.Text>{bike?.user.phone}</Card.Text>
                       <Card.Text>{bike?.user.mail}</Card.Text>
@@ -254,7 +214,6 @@ function Bike() {
           </Col>
         </Container>
       </Container>
-      <Footer/>
     </div>
   );
 }

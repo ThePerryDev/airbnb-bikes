@@ -39,7 +39,7 @@ function Header() {
                   </button>
                 </div>
               ) : (
-                <Link className="botao-header" to="/user">
+                <Link className="botao-header" to="/login">
                   <img src={user} alt="Pagina de usuário" />
                 </Link>
               )}
