@@ -22,7 +22,14 @@ class RentService {
     const { data } = await api.post("/rents", props);
     return data;
   }
+
+  async listByClient(iduser:string){
+    const { data } = await api.get(`/client/${iduser}`);
+    return data;
+  }
+
 }
+
 
 const service = new RentService();
 export default service;

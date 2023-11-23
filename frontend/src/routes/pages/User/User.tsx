@@ -1,27 +1,22 @@
 import { useEffect, useState } from "react";
-import { BikeProps, UsersProps } from "../../../types";
+import { BikeProps, RentsProps, UsersProps } from "../../../types";
 import UsersService from "../../../services/UsersService";
 import { Link, useParams } from "react-router-dom";
 import "./user.css";
-import {
-  Alert,
-  Button,
-  Card,
-  Carousel,
-  Col,
-  Container,
-  Row,
-} from "react-bootstrap";
+import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import bikeService from "../../../services/BikeService";
 import AvLocatorio from "../../components/Avlocatorio/Avlocatorio";
 import AvLocador from "../../components/Avlocador/Avlocador";
+import api from "../../../services/api";
 
 function User() {
   const { id } = useParams();
   const [bikes, setBikes] = useState([] as BikeProps[]);
   const [users, setUsers] = useState({} as UsersProps);
+  const [rents, setRents] = useState<RentsProps[]>([]);
+
   useEffect(() => {
     if (id) {
       bikeService
@@ -46,6 +41,20 @@ function User() {
         });
     }
   }, [id]);
+
+  const getRents = async () => {
+    try {
+      const response = await api.get(`/rent`);
+      const data = response.data;
+      setRents(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getRents();
+  }, []);
 
   const [cardlcdorV, setCardlcdorV] = useState(false);
   const lcdorTroca = () => {
@@ -190,10 +199,14 @@ function User() {
         <Row id="RowProdutos">
           <Card.Text>Meus Alugueis:</Card.Text>
         </Row>
-        {bikes && bikes[0] ? (
+
+        {rents.length === 0 ? (
+          <p>Não há alugueis</p>
+        ) : (
+          rents?.map((rent) => (
+
           <Carousel data-bs-theme="dark" className="carrossel">
-            {bikes.map((bike, indice) => (
-              <Carousel.Item key={indice}>
+              <Carousel.Item key={rent.id}>
                 <Row>
                   <Col md={4} id="colBike">
                     <div id="cardBike">
@@ -259,29 +272,34 @@ function User() {
                         </div>
                       </Col>
                     </Row>
-                    <Row>
-                      <Col>
-                        <div id="cardDatas">
-                          <Card.Text className="text">
-                            DATA ALUGUEL <br /> DATA DE ENTREGA
-                          </Card.Text>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div id="cardAva">
-                          <Card.Text className="text">AVALIAÇÃO</Card.Text>
-                        </div>
-                      </Col>
-                    </Row>
+                    
+                        <Row>
+                          <Col>
+                            <div id="cardDatas">
+                              <Card.Text className="text">
+                                DATA ALUGUEL:{" "}
+                                {new Date(rent.rentalDate).toLocaleDateString()}
+                                <br />
+                                DATA DE ENTREGA:{" "}
+                                {new Date(rent.returnDate).toLocaleDateString()}
+                              </Card.Text>
+                            </div>
+                          </Col>
+                          <Col>
+                            <div id="cardAva">
+                              <Card.Text>
+                                Avaliação: {rent.clientValuation}
+                              </Card.Text>
+                            </div>
+                          </Col>
+                        </Row>
+                      
                   </Col>
                 </Row>
               </Carousel.Item>
-            ))}
           </Carousel>
-        ) : (
-          <div>Este usuário ainda não realizou nenhum aluguel</div>
+          ))
         )}
-
         <Container fluid>
           <Container id="centerContainer">
             <Row>
@@ -291,17 +309,21 @@ function User() {
                 </Link>
               </Col>
               <Col md={4} sm={3}>
-                <Button id="button" onClick={lcdorTroca}>AVALIAÇÕES DO LOCADOR</Button>
+                <Button id="button" onClick={lcdorTroca}>
+                  AVALIAÇÕES DO LOCADOR
+                </Button>
                 <AvLocador show={cardlcdorV} onClose={lcdorTroca} />
               </Col>
               <Col md={4} sm={3}>
-                <Button id="button" onClick={lctarioTroca}>AVALIAÇÕES DO LOCATÓRIO</Button>
+                <Button id="button" onClick={lctarioTroca}>
+                  AVALIAÇÕES DO LOCATÓRIO
+                </Button>
                 <AvLocatorio show={cardlctarioV} onClose={lctarioTroca} />
               </Col>
             </Row>
           </Container>
         </Container>
-      </Container>  
+      </Container>
       <Footer />
     </div>
   );

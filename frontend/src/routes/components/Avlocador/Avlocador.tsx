@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "./Avlocador.css";
 import { useParams } from "react-router-dom";
-import { BikeProps, RentsProps, UsersProps } from "../../../types";
-import rentService from "../../../services/RentService";
+import { RentsProps } from "../../../types";
 
 interface AlertProps {
   show: boolean;
