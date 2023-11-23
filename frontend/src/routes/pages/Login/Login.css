@@ -1,7 +1,152 @@
-#loginbox{
-    display: flex;
-    flex-direction: column;
+#mainy,
+#mainy:before,
+#mainy:after {
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+}
+
+#principal {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #effbee;
+  background-image: url(./img/background-watercolor.jpg);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+#caixa {
+  width: 700px;
+  height: 400px;
+  background-color: #fff;
+  border: solid 5px #effbee;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-col {
+  width: 350px;
+  background-color: transparent;
+}
+
+.text-col {
+  width: 350px;
+}
+
+#titulo {
+  align-items: center;
+  justify-content: center;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2.5em;
+  font-weight: 600;
+  margin-top: 10%;
+  margin-bottom: 35%;
+}
+
+#subtitulo {
+  align-items: center;
+  justify-content: center;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+#botao {
+  background-color: transparent;
+  margin-top: 5%;
+}
+
+
+@media screen and (max-width: 750px) {
+  #caixa {
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    border: solid 5px #effbee;
+    border-radius: 15px;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+  }
+  
+  .img-col {
+    width: 250px;
+    background-color: transparent;
+  }
+  
+  .text-col {
+    width: 250px;
+  }
+  
+  #titulo {
+    align-items: center;
+    justify-content: center;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 2em;
+    font-weight: 600;
+    margin-top: 10%;
+    margin-bottom: 35%;
+  }
+  
+  #subtitulo {
+    align-items: center;
+    justify-content: center;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+  }
+  
+  #botao {
+    background-color: transparent;
+    margin-top: 5%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #caixa {
+    width: 300px;
+    height: 150px;
+    background-color: #fff;
+    border: solid 5px #effbee;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .img-col {
+    display: flex;
+    width: 150px;
+    background-color: transparent;
+  }
+  
+  .text-col {
+    display: flex;
+    width: 150px;
+  }
+  
+  #titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.5em;
+    font-weight: 200;
+  }
+  
+  #subtitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 0.8em;
+    font-weight: 100;
+  }
+  
+  #botao {
+    display: flex;
+    background-color: transparent;
+  }
 }
