@@ -1,44 +1,28 @@
 import React, { useEffect, useState } from "react";
-import {
-  BikeProps,
-  CategoriesProps,
-  EnderecoProps,
-  BrandProps,
-} from "../../../types";
+import { CategoriesProps, EnderecoProps, BrandProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
 import "./registerbike.css";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Dropdown,
-  Row,
-  Form,
-} from "react-bootstrap";
+import { Button, Col, Container, Dropdown, Row, Form } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import {
-  setKey,
-  setLanguage,
-  setRegion,
-  fromAddress,
-  fromLatLng,
-  fromPlaceId,
-  setLocationType,
-  geocode,
-  RequestType,
-} from "react-geocode";
+import { fromAddress } from "react-geocode";
 import { setDefaults } from "../../components/mapas";
 
 function RegisterBike() {
   const [idUser, setIdUser] = useState("");
   const [idCategory, setIdCategory] = useState("");
   const [idBrand, setIdBrand] = useState("");
+  const [selectedBrand, setSelectedBrand] = useState("");
+  const handleBrandChange = (selectedBrandName: string) => {
+    setSelectedBrand(selectedBrandName);
+  };
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const handleCategoryChange = (selectedCategoryName: string) => {
+    setSelectedCategory(selectedCategoryName);
+  };
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
@@ -85,10 +69,9 @@ function RegisterBike() {
   }, []);
 
   const save = async () => {
-    // Converter os campos numéricos para inteiros ou floats
+    const selectedBrand1 = selectedBrand;
+    const selectedCategory1 = selectedCategory;
     const idUserInt = parseInt(idUser);
-    const idCategoryInt = parseInt(idCategory);
-    const idBrandInt = parseInt(idBrand);
     const speedkitInt = parseInt(speedkit);
     const rimInt = parseInt(rim);
     const sizeInt = parseInt(size);
@@ -96,12 +79,10 @@ function RegisterBike() {
     const dailyvalueFloat = parseFloat(dailyvalue);
     const latitudeFloat = parseFloat(latitude);
     const longitudeFloat = parseFloat(longitude);
-
-    // Verificar se as conversões foram bem-sucedidas e se os campos obrigatórios foram preenchidos
     if (
+      selectedBrand1 &&
+      selectedCategory1 &&
       !isNaN(idUserInt) &&
-      !isNaN(idCategoryInt) &&
-      !isNaN(idBrandInt) &&
       !isNaN(sizeInt) &&
       !isNaN(speedkitInt) &&
       !isNaN(rimInt) &&
@@ -116,55 +97,66 @@ function RegisterBike() {
       typeof suspension === "boolean" &&
       description.trim() !== ""
     ) {
-      const res = await BikeService.post({
-        idUser: idUserInt,
-        idCategory: idCategoryInt,
-        idBrand: idBrandInt,
-        name: name.trim(),
-        color: color.trim(),
-        size: sizeInt,
-        material: material.trim(),
-        gender: gender.trim(),
-        speedkit: speedkitInt,
-        rim: rimInt,
-        suspension: suspension,
-        description: description.trim(),
-        hourlyvalue: hourlyvalueFloat,
-        dailyvalue: dailyvalueFloat,
-        latitude: latitudeFloat,
-        longitude: longitudeFloat,
-      });
-      if (res.error) {
-        alert(res.error);
-      } else {
-        reset();
+      // Obter o ID da marca pelo nome
+      const brandName = selectedBrand1;
+      try {
+        const brandResponse = await fetch(
+          `http://localhost:3001/brand/name/${brandName}`
+        );
+        const brandData = await brandResponse.json();
+        console.log(brandData);
+
+        if (brandData.length > 0) {
+          const brandId = brandData[0].id;
+
+          // Obter o ID da categoria pelo nome
+          const categoryName = selectedCategory1;
+          try {
+            const categoryResponse = await fetch(
+              `http://localhost:3001/category/name/${categoryName}`
+            );
+            const categoryData = await categoryResponse.json();
+            console.log(categoryData);
+
+            if (categoryData.length > 0) {
+              const categoryId = categoryData[0].id;
+
+              // Enviar a solicitação para salvar os dados da bicicleta
+              const res = await BikeService.post({
+                idUser: idUserInt,
+                idCategory: categoryId,
+                idBrand: brandId,
+                name: name.trim(),
+                color: color.trim(),
+                size: sizeInt,
+                material: material.trim(),
+                gender: gender.trim(),
+                speedkit: speedkitInt,
+                rim: rimInt,
+                suspension: suspension,
+                description: description.trim(),
+                hourlyvalue: hourlyvalueFloat,
+                dailyvalue: dailyvalueFloat,
+                latitude: latitudeFloat,
+                longitude: longitudeFloat,
+              });
+              if (res.error) {
+                alert(res.error);
+              }
+            }
+          } catch (error) {
+            console.error("Erro ao buscar informações da categoria:", error);
+          }
+        }
+      } catch (error) {
+        console.error("Erro ao buscar informações da marca:", error);
       }
     }
-  };
-
-  const reset = () => {
-    setIdUser("");
-    setIdCategory("");
-    setIdBrand("");
-    setName("");
-    setColor("");
-    setSize("");
-    setMaterial("");
-    setGender("");
-    setSpeedkit("");
-    setRim("");
-    setSuspension(false);
-    setDescription("");
-    setHourlyvalue("");
-    setDailyvalue("");
-    setLatitude("");
-    setLongitude("");
   };
 
   //CEP
 
   const API_KEY = "AIzaSyDaUNxhWQrwGSlVnmpoAhY5nTgyRO4fwPI";
-  const API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
 
   const handleCEPChange = async () => {
     if (cep.length === 8) {
@@ -230,7 +222,34 @@ function RegisterBike() {
       .catch(console.error);
   };
 
-  const { register, handleSubmit } = useForm();
+  const colors = ["Vermelho", "Azul", "Verde", "Amarelo", "Preto", "Branco"];
+  const genders = ["Feminino", "Masculino", "Unissex"];
+  const materials = [
+    "Alumínio",
+    "Fibra de Carbono",
+    "Ferro",
+    "Aço",
+    "Titânio",
+    "Cromo-molibdênio",
+    "Alumínio e Carbono",
+  ];
+  const sizes = [18, 20, 22, 24, 26, 27.5, 29];
+  const suspensionOptions = [
+    { value: true, label: "Possui suspensão" },
+    { value: false, label: "Não possui suspensão" },
+  ];
+  const wheelSizes = [12, 16, 20, 24, 26, 27.5, 29];
+  const gearOptions = [
+    "1 marcha",
+    "3 marchas",
+    "7 marchas",
+    "21 marchas",
+    "24 marchas",
+    "27 marchas",
+    "30 marchas",
+  ];
+
+  const { handleSubmit } = useForm();
 
   const onSubmit = (e: any) => {
     console.log(e);
@@ -258,13 +277,16 @@ function RegisterBike() {
             <Col md={12}>
               <Row>
                 <Col md={6}>
-                  <Dropdown>
+                  <Dropdown id="brandDropdown">
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       MARCA
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       {brand?.map((brand) => (
-                        <Dropdown.Item key={brand?.id}>
+                        <Dropdown.Item
+                          key={brand?.id}
+                          onClick={() => handleBrandChange(brand?.name)}
+                        >
                           {brand?.name}
                         </Dropdown.Item>
                       ))}
@@ -275,28 +297,26 @@ function RegisterBike() {
                       MATERIAL
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Alumínio</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Fibra de Carbono
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Ferro</Dropdown.Item>
-                      <Dropdown.Item href="#/action-4">Aço</Dropdown.Item>
-                      <Dropdown.Item href="#/action-5">Titânio</Dropdown.Item>
-                      <Dropdown.Item href="#/action-6">
-                        Cromo-molibdênio
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-7">
-                        Alumínio e carbono
-                      </Dropdown.Item>
+                      {materials.map((material, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {material}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
-                  <Dropdown>
+                  <Dropdown id="categoryDropdown">
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                       CATEGORIA
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                       {category?.map((category) => (
-                        <Dropdown.Item key={category?.id}>
+                        <Dropdown.Item
+                          key={category?.id}
+                          onClick={() => handleCategoryChange(category?.name)}
+                        >
                           {category?.name}
                         </Dropdown.Item>
                       ))}
@@ -307,9 +327,14 @@ function RegisterBike() {
                       GÊNERO
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Feminino</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">Masculino</Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">Unissex</Dropdown.Item>
+                      {genders.map((gender, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {gender}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -317,13 +342,14 @@ function RegisterBike() {
                       COR
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {colors.map((color, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {color}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -331,13 +357,14 @@ function RegisterBike() {
                       TAMANHO
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {sizes.map((size, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {size} polegadas
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -345,13 +372,14 @@ function RegisterBike() {
                       SUSPENSÃO
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {suspensionOptions.map((option, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {option.label}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -359,13 +387,14 @@ function RegisterBike() {
                       ARO
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {wheelSizes.map((size, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {size} polegadas
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                   <Dropdown>
@@ -373,18 +402,18 @@ function RegisterBike() {
                       MARCHA
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
+                      {gearOptions.map((option, index) => (
+                        <Dropdown.Item
+                          key={index}
+                          href={`#/action-${index + 1}`}
+                        >
+                          {option}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
                 <Col md={6}>
-                  <Card id="mapCard"></Card>
                   <Form onSubmit={handleSubmit(onSubmit)}>
                     <Row>
                       <Col md={6}>
@@ -456,8 +485,8 @@ function RegisterBike() {
                     </Row>
                     <Row>
                       <Col>
-                        <button onClick={handleCEPChange}>
-                          Obter Coordenadas
+                        <button id="endereco1" onClick={handleCEPChange}>
+                          ENCONTRAR ENDEREÇO
                         </button>
                       </Col>
                     </Row>
@@ -470,6 +499,8 @@ function RegisterBike() {
                     type="text"
                     id="textbox"
                     placeholder="Insira aqui alguma recomendação ou instrução para o aluguel"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
 
@@ -480,6 +511,8 @@ function RegisterBike() {
                       type="number"
                       id="cep"
                       placeholder="VALOR DA HORA"
+                      value={hourlyvalue}
+                      onChange={(e) => setHourlyvalue(e.target.value)}
                     />
                   </Col>
                   <Col md={6} className="colvalor d-flex">
@@ -488,6 +521,8 @@ function RegisterBike() {
                       type="number"
                       id="numero"
                       placeholder="VALOR DA DIÁRIA"
+                      value={dailyvalue}
+                      onChange={(e) => setDailyvalue(e.target.value)}
                     />
                   </Col>
                 </Row>

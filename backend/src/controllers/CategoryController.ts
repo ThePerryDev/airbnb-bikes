@@ -48,6 +48,8 @@ class CategoryController {
     return res.json(categories);
   }
 
+
+
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.body;
     // o método delete retorna o objeto {"raw": [],"affected": 1}

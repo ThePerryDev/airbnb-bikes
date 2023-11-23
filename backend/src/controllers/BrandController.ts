@@ -48,6 +48,15 @@ class BrandController {
     return res.json(brands);
   }
 
+  public async GetByName(req: Request, res: Response): Promise<Response> {
+    const { name } = req.params;
+
+    const brand = await AppDataSource.manager.findOne(Brand, {
+      where: { name },
+    });
+    return res.json(brand);
+  }
+
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.body;
     // o método delete retorna o objeto {"raw": [],"affected": 1}

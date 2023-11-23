@@ -7,6 +7,11 @@ class BrandService {
     return data;
   }
 
+  async GetByName(name: string) {
+    const { data } = await api.get(`/brand/id/${name}`);
+    return data;
+  }
+
   async post(props: { name: string }): Promise<any> {
     const { data } = await api.post("/brand", props);
     return data;
