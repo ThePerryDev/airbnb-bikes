@@ -169,6 +169,23 @@ class BikeController {
     return res.json(bike);
   }
 
+  public async listByIdUser(req: Request, res: Response): Promise<Response> {
+    const { iduser } = req.params;
+    const user = await AppDataSource.manager.findOneBy(User, {
+      id: parseInt(iduser),
+    });
+    const bike = await AppDataSource.manager.find(Bike, {
+      where: { user },
+      relations: {
+        user: true,
+        brand: true,
+        category: true,
+        photos: true,
+      },
+    });
+    return res.json(bike);
+  }
+
   public async delete(req: Request, res: Response): Promise<Response> {
     const { id } = req.body;
     // o método delete retorna o objeto {"raw": [],"affected": 1}

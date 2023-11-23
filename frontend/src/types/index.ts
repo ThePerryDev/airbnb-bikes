@@ -30,6 +30,7 @@ export interface UsersProps {
   alias: string;
   mail: string;
   phone: string;
+  bikelist: BikeProps
   token: string;
 }
 
@@ -51,11 +52,13 @@ export interface RentsProps {
   returnDate: Date;
   ownerValuation: number;
   clientValuation: number;
+  bike: BikeProps;
 }
 
 export interface PhotoProps {
   id: number;
   filename: string;
+  bikes: BikeProps[];
 }
 
 export interface EnderecoProps {

@@ -16,10 +16,21 @@ class RentService {
     ownerValuation: number;
     clientValuation: number;
   }): Promise<any> {
-    const { data } = await api.post("/rents", props);
+    const { data } = await api.post("/rent", props);
+    return data;
+  }
+
+  async listByClient(iduser:string){
+    const { data } = await api.get(`/rent/client/${iduser}`);
+    return data;
+  }
+
+  async listByOwner(iduser:string){
+    const { data } = await api.get(`/rent/owner/${iduser}`);
     return data;
   }
 }
+
 
 const service = new RentService();
 export default service;

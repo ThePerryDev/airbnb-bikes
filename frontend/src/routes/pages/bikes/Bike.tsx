@@ -67,6 +67,7 @@ function Bike() {
 
   return (
     <div id="body">
+      <Header />
       <Container fluid id="fundo">
         <Container id="carrouselcontainer">
           <Col md={12}>
@@ -253,6 +254,7 @@ function Bike() {
           </Col>
         </Container>
       </Container>
+      <Footer/>
     </div>
   );
 }

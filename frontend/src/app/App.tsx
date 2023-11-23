@@ -12,11 +12,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/user" element={<RequireAuth><User /></RequireAuth>} />
+      <Route path="/user/:id" element={<RequireAuth><User /></RequireAuth>} />
       <Route path="/" element={<Home />} />
       <Route path="/registerbike" element={<RequireAuth><RegisterBike /></RequireAuth>} />
-      <Route path="/avalovador" />
-      <Route path="/avalocatorio" />
       <Route path="/bike/:id" element={<RequireAuth><Bike /></RequireAuth>}/>
       <Route path="/login" element={<Login />} />
       <Route path="/catalog" element={<Catalog />} />
