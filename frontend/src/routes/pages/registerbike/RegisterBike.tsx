@@ -150,7 +150,8 @@ function RegisterBike() {
       selectedMaterial &&
       selectedGender &&
       typeof selectedSuspension === "boolean" &&
-      description.trim() !== ""
+      description.trim() !== "" &&
+      files.length >= 1
     ) {
       // Obter o ID da marca pelo nome
       const brandName = selectedBrand;
