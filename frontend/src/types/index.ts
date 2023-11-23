@@ -51,6 +51,7 @@ export interface RentsProps {
   returnDate: Date;
   ownerValuation: number;
   clientValuation: number;
+  bike: BikeProps;
 }
 
 export interface PhotoProps {

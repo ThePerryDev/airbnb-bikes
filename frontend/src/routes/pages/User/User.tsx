@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BikeProps, RentsProps, UsersProps } from "../../../types";
 import UsersService from "../../../services/UsersService";
+import rentService from "../../../services/RentService";
 import { Link, useParams } from "react-router-dom";
 import "./user.css";
 import { Button, Card, Carousel, Col, Container, Row } from "react-bootstrap";
@@ -14,6 +15,7 @@ import api from "../../../services/api";
 function User() {
   const { id } = useParams();
   const [bikes, setBikes] = useState([] as BikeProps[]);
+  const [client, setClient] = useState([] as RentsProps[]);
   const [users, setUsers] = useState({} as UsersProps);
   const [rents, setRents] = useState<RentsProps[]>([]);
 
@@ -23,13 +25,11 @@ function User() {
         .listByUser(id)
         .then((r) => {
           setBikes(r);
-          console.log("r:", r);
           // Se a lista de bicicletas estiver vazia, busque as informações do usuário
           if (r.length === 0) {
             UsersService.listById(id)
               .then((r) => {
                 setUsers(r);
-                console.log("userData", r);
               })
               .catch((error) => {
                 console.error("Erro ao buscar informações de Usuário:", error);
@@ -41,20 +41,6 @@ function User() {
         });
     }
   }, [id]);
-
-  const getRents = async () => {
-    try {
-      const response = await api.get(`/rent/client/:iduser`);
-      const data = response.data;
-      setRents(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getRents();
-  }, []);
 
   const [cardlcdorV, setCardlcdorV] = useState(false);
   const lcdorTroca = () => {
@@ -160,17 +146,18 @@ function User() {
                         <div id="cardInfos">
                           <div>
                             <Card.Text className="details-center">
-                              <Card.Text>Marca {bike.brand.name}</Card.Text>
-                              <Card.Text>{bike.category.name}</Card.Text>
-                              <Card.Text>Tamanho {bike.size}</Card.Text>
-                              <Card.Text>Material: {bike.material}</Card.Text>
+                              <Card.Text>{bike.name}</Card.Text>
                             </Card.Text>
                           </div>
                         </div>
                       </Col>
                       <Col>
                         <div id="cardStatus">
-                          <Card.Text className="text">STATUS</Card.Text>
+                          <Card.Text className="text">
+                            {" "}
+                            <Card.Text>{bike.brand.name}</Card.Text>
+                            <Card.Text>{bike.category.name}</Card.Text>
+                          </Card.Text>
                         </div>
                       </Col>
                     </Row>
@@ -178,13 +165,19 @@ function User() {
                       <Col>
                         <div id="cardDatas">
                           <Card.Text className="text">
-                            DATA ALUGUEL <br /> DATA DE ENTREGA
+                            {bike.description}
                           </Card.Text>
                         </div>
                       </Col>
                       <Col>
                         <div id="cardAva">
-                          <Card.Text className="text">AVALIAÇÃO</Card.Text>
+                          <Card.Text className="details-center">
+                            <Card.Text>{bike.gender}</Card.Text>
+                            <Card.Text>Material: {bike.material}</Card.Text>
+                            <Card.Text>{bike.speedkit} Marchas</Card.Text>
+                            <Card.Text>Tamanho {bike.size}</Card.Text>
+                            <Card.Text>Aro: {bike.rim}</Card.Text>
+                          </Card.Text>
                         </div>
                       </Col>
                     </Row>
@@ -196,128 +189,13 @@ function User() {
         ) : (
           <div>Este usuário ainda não disponibilizou nenhum produto</div>
         )}
-        <Row id="RowProdutos">
-          <Card.Text>Meus Alugueis:</Card.Text>
-        </Row>
-
-        {rents.length === 0 ? (
-          <p>Não há alugueis</p>
-        ) : (
-          rents?.map((rent) => (
-          <Carousel data-bs-theme="dark" className="carrossel">
-              <Carousel.Item key={rent.id}>
-                <Row>
-                  <Col md={4} id="colBike">
-                    <div id="cardBike">
-                      <Row>
-                        {/* <img
-                          src={`http://localhost:3001/photo/public/${bike.photos[0].filename}`}
-                          // alt={bike.photos[0].filename}
-                          id="imgBike"
-                        /> */}
-                      </Row>
-                      <Row>
-                        {/* <Card.Text>{bike.name}</Card.Text> */}
-                      </Row>
-                      <Row>
-                        <Card id="cardInfoBike">
-                          {/* <Card.Text>{bike.description}</Card.Text> */}
-                        </Card>
-                      </Row>
-                      <Row>
-                        <Col>
-                          <Row>
-                            <Col>
-                              <Row>
-                                <Card.Text>
-                                  {/* <span>R$ {bike.dailyvalue}/</span> */}
-                                  <span id="textoCinza">dia</span>
-                                </Card.Text>
-                              </Row>
-                              <Row>
-                                <Card.Text>
-                                  {/* <span>R$ {bike.hourlyvalue}/</span> */}
-                                  <span id="textoCinza">hora</span>
-                                </Card.Text>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Col>
-                        <Col id="colDetalhes">
-                          {/* <Link to={`../bike/${bike.id}`}>
-                            <Button id="detalhes">Detalhes</Button>
-                          </Link> */}
-                        </Col>
-                      </Row>
-                    </div>
-                  </Col>
-                  <Col md={8}>
-                    <Row>
-                      <Col>
-                        <div id="cardInfos">
-                          <div>
-                            <Card.Text className="details-center">
-                              {/* <Card.Text>Marca {bike.brand.name}</Card.Text>
-                              <Card.Text>{bike.category.name}</Card.Text>
-                              <Card.Text>Tamanho {bike.size}</Card.Text>
-                              <Card.Text>Material: {bike.material}</Card.Text> */}
-                            </Card.Text>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col>
-                        <div id="cardStatus">
-                          <Card.Text className="text">STATUS</Card.Text>
-                        </div>
-                      </Col>
-                    </Row>
-                    
-                        <Row>
-                          <Col>
-                            <div id="cardDatas">
-                              <Card.Text className="text">
-                                DATA ALUGUEL:{" "}
-                                {new Date(rent.rentalDate).toLocaleDateString()}
-                                <br />
-                                DATA DE ENTREGA:{" "}
-                                {new Date(rent.returnDate).toLocaleDateString()}
-                              </Card.Text>
-                            </div>
-                          </Col>
-                          <Col>
-                            <div id="cardAva">
-                              <Card.Text>
-                                Avaliação: {rent.clientValuation}
-                              </Card.Text>
-                            </div>
-                          </Col>
-                        </Row>
-                      
-                  </Col>
-                </Row>
-              </Carousel.Item>
-          </Carousel>
-          ))
-        )}
         <Container fluid>
           <Container id="centerContainer">
             <Row>
-              <Col md={4} sm={3}>
+              <Col md={12} sm={12}>
                 <Link to="../registerbike">
                   <Button id="button">CADASTRAR BICICLETAS</Button>
                 </Link>
-              </Col>
-              <Col md={4} sm={3}>
-                <Button id="button" onClick={lcdorTroca}>
-                  AVALIAÇÕES DO LOCADOR
-                </Button>
-                <AvLocador show={cardlcdorV} onClose={lcdorTroca} />
-              </Col>
-              <Col md={4} sm={3}>
-                <Button id="button" onClick={lctarioTroca}>
-                  AVALIAÇÕES DO LOCATÓRIO
-                </Button>
-                <AvLocatorio show={cardlctarioV} onClose={lctarioTroca} />
               </Col>
             </Row>
           </Container>

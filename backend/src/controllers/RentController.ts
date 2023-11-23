@@ -1,12 +1,13 @@
 import AppDataSource from "../data-source";
 import { Request, Response } from "express";
-import { Rent } from "../entities/Rent";
+import { Rent, Valuation } from "../entities/Rent";
 import { User } from "../entities/User";
 import { Bike } from "../entities/Bike";
+import { DeepPartial } from "typeorm";
 
 class RentController {
   public async create(req: Request, res: Response): Promise<Response> {
-    const { idclient, idowner, date, ownervaluation } = req.body;
+    const { idclient, idowner, idbike, rentalDate, returnDate } = req.body;
 
     //obtém o usuário na tabela users
     const owner = await AppDataSource.manager.findOneBy(User, { id: idowner });
@@ -26,19 +27,38 @@ class RentController {
         .json({ error: "Cliente desconhecido", props: "client" });
     }
 
+    const bike = await AppDataSource.manager.findOneBy(Bike, {
+      id: idbike,
+    });
+    if (!bike) {
+      return res
+        .status(400)
+        .json({ error: "Bicicleta desconhecido", props: "client" });
+    }
+
     const rent = await AppDataSource.manager.save(Rent, {
-      owner,
       client,
-      date,
-      ownervaluation,
+      owner,
+      bike,
+      rentalDate,
+      returnDate,
     });
     return res.json(rent);
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
-    const { id, idclient, idowner, date, ownervaluation } = req.body;
+    const {
+      id,
+      idclient,
+      idbike,
+      idowner,
+      returnDate,
+      rentalDate,
+      ownervaluation,
+      clientvaluation,
+    } = req.body;
 
-    //obtém o usuário na tabela users
+    // Obtém o usuário na tabela users
     const owner = await AppDataSource.manager.findOneBy(User, { id: idowner });
     if (!owner) {
       return res
@@ -46,7 +66,7 @@ class RentController {
         .json({ error: "Proprietário desconhecido", props: "owner" });
     }
 
-    //obtém o usuário na tabela users
+    // Obtém o usuário na tabela users
     const client = await AppDataSource.manager.findOneBy(User, {
       id: idclient,
     });
@@ -56,13 +76,35 @@ class RentController {
         .json({ error: "Cliente desconhecido", props: "client" });
     }
 
-    const rent = await AppDataSource.manager.save(Rent, {
+    const bike = await AppDataSource.manager.findOneBy(Bike, {
+      id: idbike,
+    });
+    if (!bike) {
+      return res
+        .status(400)
+        .json({ error: "Bicicleta desconhecido", props: "client" });
+    }
+
+    const updateData: DeepPartial<Rent> = {
       id,
       owner,
       client,
-      date,
+      returnDate,
+      rentalDate,
       ownervaluation,
-    });
+      clientvaluation,
+    };
+
+    // Adiciona a coluna opcional se ela existir em req.body
+    if (ownervaluation !== undefined) {
+      updateData.ownervaluation = ownervaluation as Valuation;
+    }
+
+    if (clientvaluation !== undefined) {
+      updateData.clientvaluation = clientvaluation as Valuation;
+    }
+
+    const rent = await AppDataSource.manager.save(Rent, updateData);
     return res.json(rent);
   }
 
@@ -71,6 +113,7 @@ class RentController {
       relations: {
         client: true,
         owner: true,
+        bike: true,
       },
       order: {
         rentalDate: "DESC",
