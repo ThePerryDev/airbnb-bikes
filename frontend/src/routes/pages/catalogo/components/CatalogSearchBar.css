@@ -1,8 +1,12 @@
-.filter-button {
+.reverse-button {
     background: transparent;
     border: none;
   }
   
+#reverse-button{
+  max-width: 25px;
+}
+
   #searcbarmargin{
     margin: 1vh 0px 2vh 0px;
   }

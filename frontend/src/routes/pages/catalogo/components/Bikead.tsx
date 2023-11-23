@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import api from "../../../../services/api";
 import { BikeProps } from "../../../../types";
+import reverseico from "../img/reverseico.png";
 import "./bikead.css";
 
 export const Bikead = () => {
@@ -11,18 +12,35 @@ export const Bikead = () => {
     try {
       const response = await api.get(`/bike`);
       const data = response.data;
-      setBikes(data);
+  
+      // Ordena os objetos com base na propriedade 'id'
+      const bikesOrdenadas = [...data].sort((a: any, b: any) => a.id - b.id);
+
+      setBikes(bikesOrdenadas);
+
     } catch (error) {
       console.log(error);
-    }
+    } 
   };
-
+  
+  
   useEffect(() => {
     getBikes();
   }, []);
 
+  const invertBikes = async () => {
+    await getBikes();
+    // Inverte a ordem dos objetos
+    const bikesInvertidas = [...bikes].reverse();
+    setBikes(bikesInvertidas);
+  }
+
   return (
     <Row id="bikead-row">
+      <button onClick={invertBikes} className="reverse-button">
+            <img id="reverse-button" src={reverseico} alt="Filter Button" />
+            Inverter a ordem
+          </button>
       {bikes.length === 0 ? (
         <p>Não há bicicletas disponíveis</p>
       ) : (
@@ -41,7 +59,7 @@ export const Bikead = () => {
                 )}
               </div>
               <h3>{bike.name}</h3>
-              <div className="descritivo">{bike.description}</div>
+              <div className="descritivo">{bike.description} and {bike.id}</div>
               <div className="adjust-between">
                 <h3>R$ {bike.hourlyvalue}</h3>
                 <button id="details-button">Details</button>
@@ -57,3 +75,4 @@ export const Bikead = () => {
     </Row>
   );
 };
+
