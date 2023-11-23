@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CategoriesProps, EnderecoProps, BrandProps } from "../../../types";
 import BikeService from "../../../services/BikeService";
 import "./registerbike.css";
 import { Button, Col, Container, Dropdown, Row, Form } from "react-bootstrap";
 import { FileUploader } from "react-drag-drop-files";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { fromAddress } from "react-geocode";
 import { setDefaults } from "../../components/mapas";
+import { AuthContext } from "../../context/auth/Authcontext";
 
 function RegisterBike() {
-  const [idUser, setIdUser] = useState("");
+  const auth = useContext(AuthContext);
+  const [idUser, setIdUser] = useState<number | null>(null);
   const [idCategory, setIdCategory] = useState("");
   const [idBrand, setIdBrand] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
@@ -71,7 +71,6 @@ function RegisterBike() {
   const save = async () => {
     const selectedBrand1 = selectedBrand;
     const selectedCategory1 = selectedCategory;
-    const idUserInt = parseInt(idUser);
     const speedkitInt = parseInt(speedkit);
     const rimInt = parseInt(rim);
     const sizeInt = parseInt(size);
@@ -79,10 +78,11 @@ function RegisterBike() {
     const dailyvalueFloat = parseFloat(dailyvalue);
     const latitudeFloat = parseFloat(latitude);
     const longitudeFloat = parseFloat(longitude);
+    const idUser: number = auth.user?.id || 0;
     if (
       selectedBrand1 &&
       selectedCategory1 &&
-      !isNaN(idUserInt) &&
+      !isNaN(idUser) &&
       !isNaN(sizeInt) &&
       !isNaN(speedkitInt) &&
       !isNaN(rimInt) &&
@@ -123,7 +123,7 @@ function RegisterBike() {
 
               // Enviar a solicitação para salvar os dados da bicicleta
               const res = await BikeService.post({
-                idUser: idUserInt,
+                idUser: idUser,
                 idCategory: categoryId,
                 idBrand: brandId,
                 name: name.trim(),
@@ -257,7 +257,6 @@ function RegisterBike() {
 
   return (
     <div>
-      <Header />
       <main>
         <Container fluid id="main">
           <Container id="second">
@@ -542,7 +541,6 @@ function RegisterBike() {
           </Container>
         </Container>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -21,7 +21,7 @@ function App() {
       <Route path="/demo" element={<Demo />} />
       <Route path="/bike" element={<Bike />} />
       <Route path="/" element={<Home />} />
-      <Route path="/registerbike" element={<RegisterBike />} />
+      <Route path="/registerbike" element={<RequireAuth><RegisterBike /></RequireAuth>} />
       <Route path="/avalovador" />
       <Route path="/avalocatorio" />
       <Route path="/bike/:id" element={<Bike />} />
