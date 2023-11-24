@@ -1,5 +1,4 @@
 import "./bike.css";
-import perfil from "./imagens/perfil.png";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Card, Col, Container, Row } from "react-bootstrap";
@@ -9,8 +8,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import mapBike from "./imagens/mapBike.png";
 import { useParams } from "react-router-dom";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 
 function Bike() {
   const { id } = useParams();

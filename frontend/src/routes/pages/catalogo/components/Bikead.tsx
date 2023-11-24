@@ -7,23 +7,23 @@ import "./bikead.css";
 
 export const Bikead = () => {
   const [bikes, setBikes] = useState<BikeProps[]>([]);
+  const [totalBikes, setTotalBikes] = useState<number>(0);
 
   const getBikes = async () => {
     try {
       const response = await api.get(`/bike`);
       const data = response.data;
-  
+
       // Ordena os objetos com base na propriedade 'id'
       const bikesOrdenadas = [...data].sort((a: any, b: any) => a.id - b.id);
 
       setBikes(bikesOrdenadas);
-
+      setTotalBikes(bikesOrdenadas.length);
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
-  
-  
+
   useEffect(() => {
     getBikes();
   }, []);
@@ -33,14 +33,15 @@ export const Bikead = () => {
     // Inverte a ordem dos objetos
     const bikesInvertidas = [...bikes].reverse();
     setBikes(bikesInvertidas);
-  }
+  };
 
   return (
     <Row id="bikead-row">
       <button onClick={invertBikes} className="reverse-button">
-            <img id="reverse-button" src={reverseico} alt="Filter Button" />
-            Inverter a ordem
-          </button>
+        <img id="reverse-button" src={reverseico} alt="Filter Button" />
+        Inverter a ordem
+      </button>
+      <p>Total de bicicletas disponíveis: {totalBikes}</p>
       {bikes.length === 0 ? (
         <p>Não há bicicletas disponíveis</p>
       ) : (
@@ -50,7 +51,7 @@ export const Bikead = () => {
               <div className="bikephoto">
                 {bike.photos[0] ? (
                   <img
-                    src={`${api}/photo/public/${bike.photos[0].filename}`}
+                    src={`http://localhost:3001/photo/public/${bike.photos[0].filename}`}
                     alt="bike"
                     className="home-bike-photo"
                   />
@@ -59,7 +60,9 @@ export const Bikead = () => {
                 )}
               </div>
               <h3>{bike.name}</h3>
-              <div className="descritivo">{bike.description} and {bike.id}</div>
+              <div className="descritivo">
+                {bike.description} and {bike.id}
+              </div>
               <div className="adjust-between">
                 <h3>R$ {bike.hourlyvalue}</h3>
                 <button id="details-button">Details</button>
@@ -75,4 +78,3 @@ export const Bikead = () => {
     </Row>
   );
 };
-

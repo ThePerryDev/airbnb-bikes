@@ -1,6 +1,4 @@
 import { Col, Row } from "react-bootstrap";
-import lupa from "../../../components/img/lupa.png";
-import reverseico from "../img/reverseico.png";
 import "./CatalogSearchBar.css";
 
 function CatalogSearchBar() {
