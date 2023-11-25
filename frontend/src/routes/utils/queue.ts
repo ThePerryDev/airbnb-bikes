@@ -24,7 +24,7 @@ class Queue<T>{
     }
 
     isEmpty():boolean{
-        return (this.length == 0);
+        return (this.length === 0);
     }
 
     add(node:MyNode<T>){
