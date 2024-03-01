@@ -259,7 +259,7 @@ function RegisterBike() {
 
   //CEP
 
-  const API_KEY = "AIzaSyDaUNxhWQrwGSlVnmpoAhY5nTgyRO4fwPI";
+  const API_KEY = "desativada";
 
   const handleCEPChange = async () => {
     if (cep.length === 8) {
