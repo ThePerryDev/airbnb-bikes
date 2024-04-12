@@ -29,10 +29,17 @@ function Home() {
         <div>
           <button>
             <Link to="/user">
-              <img src={user} alt="Pagina de usuário" />
+              <img src={user} alt="Página de usuário" />
             </Link>
           </button>
           <span>User Page</span>
+
+          <button>
+            <Link to="/projects">
+              <img src={user} alt="Página de projetos" />
+            </Link>
+          </button>
+          <span>Projects Page</span>
         </div>
       )}
     </nav>

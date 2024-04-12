@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { RequireAuth } from "../routes/context";
-import { Home, Login, Private, User } from "../routes/pages";
+import { Home, Login, Private, Projects, User } from "../routes/pages";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
       />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/projects" element={<Projects />} />
       <Route
         path="/private"
         element={
