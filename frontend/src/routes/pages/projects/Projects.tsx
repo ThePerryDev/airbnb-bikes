@@ -6,20 +6,17 @@ function Projects() {
   const auth = useContext(AuthContext);
 
   return (
-    <Container>
-        <DivLeft>aa</DivLeft>
-        <DivRigth>
-            <Row>aa</Row>
-            <Row>
-                <DivLeft2>aa</DivLeft2>
-                <DivRigth2>aa</DivRigth2>
-            </Row>
-        </DivRigth>
-    </Container>
+    <DivGeneral>
+        <DivUp>a</DivUp>
+        <DivDown>
+            <DivLeft>a</DivLeft>
+            <DivRight>a</DivRight>
+        </DivDown>
+    </DivGeneral>
   );
 }
 
-export const Container = styled.div`
+export const DivGeneral = styled.div`
     position: fixed;
     top: 0;
     left: 0;
@@ -28,36 +25,30 @@ export const Container = styled.div`
     background-color: green;
 `;
 
-export const DivLeft = styled.div`
-    display: flex;
-    justify-content: center;
+export const DivUp = styled.div`
     background-color: pink;
-    width: 15%;
-    heigth: 100%;
+    display: inline-block;
+    height: 416px;
+    width: 1182px;
 `;
 
-export const DivRigth = styled.div`
-    display: flex;
-    justify-content: center;
+export const DivDown = styled.div`
     background-color: red;
-    width: 85%;
-    heigth: 100%;
+    height: 416px;
+    width: 1182px;
 `;
 
-export const DivLeft2 = styled.div`
-    display: flex;
-    justify-content: center;
-    background-color: blue;
-`;
-
-export const DivRigth2 = styled.div`
-    display: flex;
-    justify-content: center;
-    background-color: gray;
-`;
-
-export const Row = styled.div`
+export const DivLeft = styled.div`
     background-color: yellow;
+    height: 464px;
+    width: 800px;
+    float: left;
+`;
+
+export const DivRight = styled.div`
+    background-color: blue;
+    height: 464px;
+    float: right;
 `;
 
 export default Projects;
